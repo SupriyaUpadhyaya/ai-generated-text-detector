@@ -9,7 +9,7 @@ from safetensors.torch import save_file, load_file
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 class Evaluation:
-    def __init__(self, model_type, log_path, model_path, num_labels=2):
+    def __init__(self, model_type, log_path, num_labels=2):
         with open('config/model.yaml', 'r') as file:
             self.config = yaml.safe_load(file)
         model_name = self.config[model_type].get('pretrained')
@@ -28,6 +28,7 @@ class Evaluation:
         
         self.metrics = Metrics()
         self.model_type = model_type
+        self.log_path = log_path
     
     def preprocess_function(self, examples):
         """
@@ -56,7 +57,7 @@ class Evaluation:
             per_device_eval_batch_size=eval_batch_size,    # batch size for evaluation
             num_train_epochs=num_train_epochs,              # number of training epochs
             weight_decay=weight_decay,       # strength of weight decay
-            logging_dir='./logs',            # directory for storing logs
+            logging_dir=f'{self.log_path}/{self.model_type}/logs',            # directory for storing logs
             logging_steps=1,
             )
 
@@ -74,4 +75,4 @@ class Evaluation:
             # Plot confusion matrix for test set
             test_predictions = test_results.predictions.argmax(axis=-1)
             test_labels = tokenized_datasets['label']
-            Metrics.plot_confusion_matrix(test_predictions, test_labels, {type})
+            Metrics.plot_confusion_matrix(test_predictions, test_labels, {type}, f'{self.log_path}/{self.model_type}/logs')
