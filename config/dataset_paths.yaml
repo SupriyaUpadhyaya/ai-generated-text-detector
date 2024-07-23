@@ -1,9 +1,9 @@
-chatgpt_abstract_with:
-  train: "data/without_n/arxiv_chatGPT_test.jsonl"
-  validation: "data/without_n/arxiv_chatGPT_val.jsonl"
-  test: "data/without_n/arxiv_chatGPT_test.jsonl"
-  human_text_column: 'human_text'
-  machine_text_column: 'machine_text'
+# chatgpt_abstract_with:
+#   train: "data/without_n/arxiv_chatGPT_test.jsonl"
+#   validation: "data/without_n/arxiv_chatGPT_val.jsonl"
+#   test: "data/without_n/arxiv_chatGPT_test.jsonl"
+#   human_text_column: 'human_text'
+#   machine_text_column: 'machine_text'
 
 chatgpt_abstract_without:
   train: "data/with_n/arxiv_chatGPT_train.jsonl"
@@ -13,17 +13,39 @@ chatgpt_abstract_without:
   machine_text_column: 'machine_text'
 
 # Add other combinations as needed
-bloomz_wiki_with:
-  train: "data/with_n/arxiv_bloomz_train.jsonl"
-  validation: "data/with_n/arxiv_bloomz_validation.jsonl"
-  test: "data/with_n/arxiv_bloomz_test.jsonl"
-  human_text_column: 'abstract'
-  machine_text_column: 'machine_abstract'
+# bloomz_wiki_with:
+#   train: "data/with_n/arxiv_bloomz_train.jsonl"
+#   validation: "data/with_n/arxiv_bloomz_validation.jsonl"
+#   test: "data/with_n/arxiv_bloomz_test.jsonl"
+#   human_text_column: 'abstract'
+#   machine_text_column: 'machine_abstract'
+
 
 bloomz_wiki_without:
   train: "data/without_n/arxiv_bloomz_train.jsonl"
   validation: "data/without_n/arxiv_bloomz_val.jsonl"
   test: "data/without_n/arxiv_bloomz_test.jsonl"
+  human_text_column: 'abstract'
+  machine_text_column: 'machine_abstract'
+
+cohere_wiki_without:
+  train: "data/without_n/arxiv_cohere_train.jsonl"
+  validation: "data/without_n/arxiv_cohere_validation.jsonl"
+  test: "data/without_n/arxiv_cohere_test.jsonl"
+  human_text_column: 'human_text'
+  machine_text_column: 'machine_text'
+
+davinci_wiki_without:
+  train: "data/without_n/arxiv_davinci_train.jsonl"
+  validation: "data/without_n/arxiv_davinci_validation.jsonl"
+  test: "data/without_n/arxiv_davinci_test.jsonl"
+  human_text_column: 'human_text'
+  machine_text_column: 'machine_text'
+
+flant5_wiki_without:
+  train: "data/without_n/arxiv_flant5_train.jsonl"
+  validation: "data/without_n/arxiv_flant5_validation.jsonl"
+  test: "data/without_n/arxiv_flant5_test.jsonl"
   human_text_column: 'abstract'
   machine_text_column: 'machine_abstract'
 
