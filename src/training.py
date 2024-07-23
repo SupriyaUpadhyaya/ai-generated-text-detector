@@ -89,6 +89,6 @@ class Train:
         # Plot confusion matrix for test set
         test_predictions = test_results.predictions.argmax(axis=-1)
         test_labels = tokenized_datasets['test']['label']
-        Metrics.compute_metrics(zip(test_results, test_labels))
+        Metrics.compute_metrics((torch.tensor(test_results.predictions), torch.tensor(test_labels)))
         Metrics.plot_confusion_matrix(test_predictions, test_labels, 'Test', f'{self.log_path}/{self.model_type}/logs')
 
