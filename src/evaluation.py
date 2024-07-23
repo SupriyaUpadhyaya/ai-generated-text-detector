@@ -50,7 +50,7 @@ class Evaluation:
 
             training_args = TrainingArguments(
             output_dir='./results',          # output directory
-            evaluation_strategy="epoch",     # evaluate after each epoch
+            eval_strategy="epoch",     # evaluate after each epoch
             learning_rate=learning_rate,     # learning rate
             per_device_train_batch_size=train_batch_size,   # batch size for training
             per_device_eval_batch_size=eval_batch_size,    # batch size for evaluation
