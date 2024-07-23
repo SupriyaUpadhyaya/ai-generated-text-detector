@@ -1,14 +1,7 @@
-# chatgpt_abstract_with:
-#   train: "data/without_n/arxiv_chatGPT_test.jsonl"
-#   validation: "data/without_n/arxiv_chatGPT_val.jsonl"
-#   test: "data/without_n/arxiv_chatGPT_test.jsonl"
-#   human_text_column: 'human_text'
-#   machine_text_column: 'machine_text'
-
 chatgpt_abstract_without:
-  train: "data/with_n/arxiv_chatGPT_train.jsonl"
-  validation: "data/with_n/arxiv_cohere_validation.jsonl"
-  test: "data/with_n/arxiv_cohere_test.jsonl"
+  train: "data/without_n/arxiv_chatGPT_test.jsonl"
+  validation: "data/without_n/arxiv_chatGPT_val.jsonl"
+  test: "data/without_n/arxiv_chatGPT_test.jsonl"
   human_text_column: 'human_text'
   machine_text_column: 'machine_text'
 
