@@ -62,7 +62,7 @@ class Train:
             args=training_args,                       # training arguments
             train_dataset=tokenized_datasets['train'],   # training dataset
             eval_dataset=tokenized_datasets['validation'], # evaluation dataset
-            compute_metrics=Metrics.compute_metrics   # function to compute metrics
+            compute_metrics=self.metrics.compute_metrics   # function to compute metrics
         )
 
         # Train the model
@@ -82,7 +82,7 @@ class Train:
         eval_results = trainer.evaluate()
         print("Evaluation results:", eval_results)
 
-        Metrics.plot_metrics(trainer, f'{self.log_path}/{self.model_type}/logs')
+        self.metrics.plot_metrics(trainer, f'{self.log_path}/{self.model_type}/logs')
 
         # Test the model
         test_results = trainer.predict(tokenized_datasets['test'])
@@ -91,7 +91,6 @@ class Train:
         # Plot confusion matrix for test set
         test_predictions = test_results.predictions.argmax(axis=-1)
         test_labels = tokenized_datasets['test']['label']
-        Metrics.compute_metrics((torch.tensor(test_results.predictions), torch.tensor(test_labels)))
-        Metrics.plot_confusion_matrix(test_predictions, test_labels, 'Test', f'{self.log_path}/{self.model_type}/logs')
-        metrics = Metrics(SummaryWriter(log_dir=f'{self.log_path}/{self.model_type}/logs'))
+        self.metrics.compute_metrics((torch.tensor(test_results.predictions), torch.tensor(test_labels)))
+        self.metrics.plot_confusion_matrix(test_predictions, test_labels, 'Test', f'{self.log_path}/{self.model_type}/logs')
 
