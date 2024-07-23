@@ -6,22 +6,22 @@ class EvaluationDataset:
         self.yaml_path = yaml_path
 
     def getDataset(self):
-        jsonPaths = self.getJsonPath()
+        jsonPaths, col_names = self.getJsonPath()
         print(jsonPaths)
-        human_text_column = 'human_text'
-        machine_text_column = 'machine_text'
 
-        dataset = self.load_and_merge_datasets(jsonPaths, human_text_column, machine_text_column)
+        dataset = self.load_and_merge_datasets(jsonPaths, col_names)
         return dataset
 
     def getJsonPath(self):
         with open(self.yaml_path, 'r') as file:
             config = yaml.safe_load(file)
         test_paths = {}
+        col_names = {}
         for key in config:
             paths = config[key]
             test_paths[key] = paths.get("test")
-        return test_paths
+            col_names[key] = {"human_text_column": paths.get("human_text_column"), "machine_text_column": paths.get("machine_text_column")}
+        return test_paths, col_names
         
     def load_and_process_jsonl_dataset(self, file_path, human_text_column, machine_text_column, human_label, machine_label):
         # Load the dataset
@@ -41,11 +41,11 @@ class EvaluationDataset:
 
         return human_dataset, machine_dataset
 
-    def load_and_merge_datasets(self, jsonPaths, human_text_column, machine_text_column):
+    def load_and_merge_datasets(self, jsonPaths, col_names):
         # Load and process each dataset split
         dataset = {}
         for path in jsonPaths:
-            test_human_dataset, test_machine_dataset = self.load_and_process_jsonl_dataset(jsonPaths[path], human_text_column, machine_text_column, 0, 1)
+            test_human_dataset, test_machine_dataset = self.load_and_process_jsonl_dataset(jsonPaths[path], col_names[path]["human_text_column"], col_names[path]["machine_text_column"], 0, 1)
             test_dataset = concatenate_datasets([test_human_dataset, test_machine_dataset])
             dataset[path]=test_dataset
 

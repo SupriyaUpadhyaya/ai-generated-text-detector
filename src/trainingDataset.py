@@ -11,7 +11,7 @@ class TrainingDataset:
         human_text_column = 'human_text'
         machine_text_column = 'machine_text'
 
-        dataset = self.load_and_merge_datasets(jsonPaths['train'], jsonPaths['test'], jsonPaths['validation'], human_text_column, machine_text_column)
+        dataset = self.load_and_merge_datasets(jsonPaths['train'], jsonPaths['test'], jsonPaths['validation'], jsonPaths['human_text_column'], jsonPaths['machine_text_column'])
         return dataset
 
     def getJsonPath(self, trainData, dataType, newLine):
@@ -24,7 +24,9 @@ class TrainingDataset:
             return {
                 "train": paths.get("train"),
                 "validation": paths.get("validation"),
-                "test": paths.get("test")
+                "test": paths.get("test"),
+                "human_text_column": paths.get("human_text_column"),
+                "machine_text_column": paths.get("machine_text_column")
             }
         else:
             raise ValueError(f"No data paths found for key: {key}")
