@@ -43,7 +43,7 @@ class Train:
 
         # Define training arguments
         training_args = TrainingArguments(
-            output_dir='{self.log_path}/{self.model_type}/results',          # output directory
+            output_dir=f'{self.log_path}/{self.model_type}/results',          # output directory
             eval_strategy="epoch",     # evaluate after each epoch
             learning_rate=learning_rate,     # learning rate
             per_device_train_batch_size=train_batch_size,   # batch size for training
