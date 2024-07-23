@@ -1,6 +1,6 @@
 from transformers import RobertaTokenizer, RobertaForSequenceClassification, Trainer, TrainingArguments
 from datasets import load_dataset
-from metrics import Metrics
+from src.metrics import Metrics
 import yaml
 import torch
 
