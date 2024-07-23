@@ -76,12 +76,11 @@ class Metrics:
         plt.ylabel('Accuracy')
         plt.title('Evaluation Accuracy')
         plt.legend()
-        plot_path = f'./Evaluation_Accuracy_{epoch}.png'
-        plt.savefig(plot_path)
+        plt.savefig()
         plt.close()
 
     @staticmethod
-    def plot_confusion_matrix(predictions, labels, name):
+    def plot_confusion_matrix(predictions, labels, name, path):
         """
         Plots the confusion matrix for the test set.
         """
@@ -93,7 +92,7 @@ class Metrics:
         plt.xlabel('Predicted')
         plt.ylabel('Actual')
         plt.title('Confusion Matrix')
-        plot_path = f'./confusion_matrix_{name}.png'
+        plot_path = f'{path}/confusion_matrix_{name}.png'
         plt.savefig(plot_path)
         plt.close()
         writer.add_figure(f'Confusion Matrix', plt.gcf())
