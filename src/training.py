@@ -68,11 +68,12 @@ class Train:
 
         # Save only the model weights in safetensors format
         weights_path = f'{self.log_path}/{self.model_type}/saved_weights'
-        self.config[self.model_type]['finetuned']=weights_path
-        with open('config/model.yaml', 'w') as file:
-            yaml.safe_dump(self.config, file)
         os.makedirs(weights_path, exist_ok=True)
         save_file(self.model.state_dict(), os.path.join(weights_path, 'model.safetensors'))
+
+        self.config[self.model_type]['finetuned']= f'{weights_path}/model.safetensors'
+        with open('config/model.yaml', 'w') as file:
+            yaml.safe_dump(self.config, file)
 
 
         # Evaluate the model
