@@ -32,7 +32,7 @@ def main():
     new_line = args.newLine
     train_data = args.trainData
     log_path = args.log_path
-    model_path = args.model_path
+    
     # Print the arguments
     print(f"Model Type: {model_type}")
     print(f"Train: {train}")
