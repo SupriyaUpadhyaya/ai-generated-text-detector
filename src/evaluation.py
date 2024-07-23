@@ -18,7 +18,7 @@ class Evaluation:
             weights_path = f'./saved_weights/{model_type}'        
             # Load the model weights from the local directory
             if os.path.exists(weights_path):
-                self.model.load_state_dict(torch.load(os.path.join(weights_path, 'pytorch_model.bin')))
+                self.model.load_state_dict(torch.load(os.path.join(weights_path, 'model.safetensors')))
                 print(f"Model weights loaded from {weights_path}")
             else:
                 print(f"No weights found at {weights_path}. Using the pre-trained model without additional weights.")
