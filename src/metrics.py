@@ -92,7 +92,7 @@ class Metrics:
         plt.xlabel('Predicted')
         plt.ylabel('Actual')
         plt.title('Confusion Matrix')
-        plot_path = f'{path}/confusion_matrix_{name}.png'
+        plot_path = f'{path}/confusion_matrix_{name[0]}.png'
         plt.savefig(plot_path)
         plt.close()
         writer.add_figure(f'Confusion Matrix', plt.gcf())

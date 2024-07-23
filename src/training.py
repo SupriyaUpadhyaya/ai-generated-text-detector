@@ -80,6 +80,8 @@ class Train:
         eval_results = trainer.evaluate()
         print("Evaluation results:", eval_results)
 
+        Metrics.plot_metrics(trainer)
+
         # Test the model
         test_results = trainer.predict(tokenized_datasets['test'])
         print("Test results:", test_results.metrics)
