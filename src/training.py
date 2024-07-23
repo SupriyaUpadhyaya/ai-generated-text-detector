@@ -11,7 +11,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 class Train:
     def __init__(self, model_type,log_path, num_labels=2):
-        with open('config/model.yaml', 'w') as file:
+        with open('config/model.yaml', 'r') as file:
             self.config = yaml.safe_load(file)
         model_name = self.config[model_type].get('pretrained')
         if model_type == 'roberta':
@@ -67,6 +67,8 @@ class Train:
         # Save only the model weights in safetensors format
         weights_path = f'{self.log_path}/{self.model_type}/saved_weights'
         self.config[self.model_type]['finetuned']=weights_path
+        with open('config/model.yaml', 'w') as file:
+            yaml.safe_dump(self.config, file)
         os.makedirs(weights_path, exist_ok=True)
         save_file(self.model.state_dict(), os.path.join(weights_path, 'model.safetensors'))
 
