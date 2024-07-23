@@ -5,7 +5,8 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 from transformers import RobertaTokenizer
 
 class Metrics:
-    def compute_metrics(self, eval_pred):
+    @staticmethod
+    def compute_metrics(eval_pred):
         """
         Computes accuracy, precision, recall, and F1 score for the evaluation.
         """
@@ -17,8 +18,8 @@ class Metrics:
             'recall': recall_score(labels, predictions),
             'f1': f1_score(labels, predictions)
         }
-
-    def plot_metrics(self, trainer):
+    @staticmethod
+    def plot_metrics(trainer):
         """
         Plots training loss and accuracy curves.
         """
@@ -53,7 +54,8 @@ class Metrics:
         plt.legend()
         plt.show()
 
-    def plot_confusion_matrix(self, predictions, labels):
+    @staticmethod
+    def plot_confusion_matrix(predictions, labels):
         """
         Plots the confusion matrix for the test set.
         """
