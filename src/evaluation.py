@@ -68,11 +68,11 @@ class Evaluation:
             )
 
 
-            test_results = trainer.predict(tokenized_datasets['test'])
+            test_results = trainer.predict(tokenized_datasets)
             print("Test results:", test_results.metrics)
 
             # Plot confusion matrix for test set
             test_predictions = test_results.predictions.argmax(axis=-1)
-            test_labels = tokenized_datasets['test']['label']
+            test_labels = tokenized_datasets['label']
             Metrics.plot_confusion_matrix(test_predictions, test_labels)
             Metrics.plot_confusion_matrix(test_predictions, test_labels)
