@@ -23,6 +23,7 @@ class Train:
             self.tokenizer = RobertaTokenizer.from_pretrained(model_name)
             self.model = RobertaForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
         self.metrics = Metrics(f'{self.log_path}/{self.model_type}/logs')
+        print(f'************************** LOG PATH - {self.log_path}/{self.model_type}/logs ***********************')
 
     def preprocess_function(self, examples):
         """
