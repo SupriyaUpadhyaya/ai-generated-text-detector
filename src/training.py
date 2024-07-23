@@ -11,7 +11,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 class Train:
     def __init__(self, model_type,log_path, num_labels=2):
-        with open('config/model.yaml', 'r') as file:
+        with open('config/model.yaml', 'w') as file:
             self.config = yaml.safe_load(file)
         model_name = self.config[model_type].get('pretrained')
         if model_type == 'roberta':
