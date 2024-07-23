@@ -50,13 +50,9 @@ class Evaluation:
             tokenized_datasets = self.preprocess(dataset)
 
             training_args = TrainingArguments(
-            output_dir='./results',          # output directory
-            eval_strategy="epoch",     # evaluate after each epoch
-            learning_rate=learning_rate,     # learning rate
+            output_dir=f'{self.log_path}/{self.model_type}/results',          # output directory
             per_device_train_batch_size=train_batch_size,   # batch size for training
             per_device_eval_batch_size=eval_batch_size,    # batch size for evaluation
-            num_train_epochs=num_train_epochs,              # number of training epochs
-            weight_decay=weight_decay,       # strength of weight decay
             logging_dir=f'{self.log_path}/{self.model_type}/logs',            # directory for storing logs
             logging_steps=1,
             )
@@ -65,7 +61,7 @@ class Evaluation:
             trainer = Trainer(
                 model=self.model,                         # the instantiated model to train
                 args=training_args,                       # training arguments
-                compute_metrics=Metrics.compute_metrics   # function to compute metrics
+                compute_metrics=self.metrics.compute_metrics   # function to compute metrics
             )
 
 
@@ -75,4 +71,4 @@ class Evaluation:
             # Plot confusion matrix for test set
             test_predictions = test_results.predictions.argmax(axis=-1)
             test_labels = tokenized_datasets['label']
-            Metrics.plot_confusion_matrix(test_predictions, test_labels, f'{type}', f'{self.log_path}/{self.model_type}/logs')
+            self.metrics.plot_confusion_matrix(test_predictions, test_labels, f'{type}', f'{self.log_path}/{self.model_type}/logs')
