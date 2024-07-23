@@ -1,8 +1,11 @@
+from tkinter.filedialog import SaveFileDialog
 from transformers import RobertaTokenizer, RobertaForSequenceClassification, Trainer, TrainingArguments
 from datasets import load_dataset
 from src.metrics import Metrics
 import yaml
 import torch
+import os
+from safetensors.torch import save_file
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -60,8 +63,11 @@ class Train:
         # Train the model
         trainer.train()
 
-        # Save only the model weights
-        self.model.save_pretrained(f'./saved_weights/{self.model_type}')
+        # Save only the model weights in safetensors format
+        weights_path = f'./saved_weights/{self.model_type}'
+        os.makedirs(weights_path, exist_ok=True)
+        save_file(self.model.state_dict(), os.path.join(weights_path, 'model.safetensors'))
+
 
         # Evaluate the model
         eval_results = trainer.evaluate()

@@ -4,6 +4,7 @@ from src.metrics import Metrics
 import yaml
 import os
 import torch
+from safetensors.torch import save_file, load_file
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -15,13 +16,16 @@ class Evaluation:
         if model_type == 'roberta':
             self.tokenizer = RobertaTokenizer.from_pretrained(model_name)
             self.model = RobertaForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
-            weights_path = f'./saved_weights/{model_type}'        
+            weights_path = f'./saved_weights/{model_type}/model.safetensors'
+        
             # Load the model weights from the local directory
             if os.path.exists(weights_path):
-                self.model.load_state_dict(torch.load(os.path.join(weights_path, 'model.safetensors')))
+                state_dict = load_file(weights_path)
+                self.model.load_state_dict(state_dict)
                 print(f"Model weights loaded from {weights_path}")
             else:
                 print(f"No weights found at {weights_path}. Using the pre-trained model without additional weights.")
+        
         self.metrics = Metrics()
         self.model_type = model_type
     
