@@ -43,7 +43,7 @@ class Evaluation:
     
     def evaluate(self, datasets, learning_rate=2e-5, train_batch_size=16, eval_batch_size=16, num_train_epochs=1, weight_decay=0.01):
         for type in datasets:
-            print(f'************* Evaluation for {type}')
+            print(f'************* Evaluation for {type} *************')
             # Load dataset
             dataset = datasets[type]
             tokenized_datasets = self.preprocess(dataset)
