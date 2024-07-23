@@ -1,0 +1,11 @@
+roberta:
+  pretrained: "andreas122001/roberta-academic-detector"
+  finetuned: "data/chatgpt_abstract_with_validation.jsonl"
+
+bloomz:
+  pretrained: "data/chatgpt_abstract_with_train.jsonl"
+  finetuned: "data/chatgpt_abstract_with_validation.jsonl"
+
+xgboost:
+  pretrained: "data/chatgpt_abstract_with_train.jsonl"
+  finetuned: "data/chatgpt_abstract_with_validation.jsonl"

@@ -1,0 +1,22 @@
+chatgpt_abstract_with:
+  train: "data/chatgpt_abstract_with_train.jsonl"
+  validation: "data/chatgpt_abstract_with_validation.jsonl"
+  test: "data/chatgpt_abstract_with_test.jsonl"
+
+chatgpt_abstract_without:
+  train: "data/with_n/arxiv_chatGPT_train.jsonl"
+  validation: "data/with_n/arxiv_cohere_validation.jsonl"
+  test: "data/with_n/arxiv_cohere_test.jsonl"
+
+# Add other combinations as needed
+bloomz_wiki_with:
+  train: "data/with_n/arxiv_bloomz_train.jsonl"
+  validation: "data/with_n/arxiv_bloomz_validation.jsonl"
+  test: "data/with_n/arxiv_bloomz_test.jsonl"
+
+bloomz_wiki_without:
+  train: "data/without_n/arxiv_bloomz_train.jsonl"
+  validation: "data/without_n/arxiv_bloomz_val.jsonl"
+  test: "data/without_n/arxiv_bloomz_test.jsonl"
+
+# Continue for other trainData, dataType, and newLine combinations
