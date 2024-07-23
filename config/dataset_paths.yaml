@@ -39,7 +39,7 @@ flant5_wiki_without:
   train: "data/without_n/arxiv_flant5_train.jsonl"
   validation: "data/without_n/arxiv_flant5_validation.jsonl"
   test: "data/without_n/arxiv_flant5_test.jsonl"
-  human_text_column: 'abstract'
-  machine_text_column: 'machine_abstract'
+  human_text_column: 'human_text'
+  machine_text_column: 'machine_text'
 
 # Continue for other trainData, dataType, and newLine combinations
