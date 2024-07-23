@@ -17,7 +17,7 @@ class Evaluation:
             self.tokenizer = RobertaTokenizer.from_pretrained(model_name)
             self.model = RobertaForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
             weights_path = self.config[model_type].get('finetuned')
-        
+            print('weights_path :', weights_path)
             # Load the model weights from the local directory
             if os.path.exists(weights_path):
                 state_dict = load_file(weights_path)
