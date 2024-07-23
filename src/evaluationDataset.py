@@ -5,8 +5,8 @@ class EvaluationDataset:
     def __init__(self, yaml_path='config/dataset_paths.yaml'):
         self.yaml_path = yaml_path
 
-    def getDataset(self, trainData, dataType, newLine):
-        jsonPaths = self.getJsonPath(trainData, dataType, newLine)
+    def getDataset(self):
+        jsonPaths = self.getJsonPath()
         print(jsonPaths)
         human_text_column = 'human_text'
         machine_text_column = 'machine_text'
