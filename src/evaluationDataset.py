@@ -14,7 +14,7 @@ class EvaluationDataset:
         dataset = self.load_and_merge_datasets(jsonPaths, human_text_column, machine_text_column)
         return dataset
 
-    def getJsonPath(self, trainData, dataType, newLine):
+    def getJsonPath(self):
         with open(self.yaml_path, 'r') as file:
             config = yaml.safe_load(file)
         test_paths = {}

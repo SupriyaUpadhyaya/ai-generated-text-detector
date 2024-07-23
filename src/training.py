@@ -8,8 +8,9 @@ class Train:
         with open('config/model.yaml', 'r') as file:
             config = yaml.safe_load(file)
         model_name = config[model_type].get('pretrained')
-        self.tokenizer = RobertaTokenizer.from_pretrained(model_name)
-        self.model = RobertaForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
+        if model_type == 'roberta':
+            self.tokenizer = RobertaTokenizer.from_pretrained(model_name)
+            self.model = RobertaForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
         self.metrics = Metrics(tokenizer=self.tokenizer)
         self.model_type = model_type
 
@@ -56,6 +57,9 @@ class Train:
         # Train the model
         trainer.train()
 
+        # Save only the model weights
+        self.model.save_pretrained(f'./saved_weights/{self.model_type}')
+
         # Evaluate the model
         eval_results = trainer.evaluate()
         print("Evaluation results:", eval_results)
@@ -71,7 +75,3 @@ class Train:
         Metrics.plot_metrics(training_args, trainer)
         Metrics.plot_confusion_matrix(test_predictions, test_labels)
 
-# Usage Example
-if __name__ == "__main__":
-    trainer = Train()
-    trainer.train()

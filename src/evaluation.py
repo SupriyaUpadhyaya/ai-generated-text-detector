@@ -1,12 +1,27 @@
 from transformers import RobertaTokenizer, RobertaForSequenceClassification, Trainer, TrainingArguments
 from datasets import load_dataset
 from metrics import Metrics
+import yaml
+import os
+import torch
 
 class Evaluation:
-    def __init__(self, model):
-        self.tokenizer = RobertaTokenizer.from_pretrained('andreas122001/roberta-academic-detector')
-        self.model = model
+    def __init__(self, model_type, num_labels=2):
+        with open('config/model.yaml', 'r') as file:
+            config = yaml.safe_load(file)
+        model_name = config[model_type].get('pretrained')
+        if model_type == 'roberta':
+            self.tokenizer = RobertaTokenizer.from_pretrained(model_name)
+            self.model = RobertaForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
+            weights_path = f'./saved_weights/{model_type}'        
+            # Load the model weights from the local directory
+            if os.path.exists(weights_path):
+                self.model.load_state_dict(torch.load(os.path.join(weights_path, 'pytorch_model.bin')))
+                print(f"Model weights loaded from {weights_path}")
+            else:
+                print(f"No weights found at {weights_path}. Using the pre-trained model without additional weights.")
         self.metrics = Metrics(tokenizer=self.tokenizer)
+        self.model_type = model_type
     
     def preprocess_function(self, examples):
         """
@@ -20,55 +35,16 @@ class Evaluation:
         """
         return dataset.map(lambda x: self.preprocess_function(x), batched=True)
     
-    def evaluation(self, dataset_name='imdb', learning_rate=2e-5, train_batch_size=16, eval_batch_size=16, num_train_epochs=1, weight_decay=0.01):
-        """
-        Trains the model using the provided dataset.
-        """
-        # Load dataset
-        dataset = load_dataset(dataset_name)
-        tokenized_datasets = self.preprocess(dataset)
+    def evaluate(self, datasets, learning_rate=2e-5, train_batch_size=16, eval_batch_size=16, num_train_epochs=1, weight_decay=0.01):
+        for dataset in datasets:
 
-        # Define training arguments
-        training_args = TrainingArguments(
-            output_dir='./results',          # output directory
-            evaluation_strategy="epoch",     # evaluate after each epoch
-            learning_rate=learning_rate,     # learning rate
-            per_device_train_batch_size=train_batch_size,   # batch size for training
-            per_device_eval_batch_size=eval_batch_size,    # batch size for evaluation
-            num_train_epochs=num_train_epochs,              # number of training epochs
-            weight_decay=weight_decay,       # strength of weight decay
-            logging_dir='./logs',            # directory for storing logs
-            logging_steps=1,
-        )
+            # Load dataset
+            tokenized_datasets = self.preprocess(dataset)
+            test_results = trainer.predict(tokenized_datasets['test'])
+            print("Test results:", test_results.metrics)
 
-        # Initialize Trainer
-        trainer = Trainer(
-            model=self.model,                         # the instantiated model to train
-            args=training_args,                       # training arguments
-            train_dataset=tokenized_datasets['train'],   # training dataset
-            eval_dataset=tokenized_datasets['validation'], # evaluation dataset
-            compute_metrics=Metrics.compute_metrics   # function to compute metrics
-        )
-
-        # Train the model
-        trainer.train()
-
-        # Evaluate the model
-        eval_results = trainer.evaluate()
-        print("Evaluation results:", eval_results)
-
-        # Test the model
-        test_results = trainer.predict(tokenized_datasets['test'])
-        print("Test results:", test_results.metrics)
-
-        # Plot confusion matrix for test set
-        test_predictions = test_results.predictions.argmax(axis=-1)
-        test_labels = tokenized_datasets['test']['label']
-        Metrics.plot_confusion_matrix(test_predictions, test_labels)
-        Metrics.plot_metrics(training_args, trainer)
-        Metrics.plot_confusion_matrix(test_predictions, test_labels)
-
-# Usage Example
-if __name__ == "__main__":
-    trainer = Train()
-    trainer.train()
+            # Plot confusion matrix for test set
+            test_predictions = test_results.predictions.argmax(axis=-1)
+            test_labels = tokenized_datasets['test']['label']
+            Metrics.plot_confusion_matrix(test_predictions, test_labels)
+            Metrics.plot_confusion_matrix(test_predictions, test_labels)

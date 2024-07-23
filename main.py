@@ -1,5 +1,8 @@
 import argparse
-from src.TrainingDataset import TrainingDataset
+from src.trainingDataset import TrainingDataset
+from src.training import Train
+from src.evaluation import Evaluation
+from src.evaluationDataset import EvaluationDataset
 
 def main():
     # Initialize the parser
@@ -19,7 +22,11 @@ def main():
 
     # Parse the arguments
     args = parser.parse_args()
-
+    model_type = args.modelType
+    train = args.train
+    data_type = args.dataType
+    new_line = args.newLine
+    train_data = args.trainData
     # Print the arguments
     print(f"Model Type: {args.modelType}")
     print(f"Train: {args.train}")
@@ -28,10 +35,18 @@ def main():
     print(f"New Line: {args.newLine}")
 
     # If train is true, create a TrainingDataset object and call getDataset
-    if args.train:
+    if train:
         training_dataset = TrainingDataset()
-        dataset = training_dataset.getDataset(trainData=args.trainData, dataType=args.dataType, newLine=args.newLine)
+        dataset = training_dataset.getDataset(trainData=train_data, dataType=data_type, newLine=new_line)
         print(f"Dataset obtained: {dataset}")
+        training = Train(model_type)
+        model_path = training.train(dataset)
+    
+    evaluation_dataset = EvaluationDataset()
+    dataset = evaluation_dataset.getDataset()
+    print(f"Dataset obtained: {dataset}")
+    evaluation = Evaluation(model_type)
+    evaluation.evaluate(dataset)
 
 if __name__ == "__main__":
     main()
