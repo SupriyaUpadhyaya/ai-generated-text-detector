@@ -68,6 +68,7 @@ class Metrics:
         plt.legend()
         plot_path = f'{path}//Training_and_Validation_Loss.png'
         plt.savefig(plot_path)
+        writer.add_figure(plot_path, plt.gcf())
         plt.close()
 
         # Plot evaluation accuracy
@@ -79,6 +80,7 @@ class Metrics:
         plt.title('Training Vs Validation Accuracy')
         plt.legend()
         plt.savefig(f'{path}/Training_Validationn_Accuracy.png')
+        writer.add_figure(f'{path}/Training_Validationn_Accuracy.png', plt.gcf())
         plt.close()
 
     @staticmethod
@@ -96,5 +98,5 @@ class Metrics:
         plt.title('Confusion Matrix')
         plot_path = f'{path}/confusion_matrix_{name}.png'
         plt.savefig(plot_path)
-        plt.close()
         writer.add_figure(f'{path}/confusion_matrix_{name}.png', plt.gcf())
+        plt.close()
