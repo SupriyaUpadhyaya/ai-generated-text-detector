@@ -48,7 +48,7 @@ class Train:
             per_device_eval_batch_size=eval_batch_size,    # batch size for evaluation
             num_train_epochs=num_train_epochs,              # number of training epochs
             weight_decay=weight_decay,       # strength of weight decay
-            logging_dir=f'{self.log_path}/logs',            # directory for storing logs
+            logging_dir=f'{self.log_path}/{self.model_type}/logs',            # directory for storing logs
             logging_steps=1,
         )
 
@@ -65,7 +65,7 @@ class Train:
         trainer.train()
 
         # Save only the model weights in safetensors format
-        weights_path = f'{self.log_path}/saved_weights/{self.model_type}'
+        weights_path = f'{self.log_path}/{self.model_type}/saved_weights'
         self.config[self.model_type]['finetuned']=weights_path
         os.makedirs(weights_path, exist_ok=True)
         save_file(self.model.state_dict(), os.path.join(weights_path, 'model.safetensors'))
