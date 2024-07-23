@@ -3,6 +3,9 @@ from src.trainingDataset import TrainingDataset
 from src.training import Train
 from src.evaluation import Evaluation
 from src.evaluationDataset import EvaluationDataset
+import torch
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def main():
     # Initialize the parser

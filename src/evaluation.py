@@ -5,6 +5,8 @@ import yaml
 import os
 import torch
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 class Evaluation:
     def __init__(self, model_type, num_labels=2):
         with open('config/model.yaml', 'r') as file:

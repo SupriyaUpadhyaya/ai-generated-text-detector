@@ -2,6 +2,9 @@ from transformers import RobertaTokenizer, RobertaForSequenceClassification, Tra
 from datasets import load_dataset
 from metrics import Metrics
 import yaml
+import torch
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 class Train:
     def __init__(self, model_type, num_labels=2):
