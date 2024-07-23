@@ -97,4 +97,4 @@ class Metrics:
         plot_path = f'{path}/confusion_matrix_{name}.png'
         plt.savefig(plot_path)
         plt.close()
-        writer.add_figure(f'Confusion Matrix', plt.gcf())
+        writer.add_figure(f'{path}/confusion_matrix_{name}.png', plot_path)
