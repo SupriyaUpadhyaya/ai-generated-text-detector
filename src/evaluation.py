@@ -74,5 +74,4 @@ class Evaluation:
             # Plot confusion matrix for test set
             test_predictions = test_results.predictions.argmax(axis=-1)
             test_labels = tokenized_datasets['label']
-            Metrics.plot_confusion_matrix(test_predictions, test_labels)
-            Metrics.plot_confusion_matrix(test_predictions, test_labels)
+            Metrics.plot_confusion_matrix(test_predictions, test_labels, {datasets[type]})
