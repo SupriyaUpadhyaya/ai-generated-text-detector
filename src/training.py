@@ -20,7 +20,7 @@ class Train:
         if model_type == 'roberta':
             self.tokenizer = RobertaTokenizer.from_pretrained(model_name)
             self.model = RobertaForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
-        self.metrics = Metrics()
+        self.metrics = Metrics(f'{self.log_path}/{self.model_type}/logs')
         self.model_type = model_type
         self.log_path = log_path
 

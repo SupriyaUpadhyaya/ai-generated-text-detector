@@ -7,8 +7,10 @@ from transformers import RobertaTokenizer, RobertaForSequenceClassification, Tra
 from datasets import load_dataset, DatasetDict, concatenate_datasets
 
 class Metrics:
-    @staticmethod
-    def compute_metrics(eval_pred):
+    def __init__(self, path):
+        self.writer = SummaryWriter(path)
+
+    def compute_metrics(self, eval_pred):
         """
         Computes accuracy, precision, recall, and F1 score for the evaluation.
         """
@@ -20,10 +22,10 @@ class Metrics:
         f1 = f1_score(labels, predictions)
 
         # Log metrics to TensorBoard
-        writer.add_scalar('eval/accuracy', accuracy)
-        writer.add_scalar('eval/precision', precision)
-        writer.add_scalar('eval/recall', recall)
-        writer.add_scalar('eval/f1', f1)
+        self.writer.add_scalar('eval/accuracy', accuracy)
+        self.writer.add_scalar('eval/precision', precision)
+        self.writer.add_scalar('eval/recall', recall)
+        self.writer.add_scalar('eval/f1', f1)
 
         return {
             'accuracy': accuracy,
@@ -32,13 +34,11 @@ class Metrics:
             'f1': f1
         }
     
-    @staticmethod
-    def plot_metrics(trainer, path):
+    def plot_metrics(self, trainer, path):
         """
         Plots training loss and accuracy curves.
         """
         # Extract metrics from trainer
-        writer = SummaryWriter(path)
         logs = trainer.state.log_history
         epochs = [log['epoch'] for log in logs if 'epoch' in log]
         train_losses = [log['loss'] for log in logs if 'loss' in log]
@@ -52,8 +52,8 @@ class Metrics:
 
         # Log training and evaluation loss to TensorBoard
         for epoch, train_loss, eval_loss in zip(epochs, train_losses, eval_losses):
-            writer.add_scalar('train/loss', train_loss, epoch)
-            writer.add_scalar('eval/loss', eval_loss, epoch)
+            self.writer.add_scalar('train/loss', train_loss, epoch)
+            self.writer.add_scalar('eval/loss', eval_loss, epoch)
 
         # Plot training and evaluation loss
         plt.figure(figsize=(12, 6))
@@ -66,7 +66,7 @@ class Metrics:
         plt.legend()
         plot_path = f'{path}//Training_and_Validation_Loss.png'
         plt.savefig(plot_path)
-        writer.add_figure(plot_path, plt.gcf())
+        self.writer.add_figure(plot_path, plt.gcf())
         plt.close()
 
         # Plot evaluation accuracy
@@ -78,15 +78,13 @@ class Metrics:
         plt.title('Training Vs Validation Accuracy')
         plt.legend()
         plt.savefig(f'{path}/Training_Validationn_Accuracy.png')
-        writer.add_figure(f'{path}/Training_Validationn_Accuracy.png', plt.gcf())
+        self.writer.add_figure(f'{path}/Training_Validationn_Accuracy.png', plt.gcf())
         plt.close()
 
-    @staticmethod
-    def plot_confusion_matrix(predictions, labels, name, path):
+    def plot_confusion_matrix(self, predictions, labels, name, path):
         """
         Plots the confusion matrix for the test set.
         """
-        writer = SummaryWriter(path)
         cm = confusion_matrix(labels, predictions)
         cmn = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
         plt.figure(figsize=(8, 6))
@@ -97,5 +95,5 @@ class Metrics:
         plt.title('Confusion Matrix')
         plot_path = f'{path}/confusion_matrix_{name}.png'
         plt.savefig(plot_path)
-        writer.add_figure(f'{path}/confusion_matrix_{name}.png', plt.gcf())
+        self.writer.add_figure(f'{path}/confusion_matrix_{name}.png', plt.gcf())
         plt.close()

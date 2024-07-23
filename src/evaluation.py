@@ -26,7 +26,7 @@ class Evaluation:
             else:
                 print(f"No weights found at {weights_path}. Using the pre-trained model without additional weights.")
         
-        self.metrics = Metrics()
+        self.metrics = Metrics(f'{self.log_path}/{self.model_type}/logs')
         self.model_type = model_type
         self.log_path = log_path
     
