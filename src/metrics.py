@@ -36,7 +36,7 @@ class Metrics:
         }
     
     @staticmethod
-    def plot_metrics(trainer):
+    def plot_metrics(trainer, path):
         """
         Plots training loss and accuracy curves.
         """
@@ -45,6 +45,8 @@ class Metrics:
         epochs = [log['epoch'] for log in logs if 'epoch' in log]
         train_losses = [log['loss'] for log in logs if 'loss' in log]
         eval_losses = [log['eval_loss'] for log in logs if 'eval_loss' in log]
+        train_accuracies = [log['accuracy'] for log in logs if 'accuracy' in log]
+        eval_accuracies = [log['eval_accuracy'] for log in logs if 'eval_accuracy' in log]
 
         # Ensure that the lengths match
         if len(epochs) != len(train_losses):
@@ -59,24 +61,24 @@ class Metrics:
         plt.figure(figsize=(12, 6))
         plt.plot(epochs[:len(train_losses)], train_losses, label='Train Loss', marker='o')
         if eval_losses:
-            plt.plot(epochs[:len(eval_losses)], eval_losses, label='Eval Loss', marker='o')
+            plt.plot(epochs[:len(eval_losses)], eval_losses, label='Validation Loss', marker='o')
         plt.xlabel('Epoch')
         plt.ylabel('Loss')
-        plt.title('Training and Evaluation Loss')
+        plt.title('Training and Validation Loss')
         plt.legend()
-        plot_path = f'./Training_and_Evaluation_Loss_{epoch}.png'
+        plot_path = f'./Training_and_Validation_Loss_{epoch}.png'
         plt.savefig(plot_path)
         plt.close()
 
         # Plot evaluation accuracy
-        eval_accuracy = [log['eval_runtime'] for log in logs if 'eval_runtime' in log]
         plt.figure(figsize=(12, 6))
-        plt.plot(epochs[:len(eval_accuracy)], eval_accuracy, label='Eval Accuracy', marker='o')
+        plt.plot(epochs[:len(train_accuracies)], train_accuracies, label='Train Accuracy', marker='o')
+        plt.plot(epochs[:len(eval_accuracies)], eval_accuracies, label='Validation Accuracy', marker='o')
         plt.xlabel('Epoch')
         plt.ylabel('Accuracy')
-        plt.title('Evaluation Accuracy')
+        plt.title('Training Vs Validation Accuracy')
         plt.legend()
-        plt.savefig()
+        plt.savefig(f'{path}/Training_Validationn_Accuracy.png')
         plt.close()
 
     @staticmethod

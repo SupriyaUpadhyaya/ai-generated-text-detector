@@ -80,7 +80,7 @@ class Train:
         eval_results = trainer.evaluate()
         print("Evaluation results:", eval_results)
 
-        Metrics.plot_metrics(trainer)
+        Metrics.plot_metrics(trainer, f'{self.log_path}/{self.model_type}/logs')
 
         # Test the model
         test_results = trainer.predict(tokenized_datasets['test'])
