@@ -1,7 +1,7 @@
 chatgpt_abstract_with:
-  train: "data/chatgpt_abstract_with_train.jsonl"
-  validation: "data/chatgpt_abstract_with_validation.jsonl"
-  test: "data/chatgpt_abstract_with_test.jsonl"
+  train: "data/without_n/arxiv_chatGPT_test.jsonl"
+  validation: "data/without_n/arxiv_chatGPT_val.jsonl"
+  test: "data/without_n/arxiv_chatGPT_test.jsonl"
 
 chatgpt_abstract_without:
   train: "data/with_n/arxiv_chatGPT_train.jsonl"
