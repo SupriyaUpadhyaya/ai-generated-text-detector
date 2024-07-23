@@ -43,7 +43,7 @@ class Evaluation:
     
     def evaluate(self, datasets, learning_rate=2e-5, train_batch_size=16, eval_batch_size=16, num_train_epochs=1, weight_decay=0.01):
         for type in datasets:
-            print(f'************* Evaluation for {datasets[type]}')
+            print(f'************* Evaluation for {type}')
             # Load dataset
             dataset = datasets[type]
             tokenized_datasets = self.preprocess(dataset)
@@ -74,4 +74,4 @@ class Evaluation:
             # Plot confusion matrix for test set
             test_predictions = test_results.predictions.argmax(axis=-1)
             test_labels = tokenized_datasets['label']
-            Metrics.plot_confusion_matrix(test_predictions, test_labels, {datasets[type]})
+            Metrics.plot_confusion_matrix(test_predictions, test_labels, {type})
