@@ -75,6 +75,4 @@ class Train:
         test_predictions = test_results.predictions.argmax(axis=-1)
         test_labels = tokenized_datasets['test']['label']
         Metrics.plot_confusion_matrix(test_predictions, test_labels)
-        Metrics.plot_metrics(training_args, trainer)
-        Metrics.plot_confusion_matrix(test_predictions, test_labels)
 

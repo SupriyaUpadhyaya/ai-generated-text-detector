@@ -5,11 +5,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 from transformers import RobertaTokenizer
 
 class Metrics:
-    def __init__(self, tokenizer=None):
-        self.tokenizer = tokenizer if tokenizer else RobertaTokenizer.from_pretrained('roberta-base')
-
-    @staticmethod
-    def compute_metrics(eval_pred):
+    def compute_metrics(self, eval_pred):
         """
         Computes accuracy, precision, recall, and F1 score for the evaluation.
         """
@@ -17,13 +13,12 @@ class Metrics:
         predictions = logits.argmax(axis=-1)
         return {
             'accuracy': accuracy_score(labels, predictions),
-            'precision': precision_score(labels, predictions, average='weighted'),
-            'recall': recall_score(labels, predictions, average='weighted'),
-            'f1': f1_score(labels, predictions, average='weighted')
+            'precision': precision_score(labels, predictions),
+            'recall': recall_score(labels, predictions),
+            'f1': f1_score(labels, predictions)
         }
 
-    @staticmethod
-    def plot_metrics(trainer):
+    def plot_metrics(self, trainer):
         """
         Plots training loss and accuracy curves.
         """
@@ -49,17 +44,16 @@ class Metrics:
         plt.show()
 
         # Plot evaluation accuracy
-        eval_accuracies = [log['eval_accuracy'] for log in logs if 'eval_accuracy' in log]
+        eval_accuracy = [log['eval_runtime'] for log in logs if 'eval_runtime' in log]
         plt.figure(figsize=(12, 6))
-        plt.plot(epochs[:len(eval_accuracies)], eval_accuracies, label='Eval Accuracy', marker='o')
+        plt.plot(epochs[:len(eval_accuracy)], eval_accuracy, label='Eval Accuracy', marker='o')
         plt.xlabel('Epoch')
         plt.ylabel('Accuracy')
         plt.title('Evaluation Accuracy')
         plt.legend()
         plt.show()
 
-    @staticmethod
-    def plot_confusion_matrix(predictions, labels):
+    def plot_confusion_matrix(self, predictions, labels):
         """
         Plots the confusion matrix for the test set.
         """
@@ -67,7 +61,7 @@ class Metrics:
         cmn = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
         plt.figure(figsize=(8, 6))
         sns.heatmap(cmn, annot=True, fmt='.2f',
-                    xticklabels=['Class 0', 'Class 1'], yticklabels=['Class 0', 'Class 1'])
+                    xticklabels=['Class 0 - Human', 'Class 1 - Machine'], yticklabels=['Class 0 - Human', 'Class 1 - Machine'])
         plt.xlabel('Predicted')
         plt.ylabel('Actual')
         plt.title('Confusion Matrix')
