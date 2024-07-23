@@ -10,15 +10,16 @@ from safetensors.torch import save_file
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 class Train:
-    def __init__(self, model_type, num_labels=2):
+    def __init__(self, model_type,log_path, num_labels=2):
         with open('config/model.yaml', 'r') as file:
-            config = yaml.safe_load(file)
-        model_name = config[model_type].get('pretrained')
+            self.config = self.yaml.safe_load(file)
+        model_name = self.config[model_type].get('pretrained')
         if model_type == 'roberta':
             self.tokenizer = RobertaTokenizer.from_pretrained(model_name)
             self.model = RobertaForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
         self.metrics = Metrics()
         self.model_type = model_type
+        self.log_path = log_path
 
     def preprocess_function(self, examples):
         """
@@ -47,7 +48,7 @@ class Train:
             per_device_eval_batch_size=eval_batch_size,    # batch size for evaluation
             num_train_epochs=num_train_epochs,              # number of training epochs
             weight_decay=weight_decay,       # strength of weight decay
-            logging_dir='./logs',            # directory for storing logs
+            logging_dir=f'{self.log_path}/logs',            # directory for storing logs
             logging_steps=1,
         )
 
@@ -64,7 +65,8 @@ class Train:
         trainer.train()
 
         # Save only the model weights in safetensors format
-        weights_path = f'./saved_weights/{self.model_type}'
+        weights_path = f'{self.log_path}/saved_weights/{self.model_type}'
+        self.config[self.model_type]['finetuned']=weights_path
         os.makedirs(weights_path, exist_ok=True)
         save_file(self.model.state_dict(), os.path.join(weights_path, 'model.safetensors'))
 

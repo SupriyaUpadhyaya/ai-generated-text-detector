@@ -22,6 +22,7 @@ def main():
                         help="Type of data: abstract, wiki, or ml")
     parser.add_argument("--newLine", type=str, choices=["with", "without"], default="without",
                         help="Include new lines in the output: with or without")
+    parser.add_argument('--log_path', type=str, required=True, help='Path to store the logs')
 
     # Parse the arguments
     args = parser.parse_args()
@@ -30,25 +31,28 @@ def main():
     data_type = args.dataType
     new_line = args.newLine
     train_data = args.trainData
+    log_path = args.log_path
+    model_path = args.model_path
     # Print the arguments
-    print(f"Model Type: {args.modelType}")
-    print(f"Train: {args.train}")
-    print(f"Training Data: {args.trainData}")
-    print(f"Data Type: {args.dataType}")
-    print(f"New Line: {args.newLine}")
+    print(f"Model Type: {model_type}")
+    print(f"Train: {train}")
+    print(f"Training Data: {train_data}")
+    print(f"Data Type: {data_type}")
+    print(f"New Line: {new_line}")
+    print(f"Log Path: {log_path}")
 
     # If train is true, create a TrainingDataset object and call getDataset
     if train:
         training_dataset = TrainingDataset()
         dataset = training_dataset.getDataset(trainData=train_data, dataType=data_type, newLine=new_line)
         print(f"Dataset obtained: {dataset}")
-        training = Train(model_type)
+        training = Train(model_type, log_path)
         model_path = training.train(dataset)
     
     evaluation_dataset = EvaluationDataset()
     dataset = evaluation_dataset.getDataset()
     print(f"Dataset obtained: {dataset}")
-    evaluation = Evaluation(model_type)
+    evaluation = Evaluation(model_type, log_path)
     evaluation.evaluate(dataset)
 
 if __name__ == "__main__":

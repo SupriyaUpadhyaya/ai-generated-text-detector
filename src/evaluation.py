@@ -9,14 +9,14 @@ from safetensors.torch import save_file, load_file
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 class Evaluation:
-    def __init__(self, model_type, num_labels=2):
+    def __init__(self, model_type, log_path, model_path, num_labels=2):
         with open('config/model.yaml', 'r') as file:
-            config = yaml.safe_load(file)
-        model_name = config[model_type].get('pretrained')
+            self.config = yaml.safe_load(file)
+        model_name = self.config[model_type].get('pretrained')
         if model_type == 'roberta':
             self.tokenizer = RobertaTokenizer.from_pretrained(model_name)
             self.model = RobertaForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
-            weights_path = f'./saved_weights/{model_type}/model.safetensors'
+            weights_path = self.config[model_type].get('finetuned')
         
             # Load the model weights from the local directory
             if os.path.exists(weights_path):
