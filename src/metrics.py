@@ -2,7 +2,12 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
-from transformers import RobertaTokenizer
+from torch.utils.tensorboard import SummaryWriter
+from transformers import RobertaTokenizer, RobertaForSequenceClassification, Trainer, TrainingArguments
+from datasets import load_dataset, DatasetDict, concatenate_datasets
+
+log_dir='./logs'
+writer = SummaryWriter(log_dir)
 
 class Metrics:
     @staticmethod
@@ -12,12 +17,24 @@ class Metrics:
         """
         logits, labels = eval_pred
         predictions = logits.argmax(axis=-1)
+        accuracy = accuracy_score(labels, predictions)
+        precision = precision_score(labels, predictions)
+        recall = recall_score(labels, predictions)
+        f1 = f1_score(labels, predictions)
+
+        # Log metrics to TensorBoard
+        writer.add_scalar('eval/accuracy', accuracy)
+        writer.add_scalar('eval/precision', precision)
+        writer.add_scalar('eval/recall', recall)
+        writer.add_scalar('eval/f1', f1)
+
         return {
-            'accuracy': accuracy_score(labels, predictions),
-            'precision': precision_score(labels, predictions),
-            'recall': recall_score(labels, predictions),
-            'f1': f1_score(labels, predictions)
+            'accuracy': accuracy,
+            'precision': precision,
+            'recall': recall,
+            'f1': f1
         }
+    
     @staticmethod
     def plot_metrics(trainer):
         """
@@ -32,6 +49,11 @@ class Metrics:
         # Ensure that the lengths match
         if len(epochs) != len(train_losses):
             print(f"Mismatch in lengths: epochs ({len(epochs)}) vs train_losses ({len(train_losses)})")
+
+        # Log training and evaluation loss to TensorBoard
+        for epoch, train_loss, eval_loss in zip(epochs, train_losses, eval_losses):
+            writer.add_scalar('train/loss', train_loss, epoch)
+            writer.add_scalar('eval/loss', eval_loss, epoch)
 
         # Plot training and evaluation loss
         plt.figure(figsize=(12, 6))
@@ -68,3 +90,4 @@ class Metrics:
         plt.ylabel('Actual')
         plt.title('Confusion Matrix')
         plt.show()
+        writer.add_figure(f'Confusion Matrix', plt.gcf())

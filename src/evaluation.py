@@ -64,8 +64,6 @@ class Evaluation:
             trainer = Trainer(
                 model=self.model,                         # the instantiated model to train
                 args=training_args,                       # training arguments
-                train_dataset=tokenized_datasets['train'],   # training dataset
-                eval_dataset=tokenized_datasets['validation'], # evaluation dataset
                 compute_metrics=Metrics.compute_metrics   # function to compute metrics
             )
 
