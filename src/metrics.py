@@ -6,9 +6,6 @@ from torch.utils.tensorboard import SummaryWriter
 from transformers import RobertaTokenizer, RobertaForSequenceClassification, Trainer, TrainingArguments
 from datasets import load_dataset, DatasetDict, concatenate_datasets
 
-log_dir='./logs'
-writer = SummaryWriter(log_dir)
-
 class Metrics:
     @staticmethod
     def compute_metrics(eval_pred):
@@ -41,6 +38,7 @@ class Metrics:
         Plots training loss and accuracy curves.
         """
         # Extract metrics from trainer
+        writer = SummaryWriter(path)
         logs = trainer.state.log_history
         epochs = [log['epoch'] for log in logs if 'epoch' in log]
         train_losses = [log['loss'] for log in logs if 'loss' in log]
@@ -88,6 +86,7 @@ class Metrics:
         """
         Plots the confusion matrix for the test set.
         """
+        writer = SummaryWriter(path)
         cm = confusion_matrix(labels, predictions)
         cmn = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
         plt.figure(figsize=(8, 6))

@@ -6,6 +6,7 @@ import yaml
 import torch
 import os
 from safetensors.torch import save_file
+from torch.utils.tensorboard import SummaryWriter
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -52,6 +53,7 @@ class Train:
             weight_decay=weight_decay,       # strength of weight decay
             logging_dir=f'{self.log_path}/{self.model_type}/logs',            # directory for storing logs
             logging_steps=1,
+            report_to="tensorboard"
         )
 
         # Initialize Trainer
@@ -91,4 +93,5 @@ class Train:
         test_labels = tokenized_datasets['test']['label']
         Metrics.compute_metrics((torch.tensor(test_results.predictions), torch.tensor(test_labels)))
         Metrics.plot_confusion_matrix(test_predictions, test_labels, 'Test', f'{self.log_path}/{self.model_type}/logs')
+        metrics = Metrics(SummaryWriter(log_dir=f'{self.log_path}/{self.model_type}/logs'))
 
