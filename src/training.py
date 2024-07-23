@@ -13,6 +13,8 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 class Train:
     def __init__(self, model_type,log_path, num_labels=2):
         print("model_type : ", model_type)
+        self.model_type = model_type
+        self.log_path = log_path
         with open('config/model.yaml', 'r') as file:
             self.config = yaml.safe_load(file)
         print("self.config : ", self.config)
@@ -21,8 +23,6 @@ class Train:
             self.tokenizer = RobertaTokenizer.from_pretrained(model_name)
             self.model = RobertaForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
         self.metrics = Metrics(f'{self.log_path}/{self.model_type}/logs')
-        self.model_type = model_type
-        self.log_path = log_path
 
     def preprocess_function(self, examples):
         """

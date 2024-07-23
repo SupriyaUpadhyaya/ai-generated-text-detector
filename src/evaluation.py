@@ -10,6 +10,8 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 class Evaluation:
     def __init__(self, model_type, log_path, num_labels=2):
+        self.model_type = model_type
+        self.log_path = log_path
         with open('config/model.yaml', 'r') as file:
             self.config = yaml.safe_load(file)
         model_name = self.config[model_type].get('pretrained')
@@ -27,8 +29,6 @@ class Evaluation:
                 print(f"No weights found at {weights_path}. Using the pre-trained model without additional weights.")
         
         self.metrics = Metrics(f'{self.log_path}/{self.model_type}/logs')
-        self.model_type = model_type
-        self.log_path = log_path
     
     def preprocess_function(self, examples):
         """
