@@ -35,7 +35,7 @@ class Train:
         """
         return dataset.map(lambda x: self.preprocess_function(x), batched=True)
     
-    def train(self, dataset, learning_rate=2e-5, train_batch_size=16, eval_batch_size=16, num_train_epochs=1, weight_decay=0.01):
+    def train(self, dataset, learning_rate=2e-5, train_batch_size=16, eval_batch_size=16, num_train_epochs=3, weight_decay=0.01):
         """
         Trains the model using the provided dataset.
         """
@@ -43,7 +43,7 @@ class Train:
 
         # Define training arguments
         training_args = TrainingArguments(
-            output_dir='./results',          # output directory
+            output_dir='{self.log_path}/{self.model_type}/results',          # output directory
             eval_strategy="epoch",     # evaluate after each epoch
             learning_rate=learning_rate,     # learning rate
             per_device_train_batch_size=train_batch_size,   # batch size for training
