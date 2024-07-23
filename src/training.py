@@ -14,7 +14,7 @@ class Train:
         if model_type == 'roberta':
             self.tokenizer = RobertaTokenizer.from_pretrained(model_name)
             self.model = RobertaForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
-        self.metrics = Metrics(tokenizer=self.tokenizer)
+        self.metrics = Metrics()
         self.model_type = model_type
 
     def preprocess_function(self, examples):

@@ -22,7 +22,7 @@ class Evaluation:
                 print(f"Model weights loaded from {weights_path}")
             else:
                 print(f"No weights found at {weights_path}. Using the pre-trained model without additional weights.")
-        self.metrics = Metrics(tokenizer=self.tokenizer)
+        self.metrics = Metrics()
         self.model_type = model_type
     
     def preprocess_function(self, examples):
@@ -38,10 +38,34 @@ class Evaluation:
         return dataset.map(lambda x: self.preprocess_function(x), batched=True)
     
     def evaluate(self, datasets, learning_rate=2e-5, train_batch_size=16, eval_batch_size=16, num_train_epochs=1, weight_decay=0.01):
-        for dataset in datasets:
-
+        for type in datasets:
+            print(f'************* Evaluation for {datasets[type]}')
             # Load dataset
+            dataset = datasets[type]
             tokenized_datasets = self.preprocess(dataset)
+
+            training_args = TrainingArguments(
+            output_dir='./results',          # output directory
+            evaluation_strategy="epoch",     # evaluate after each epoch
+            learning_rate=learning_rate,     # learning rate
+            per_device_train_batch_size=train_batch_size,   # batch size for training
+            per_device_eval_batch_size=eval_batch_size,    # batch size for evaluation
+            num_train_epochs=num_train_epochs,              # number of training epochs
+            weight_decay=weight_decay,       # strength of weight decay
+            logging_dir='./logs',            # directory for storing logs
+            logging_steps=1,
+            )
+
+            # Initialize Trainer
+            trainer = Trainer(
+                model=self.model,                         # the instantiated model to train
+                args=training_args,                       # training arguments
+                train_dataset=tokenized_datasets['train'],   # training dataset
+                eval_dataset=tokenized_datasets['validation'], # evaluation dataset
+                compute_metrics=Metrics.compute_metrics   # function to compute metrics
+            )
+
+
             test_results = trainer.predict(tokenized_datasets['test'])
             print("Test results:", test_results.metrics)
 
