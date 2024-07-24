@@ -4,7 +4,7 @@ from src.metrics import Metrics
 import yaml
 import os
 import torch
-from safetensors.torch import save_file, load_file
+from safetensors.torch import load_file
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
