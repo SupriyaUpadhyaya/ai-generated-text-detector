@@ -49,6 +49,7 @@ class AttackDataset:
             test_human_dataset, test_machine_dataset = self.load_and_process_jsonl_dataset(jsonPaths[path], col_names[path]["human_text_column"], col_names[path]["machine_text_column"], 0, 1)
             test_dataset = concatenate_datasets([test_human_dataset, test_machine_dataset])
             textattack_dataset = TextAttackDataset(list(test_dataset))
+            print("Here is the dataset!")
             print(list(test_dataset))
             dataset[path]=textattack_dataset
 
