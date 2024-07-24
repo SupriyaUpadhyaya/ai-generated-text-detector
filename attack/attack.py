@@ -92,11 +92,11 @@ class Attack:
             
             attack_args = textattack.AttackArgs(
             num_examples=num_examples,
-            log_to_csv='%s/attack_results_%s_%s_%s.csv'%(self.outputdir, attack_class, attackrecipe),
+            log_to_csv='%s/attack_results_%s_%s.csv'%(self.outputdir, attack_class, attackrecipe),
             csv_coloring_style='html', 
             )
             attacker = Attacker(attack, dataset, attack_args)
             results = attacker.attack_dataset()
-            attacker.attack_log_manager.add_output_file(filename="%s/attack_summary_%s_%s_%s.log"%(self.outputdir, attack_class, attackrecipe), color_method="file")
+            attacker.attack_log_manager.add_output_file(filename="%s/attack_summary_%s_%s.log"%(self.outputdir, attack_class, attackrecipe), color_method="file")
             attacker.attack_log_manager.log_summary()
 
