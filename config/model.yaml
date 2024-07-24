@@ -1,6 +1,6 @@
 roberta:
   pretrained: "andreas122001/roberta-academic-detector"
-  finetuned: "data/chatgpt_abstract_with_validation.jsonl"
+  finetuned: "./model_metrics/roberta/saved_weights/model.safetensors"
 
 bloomz:
   pretrained: "data/chatgpt_abstract_with_train.jsonl"
