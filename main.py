@@ -70,7 +70,6 @@ def main():
             training_dataset = TrainingDataset()
             dataset = training_dataset.getDataset(trainData=train_data, dataType=data_type, newLine=new_line)
             print(f"dataset : {dataset}")
-            results_report['Training dataset obtained'] = dataset
             if model_type != 'xgboost':
                 training = Train(model_type, log_folder_name)
             else:
@@ -80,7 +79,6 @@ def main():
         evaluation_dataset = EvaluationDataset()
         dataset = evaluation_dataset.getDataset()
         print(f"dataset : {dataset}")
-        results_report['Evaluation datasets obtained'] = dataset
         if model_type != 'xgboost':
             evaluation = Evaluation(model_type, log_folder_name)
         else:
