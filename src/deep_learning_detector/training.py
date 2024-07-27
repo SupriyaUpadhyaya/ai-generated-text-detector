@@ -25,7 +25,7 @@ class Train:
             self.tokenizer = RobertaTokenizer.from_pretrained(model_name)
             self.model = RobertaForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
         elif model_type == 'bloomz':
-            self.tokenizer = AutoTokenizer.from_pretrained(model_name, padding="max_length", truncation=True, max_length = 256)
+            self.tokenizer = AutoTokenizer.from_pretrained(model_name)
             self.model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
         self.metrics = Metrics(self.log_path)
         print(f'************************** Results PATH - {self.log_path} ***********************')
@@ -34,7 +34,11 @@ class Train:
         """
         Tokenizes the input examples.
         """
-        return self.tokenizer(examples['text'], padding='max_length', truncation=True)
+        if self.model_type == 'roberta':
+            tokenized_input = self.tokenizer(examples['text'], padding='max_length', truncation=True)
+        elif self.model_type == 'bloomz':
+            tokenized_input = self.tokenizer(examples['text'], padding='max_length', truncation=True, max_length = 512)
+        return 
     
     def preprocess(self, dataset):
         """
