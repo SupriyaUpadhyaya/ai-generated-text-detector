@@ -96,7 +96,7 @@ def main():
         RobertaAttacker.attack(dataset[f'{train_data}_{data_type}_{new_line}'])
 
     Report.generateReport()
-    with open(f'{results_report['log_path']}/results_report.json', 'w') as json_file:
+    with open(f'{results_report["log_path"]}/results_report.json', 'w') as json_file:
         json.dump(results_report, json_file, indent=4)
 
 if __name__ == "__main__":
