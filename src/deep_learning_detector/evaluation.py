@@ -1,4 +1,4 @@
-from transformers import RobertaTokenizer, RobertaForSequenceClassification, Trainer, TrainingArguments
+from transformers import RobertaTokenizer, RobertaForSequenceClassification, Trainer, TrainingArguments, AutoTokenizer, AutoModelForSequenceClassification
 from datasets import load_dataset
 from src.utils.metrics import Metrics
 import yaml
@@ -12,7 +12,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 class Evaluation:
     def __init__(self, model_type, log_folder_name, num_labels=2):
         self.model_type = model_type
-        self.log_path = f'results/report/{self.model_type}/{log_folder_name}/'
+        self.log_path = f'results/report/{self.model_type}/{log_folder_name}//'
         results_report['log_path']=self.log_path
         with open('config/model.yaml', 'r') as file:
             self.config = yaml.safe_load(file)
@@ -30,8 +30,8 @@ class Evaluation:
             else:
                 print(f"No weights found at {weights_path}. Using the pre-trained model without additional weights.")
         elif model_type == 'bloomz':
-            self.tokenizer = RobertaTokenizer.from_pretrained(model_name)
-            self.model = RobertaForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
+            self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+            self.model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
             weights_path = self.config[model_type].get('finetuned')
             print('weights_path :', weights_path)
             # Load the model weights from the local directory

@@ -1,5 +1,5 @@
 from tkinter.filedialog import SaveFileDialog
-from transformers import RobertaTokenizer, RobertaForSequenceClassification, Trainer, TrainingArguments
+from transformers import RobertaTokenizer, RobertaForSequenceClassification, Trainer, TrainingArguments, AutoTokenizer, AutoModelForSequenceClassification
 from src.utils.metrics import Metrics
 import yaml
 import torch
@@ -30,6 +30,19 @@ class Attack:
         if model_type == 'roberta':
             self.tokenizer = RobertaTokenizer.from_pretrained(model_name)
             self.model = RobertaForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
+            weights_path = self.config[model_type].get('finetuned')
+            print('weights_path :', weights_path)
+            # Load the model weights from the local directory
+            if os.path.exists(weights_path):
+                state_dict = load_file(weights_path)
+                self.model.load_state_dict(state_dict)
+                print(f"Model weights loaded from {weights_path}")
+            else:
+                print(f"No weights found at {weights_path}. Using the pre-trained model without additional weights.")
+            self.model_wrapper = HuggingFaceModelWrapper(self.model, self.tokenizer)
+        elif model_type == 'bloomz':
+            self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+            self.model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
             weights_path = self.config[model_type].get('finetuned')
             print('weights_path :', weights_path)
             # Load the model weights from the local directory

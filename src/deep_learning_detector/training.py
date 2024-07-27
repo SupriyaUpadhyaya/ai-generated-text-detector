@@ -1,5 +1,5 @@
 from tkinter.filedialog import SaveFileDialog
-from transformers import RobertaTokenizer, RobertaForSequenceClassification, Trainer, TrainingArguments
+from transformers import RobertaTokenizer, RobertaForSequenceClassification, Trainer, TrainingArguments, AutoTokenizer, AutoModelForSequenceClassification
 from datasets import load_dataset
 from src.utils.metrics import Metrics
 import yaml
@@ -25,8 +25,8 @@ class Train:
             self.tokenizer = RobertaTokenizer.from_pretrained(model_name)
             self.model = RobertaForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
         elif model_type == 'bloomz':
-            self.tokenizer = RobertaTokenizer.from_pretrained(model_name)
-            self.model = RobertaForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
+            self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+            self.model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
         self.metrics = Metrics(self.log_path)
         print(f'************************** Results PATH - {self.log_path} ***********************')
 
