@@ -3,22 +3,23 @@ from xgboost import XGBClassifier
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
 import seaborn as sns
-from sklearn.metrics import f1_score
+from sklearn.metrics import f1_score, precision_recall_fscore_support
 import pandas as pd
 import numpy as np
 import shap
 from utils.metrics import Metrics
-import yaml
 import torch
 from xgboost_detector.featureExtractor import FeatureExtractor
+from main import results_report
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 class TrainXGBoost:
-    def __init__(self, model_type,log_path):
+    def __init__(self, model_type,log_folder_name):
         print("model_type : ", model_type)
         self.model_type = model_type
-        self.log_path = log_path
+        self.log_path = f'results/report/{self.model_type}/{log_folder_name}/training/'
+        results_report['log_path']=self.log_path
         self.metrics = Metrics(f'{self.log_path}/{self.model_type}/logs')
         lr = 0.01
         weight = 4.5
@@ -30,7 +31,7 @@ class TrainXGBoost:
                                     eta=lr,
                                     reg_lambda=1,
                                     min_child_weight=weight)
-        print(f'************************** LOG PATH - {self.log_path}/{self.model_type}/logs ***********************')
+        print(f'************************** LOG PATH - {self.log_path} ***********************')
 
     def train(self, dataset):
         X_train = FeatureExtractor.getFeatures(dataset['train']['text'])
@@ -56,6 +57,7 @@ class TrainXGBoost:
         yhat = self.xgb_classifier.predict(X_test)
         score = accuracy_score(y_test, yhat)
         print('Accuracy: %.3f' % score)
+        results_report['Training accuracy'] = score
 
         plt.plot(results['validation_0']['logloss'], label='train')
         plt.plot(results['validation_1']['logloss'], label='validation')
@@ -121,7 +123,11 @@ class TrainXGBoost:
         shap_values = explainer(X_test_list)
         shap.summary_plot(shap_values, X_test_list)
         shap.plots.heatmap(shap_values)
-        plt.savefig(f'{self.log_path}_confusion_matrix.png')
+        plt.savefig(f'{self.log_path}/confusion_matrix_test.png')
         f1score = f1_score(y_test_list, y_pred, zero_division=1.0)
+        precision_recall_fscore = precision_recall_fscore_support(y_test_list, y_pred, zero_division=1.0)
         print("F1 score : ", f1score)
+        print("precision_recall_fscore : ", precision_recall_fscore)
+        results_report["precision_recall_fscore"]= precision_recall_fscore
+        results_report['F1 score']=f1score
 

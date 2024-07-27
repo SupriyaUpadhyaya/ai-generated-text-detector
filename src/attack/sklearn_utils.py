@@ -5,8 +5,8 @@ import numpy as np
 from sklearn.linear_model import LogisticRegression
 import sys
 sys.path.append("..")
-from utils.metric_based import get_ll, get_rank, get_entropy, get_rank_GLTR
-from utils.metric_utils import cut_length
+from src.utils.metric_based import get_ll, get_rank, get_entropy, get_rank_GLTR
+from src.utils.metric_utils import cut_length
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 class CustomSklearnModelWrapper(SklearnModelWrapper):

@@ -1,7 +1,6 @@
 from tkinter.filedialog import SaveFileDialog
 from transformers import RobertaTokenizer, RobertaForSequenceClassification, Trainer, TrainingArguments
-from datasets import load_dataset
-from utils.metrics import Metrics
+from src.utils.metrics import Metrics
 import yaml
 import torch
 import os
@@ -10,18 +9,20 @@ from torch.utils.tensorboard import SummaryWriter
 from textattack.models.wrappers import HuggingFaceModelWrapper
 import numpy as np
 from textattack.attack_recipes import PWWSRen2019, Pruthi2019, DeepWordBugGao2018
-from attack.attack_recipes import PWWSRen2019_threshold
+from src.attack.attack_recipes import PWWSRen2019_threshold
 import textattack
 from textattack import Attacker
 from safetensors.torch import load_file
+from main import results_report
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 class Attack:
-    def __init__(self, model_type,log_path, num_labels=2):
+    def __init__(self, model_type,log_folder_name, num_labels=2):
         print("model_type : ", model_type)
         self.model_type = model_type
-        self.log_path = log_path
+        self.log_path = f'results/report/{self.model_type}/{log_folder_name}/attack/'
+        results_report['log_path']=self.log_path
         with open('config/model.yaml', 'r') as file:
             self.config = yaml.safe_load(file)
         print("self.config : ", self.config)
@@ -39,10 +40,9 @@ class Attack:
             else:
                 print(f"No weights found at {weights_path}. Using the pre-trained model without additional weights.")
             self.model_wrapper = HuggingFaceModelWrapper(self.model, self.tokenizer)
-        self.metrics = Metrics(f'{self.log_path}/{self.model_type}/logs')
+        self.metrics = Metrics(self.log_path)
         self.attack_recipe = ['pwws']
-        self.outputdir = f'{self.log_path}/{self.model_type}/logs'
-        print(f'************************** LOG PATH - {self.log_path}/{self.model_type}/logs ***********************')
+        print(f'************************** LOG PATH - {self.log_path} ***********************')
     
     def attack(self, dataset):
         """
@@ -92,11 +92,11 @@ class Attack:
             
             attack_args = textattack.AttackArgs(
             num_examples=num_examples,
-            log_to_csv='%s/attack_results_%s_%s.csv'%(self.outputdir, attack_class, attackrecipe),
+            log_to_csv='%s/attack_results_%s_%s.csv'%(self.log_path, attack_class, attackrecipe),
             csv_coloring_style='html', 
             )
             attacker = Attacker(attack, dataset, attack_args)
             results = attacker.attack_dataset()
-            attacker.attack_log_manager.add_output_file(filename="%s/attack_summary_%s_%s.log"%(self.outputdir, attack_class, attackrecipe), color_method="file")
+            attacker.attack_log_manager.add_output_file(filename="%s/attack_summary_%s_%s.log"%(self.log_path, attack_class, attackrecipe), color_method="file")
             attacker.attack_log_manager.log_summary()
 

@@ -2,14 +2,10 @@
 HuggingFace Model Wrapper
 --------------------------
 """
-import os
 import torch
-import transformers
-
 import textattack
 import numpy as np
 from textattack.models.wrappers import PyTorchModelWrapper
-
 from typing import List, Tuple
 from scipy.special import softmax
 from sklearn.preprocessing import normalize

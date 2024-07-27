@@ -1,10 +1,8 @@
 import os
 import numpy as np
 import re
-import string
 from statistics import stdev, mean
 import pandas as pd
-import json
 import nltk
 
 class FeatureExtractor():

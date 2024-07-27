@@ -1,6 +1,8 @@
 import yaml
 from datasets import load_dataset, DatasetDict, concatenate_datasets
 import numpy as np
+from main import results_report
+
 class TrainingDataset:
     def __init__(self, yaml_path='config/dataset_paths.yaml'):
         self.yaml_path = yaml_path
@@ -8,8 +10,11 @@ class TrainingDataset:
     def getDataset(self, trainData, dataType, newLine):
         jsonPaths = self.getJsonPath(trainData, dataType, newLine)
         print(jsonPaths)
-        human_text_column = 'human_text'
-        machine_text_column = 'machine_text'
+        results_report['Train input path'] = jsonPaths['train']
+        results_report['Test input path'] = jsonPaths['test']
+        results_report['Validation input path'] = jsonPaths['validation']
+        results_report['Human text column name'] = jsonPaths['human_text_column']
+        results_report['Machine text column name'] = jsonPaths['machine_text_column']
 
         dataset = self.load_and_merge_datasets(jsonPaths['train'], jsonPaths['test'], jsonPaths['validation'], jsonPaths['human_text_column'], jsonPaths['machine_text_column'])
         return dataset

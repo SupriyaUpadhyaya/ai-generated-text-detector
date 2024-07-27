@@ -1,25 +1,27 @@
 from transformers import RobertaTokenizer, RobertaForSequenceClassification, Trainer, TrainingArguments
 from datasets import load_dataset
-from utils.metrics import Metrics
+from src.utils.metrics import Metrics
 import yaml
 import os
 import torch
 from safetensors.torch import load_file
 from xgboost import XGBClassifier
 from sklearn.metrics import confusion_matrix
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, f1_score, precision_recall_fscore_support
 import seaborn as sns
 from sklearn.metrics import f1_score
 import matplotlib.pyplot as plt
 import shap
 from xgboost_detector.featureExtractor import FeatureExtractor
+from main import results_report
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 class EvaluationXGBoost:
-    def __init__(self, model_type, log_path, num_labels=2):
+    def __init__(self, model_type, log_folder_name, num_labels=2):
         self.model_type = model_type
-        self.log_path = log_path
+        self.log_path = self.log_path = f'results/report/{self.model_type}/{log_folder_name}/evaluation/'
+        results_report['log_path']=self.log_path
         with open('config/model.yaml', 'r') as file:
             self.config = yaml.safe_load(file)
         lr = 0.01
@@ -41,7 +43,7 @@ class EvaluationXGBoost:
         else:
             print(f"No weights found at {weights_path}. Using the pre-trained model without additional weights.")
     
-        self.metrics = Metrics(f'{self.log_path}/{self.model_type}/logs')
+        self.metrics = Metrics(self.log_path)
     
     def evaluate(self, datasets):
         for dstype in datasets:
@@ -70,6 +72,10 @@ class EvaluationXGBoost:
         shap_values = explainer(X_test_list)
         shap.summary_plot(shap_values, X_test_list)
         shap.plots.heatmap(shap_values)
-        plt.savefig(f'{self.log_path}_{dstype}_confusion_matrix.png')
+        plt.savefig(f'{self.log_path}/{dstype}_confusion_matrix.png')
         f1score = f1_score(y_test_list, y_pred, zero_division=1.0)
-        print("F1 score : ", f1score)
+        precision_recall_fscore = precision_recall_fscore_support(y_test_list, y_pred, zero_division=1.0)
+        print(f"F1 score {dstype}: ", f1score)
+        print(f"precision_recall_fscore {dstype}: ", precision_recall_fscore)
+        results_report[f"precision_recall_fscore {dstype}"]= precision_recall_fscore
+        results_report[f'F1 score {dstype}']=f1score

@@ -1,17 +1,19 @@
 from transformers import RobertaTokenizer, RobertaForSequenceClassification, Trainer, TrainingArguments
 from datasets import load_dataset
-from utils.metrics import Metrics
+from src.utils.metrics import Metrics
 import yaml
 import os
 import torch
 from safetensors.torch import load_file
+from main import results_report
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 class Evaluation:
-    def __init__(self, model_type, log_path, num_labels=2):
+    def __init__(self, model_type, log_folder_name, num_labels=2):
         self.model_type = model_type
-        self.log_path = log_path
+        self.log_path = f'results/report/{self.model_type}/{log_folder_name}/evaluation/'
+        results_report['log_path']=self.log_path
         with open('config/model.yaml', 'r') as file:
             self.config = yaml.safe_load(file)
         model_name = self.config[model_type].get('pretrained')
@@ -27,8 +29,20 @@ class Evaluation:
                 print(f"Model weights loaded from {weights_path}")
             else:
                 print(f"No weights found at {weights_path}. Using the pre-trained model without additional weights.")
+        elif model_type == 'bloomz':
+            self.tokenizer = RobertaTokenizer.from_pretrained(model_name)
+            self.model = RobertaForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
+            weights_path = self.config[model_type].get('finetuned')
+            print('weights_path :', weights_path)
+            # Load the model weights from the local directory
+            if os.path.exists(weights_path):
+                state_dict = load_file(weights_path)
+                self.model.load_state_dict(state_dict)
+                print(f"Model weights loaded from {weights_path}")
+            else:
+                print(f"No weights found at {weights_path}. Using the pre-trained model without additional weights.")
         
-        self.metrics = Metrics(f'{self.log_path}/{self.model_type}/logs')
+        self.metrics = Metrics(self.log_path)
     
     def preprocess_function(self, examples):
         """
@@ -50,10 +64,10 @@ class Evaluation:
             tokenized_datasets = self.preprocess(dataset)
 
             training_args = TrainingArguments(
-            output_dir=f'{self.log_path}/{self.model_type}/results',          # output directory
+            output_dir=f'{self.log_path}/results',          # output directory
             per_device_train_batch_size=train_batch_size,   # batch size for training
             per_device_eval_batch_size=eval_batch_size,    # batch size for evaluation
-            logging_dir=f'{self.log_path}/{self.model_type}/logs',            # directory for storing logs
+            logging_dir=f'{self.log_path}/logs',            # directory for storing logs
             logging_steps=1,
             )
 
@@ -64,11 +78,11 @@ class Evaluation:
                 compute_metrics=self.metrics.compute_metrics   # function to compute metrics
             )
 
-
             test_results = trainer.predict(tokenized_datasets)
             print("Test results:", test_results.metrics)
+            results_report[f'Evaluation for {type}'] = test_results.metrics
 
             # Plot confusion matrix for test set
             test_predictions = test_results.predictions.argmax(axis=-1)
             test_labels = tokenized_datasets['label']
-            self.metrics.plot_confusion_matrix(test_predictions, test_labels, f'{type}', f'{self.log_path}/{self.model_type}/logs')
+            self.metrics.plot_confusion_matrix(test_predictions, test_labels, f'{type}', self.log_path)
