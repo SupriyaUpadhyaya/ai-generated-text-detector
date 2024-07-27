@@ -70,6 +70,7 @@ def main():
             training_dataset = TrainingDataset()
             dataset = training_dataset.getDataset(trainData=train_data, dataType=data_type, newLine=new_line)
             print(f"dataset : {dataset}")
+            results_report['Training dataset obtained'] = json.dump(dataset)
             if model_type != 'xgboost':
                 training = Train(model_type, log_folder_name)
             else:
@@ -79,6 +80,8 @@ def main():
         evaluation_dataset = EvaluationDataset()
         dataset = evaluation_dataset.getDataset()
         print(f"dataset : {dataset}")
+        results_report['Evaluation datasets obtained'] = json.dump(dataset)
+
         if model_type != 'xgboost':
             evaluation = Evaluation(model_type, log_folder_name)
         else:
@@ -89,6 +92,7 @@ def main():
         attack_dataset = AttackDataset()
         dataset = attack_dataset.getDataset()
         print(f"Dataset obtained: {dataset}")
+        results_report['Attack datasets obtained'] = json.dump(dataset)
         RobertaAttacker = Attack(model_type, log_folder_name)
         print("dataset : ", f'{train_data}_{data_type}_{new_line}')
         RobertaAttacker.attack(dataset[f'{train_data}_{data_type}_{new_line}'])
