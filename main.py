@@ -55,7 +55,7 @@ def main():
     results_report['Title'] = title
     results_report['Attack'] = attack
 
-    Run.run(model_type, train, data_type, new_line, train_data, log_folder_name, attack, title)
+    Run.execution(model_type, train, data_type, new_line, train_data, log_folder_name, attack, title)
 
 if __name__ == "__main__":
     main()

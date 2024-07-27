@@ -10,7 +10,8 @@ from src.utils.results import Report
 from main import results_report
 
 class Run:
-     def run(self, model_type, train, data_type, new_line, train_data, log_folder_name, attack, title):
+     @staticmethod
+     def execution(self, model_type, train, data_type, new_line, train_data, log_folder_name, attack, title):
         if not attack:
             # If train is true, create a TrainingDataset object and call getDataset
             if train:
