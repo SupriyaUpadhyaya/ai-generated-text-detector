@@ -1,14 +1,6 @@
 import argparse
-from src.utils.trainingDataset import TrainingDataset
-from deep_learning_detector.training import Train
-from deep_learning_detector.evaluation import Evaluation
-from xgboost_detector.xgboost import TrainXGBoost
-from xgboost_detector.xgboostEvaluation import EvaluationXGBoost
-from src.utils.evaluationDataset import EvaluationDataset
-from attack.attackDataset import AttackDataset
-from attack.attack import Attack
 import torch
-from src.utils.results import Report
+from run import Run
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 results_report = {}
@@ -48,6 +40,7 @@ def main():
     print(f"Title: {title}")
     print(f"Model Type: {model_type}")
     print(f"Train: {train}")
+    print(f"Attack: {attack}")
     print(f"Training Data: {train_data}")
     print(f"Data Type: {data_type}")
     print(f"New Line: {new_line}")
@@ -60,38 +53,9 @@ def main():
     results_report['New Line'] = new_line
     results_report['Log Folder Name'] = log_folder_name
     results_report['Title'] = title
+    results_report['Attack'] = attack
 
-    if not attack:
-        # If train is true, create a TrainingDataset object and call getDataset
-        if train:
-            training_dataset = TrainingDataset()
-            dataset = training_dataset.getDataset(trainData=train_data, dataType=data_type, newLine=new_line)
-            print(f"dataset : {dataset}")
-            results_report['Training dataset obtained'] = dataset
-            if model_type is not 'xgboost':
-                training = Train(model_type, log_folder_name)
-            else:
-                training = TrainXGBoost(model_type, log_folder_name)
-            training.train()
-        
-        evaluation_dataset = EvaluationDataset()
-        dataset = evaluation_dataset.getDataset()
-        print(f"dataset : {dataset}")
-        results_report['Evaluation datasets obtained'] = dataset
-        if model_type is not 'xgboost':
-            evaluation = Evaluation(model_type, log_folder_name)
-        else:
-            evaluation = EvaluationXGBoost(model_type, log_folder_name)
-        evaluation.evaluate(dataset)
-    
-    if attack:
-        attack_dataset = AttackDataset()
-        dataset = attack_dataset.getDataset()
-        print(f"Dataset obtained: {dataset}")
-        RobertaAttacker = Attack(model_type, log_folder_name)
-        RobertaAttacker.attack(dataset['chatgpt_abstract_without'])
-
-    Report.generateReport()
+    Run.run(model_type, train, data_type, new_line, train_data, log_folder_name, attack, title)
 
 if __name__ == "__main__":
     main()
