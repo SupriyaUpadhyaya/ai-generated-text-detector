@@ -20,7 +20,7 @@ class Run:
                 dataset = training_dataset.getDataset(trainData=train_data, dataType=data_type, newLine=new_line)
                 print(f"dataset : {dataset}")
                 results_report['Training dataset obtained'] = dataset
-                if model_type is not 'xgboost':
+                if model_type != 'xgboost':
                     training = Train(model_type, log_folder_name)
                 else:
                     training = TrainXGBoost(model_type, log_folder_name)
@@ -30,7 +30,7 @@ class Run:
             dataset = evaluation_dataset.getDataset()
             print(f"dataset : {dataset}")
             results_report['Evaluation datasets obtained'] = dataset
-            if model_type is not 'xgboost':
+            if model_type != 'xgboost':
                 evaluation = Evaluation(model_type, log_folder_name)
             else:
                 evaluation = EvaluationXGBoost(model_type, log_folder_name)
