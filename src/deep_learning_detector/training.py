@@ -25,7 +25,7 @@ class Train:
             self.tokenizer = RobertaTokenizer.from_pretrained(model_name)
             self.model = RobertaForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
         elif model_type == 'bloomz':
-            self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+            self.tokenizer = AutoTokenizer.from_pretrained(model_name, padding="max_length", truncation=True, max_length = 256)
             self.model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
         self.metrics = Metrics(self.log_path)
         print(f'************************** Results PATH - {self.log_path} ***********************')

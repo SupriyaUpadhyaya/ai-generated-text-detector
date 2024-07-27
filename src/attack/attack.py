@@ -41,7 +41,7 @@ class Attack:
                 print(f"No weights found at {weights_path}. Using the pre-trained model without additional weights.")
             self.model_wrapper = HuggingFaceModelWrapper(self.model, self.tokenizer)
         elif model_type == 'bloomz':
-            self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+            self.tokenizer = AutoTokenizer.from_pretrained(model_name, padding="max_length", truncation=True, max_length = 256)
             self.model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
             weights_path = self.config[model_type].get('finetuned')
             print('weights_path :', weights_path)
