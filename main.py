@@ -74,7 +74,7 @@ def main():
                 training = Train(model_type, log_folder_name)
             else:
                 training = TrainXGBoost(model_type, log_folder_name)
-            training.train()
+            training.train(dataset)
         
         evaluation_dataset = EvaluationDataset()
         dataset = evaluation_dataset.getDataset()
@@ -91,7 +91,8 @@ def main():
         dataset = attack_dataset.getDataset()
         print(f"Dataset obtained: {dataset}")
         RobertaAttacker = Attack(model_type, log_folder_name)
-        RobertaAttacker.attack(dataset['chatgpt_abstract_without'])
+        print("dataset : ", f'{train_data}_{data_type}_{new_line}')
+        RobertaAttacker.attack(dataset[f'{train_data}_{data_type}_{new_line}'])
 
     Report.generateReport()
 
