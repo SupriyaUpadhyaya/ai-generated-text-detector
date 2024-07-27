@@ -3,8 +3,8 @@ from src.shared import results_report
 import os
 
 class Report:
-
-    def generateReport(self):
+    @staticmethod
+    def generateReport():
         folder_path = results_report['log_path']
         # Start the HTML
         html_content = """
