@@ -7,9 +7,9 @@ from sklearn.metrics import f1_score, precision_recall_fscore_support
 import pandas as pd
 import numpy as np
 import shap
-from utils.metrics import Metrics
+from src.utils.metrics import Metrics
 import torch
-from xgboost_detector.featureExtractor import FeatureExtractor
+from src.xgboost_detector.featureExtractor import FeatureExtractor
 from src.shared import results_report
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
