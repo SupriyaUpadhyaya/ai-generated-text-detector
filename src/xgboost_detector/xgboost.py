@@ -18,7 +18,7 @@ class TrainXGBoost:
     def __init__(self, model_type,log_folder_name):
         print("model_type : ", model_type)
         self.model_type = model_type
-        self.log_path = f'results/report/{self.model_type}/{log_folder_name}/training/'
+        self.log_path = f'results/report/{self.model_type}/{log_folder_name}/'
         results_report['log_path']=self.log_path
         self.metrics = Metrics(f'{self.log_path}/{self.model_type}/logs')
         lr = 0.01

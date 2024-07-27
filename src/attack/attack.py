@@ -21,7 +21,7 @@ class Attack:
     def __init__(self, model_type,log_folder_name, num_labels=2):
         print("model_type : ", model_type)
         self.model_type = model_type
-        self.log_path = f'results/report/{self.model_type}/{log_folder_name}/attack/'
+        self.log_path = f'results/report/{self.model_type}/{log_folder_name}/'
         results_report['log_path']=self.log_path
         with open('config/model.yaml', 'r') as file:
             self.config = yaml.safe_load(file)

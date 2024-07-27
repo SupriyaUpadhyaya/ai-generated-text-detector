@@ -20,7 +20,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 class EvaluationXGBoost:
     def __init__(self, model_type, log_folder_name, num_labels=2):
         self.model_type = model_type
-        self.log_path = self.log_path = f'results/report/{self.model_type}/{log_folder_name}/evaluation/'
+        self.log_path = self.log_path = f'results/report/{self.model_type}/{log_folder_name}/'
         results_report['log_path']=self.log_path
         with open('config/model.yaml', 'r') as file:
             self.config = yaml.safe_load(file)
