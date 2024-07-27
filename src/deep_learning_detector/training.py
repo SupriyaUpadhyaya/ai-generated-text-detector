@@ -46,7 +46,7 @@ class Train:
         """
         return dataset.map(lambda x: self.preprocess_function(x), batched=True)
     
-    def train(self, dataset, learning_rate=2e-5, train_batch_size=16, eval_batch_size=16, num_train_epochs=3, weight_decay=0.01):
+    def train(self, dataset, learning_rate=2e-5, train_batch_size=8, eval_batch_size=8, num_train_epochs=3, weight_decay=0.01):
         """
         Trains the model using the provided dataset.
         """
