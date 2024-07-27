@@ -74,6 +74,25 @@ class Report:
                     html_content += "</tr>"
                 html_content += "</table>"
         
+        # Loop through the folder to find and add TXT files
+        html_content += """
+            <h1>Attack Summary</h1>"""
+        
+        for filename in os.listdir(folder_path):
+            if filename.lower().endswith('.txt'):
+                file_path = os.path.join(folder_path, filename)
+                with open(file_path, 'r') as file:
+                    lines = file.readlines()
+                    html_content += f"""
+                    <h2>{filename}</h2>
+                    <table>"""
+                    for line in lines:
+                        html_content += f"""
+                        <tr>
+                            <td>{line.strip()}</td>
+                        </tr>"""
+                    html_content += "</table>"
+                
         # End the HTML
         html_content += """
         </body>

@@ -97,6 +97,6 @@ class Attack:
             )
             attacker = Attacker(attack, dataset, attack_args)
             results = attacker.attack_dataset()
-            attacker.attack_log_manager.add_output_file(filename="%s/attack_summary_%s_%s.csv"%(self.log_path, attack_class, attackrecipe), color_method="file")
+            attacker.attack_log_manager.add_output_file(filename="%s/attack_summary_%s_%s.txt"%(self.log_path, attack_class, attackrecipe), color_method="file")
             attacker.attack_log_manager.log_summary()
 
