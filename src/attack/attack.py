@@ -13,7 +13,7 @@ from src.attack.attack_recipes import PWWSRen2019_threshold
 import textattack
 from textattack import Attacker
 from safetensors.torch import load_file
-from main import results_report
+from src.shared import results_report
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
