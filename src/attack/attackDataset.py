@@ -52,8 +52,8 @@ class AttackDataset:
             y_test = list(test_dataset["label"])
             textattack_dataset = TextAttackDataset(list(zip(X_test, y_test)))
             #textattack_dataset = TextAttackDataset(list(test_dataset))
-            print("Here is the dataset!")
-            print(list(test_dataset))
+            #print("Here is the dataset!")
+            #print(list(test_dataset))
             dataset[path]=textattack_dataset
 
         # Create a DatasetDict with all splits
