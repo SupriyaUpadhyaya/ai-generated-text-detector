@@ -22,7 +22,7 @@ class Report:
             </style>
         </head>
         <body>
-            <h1>Dictionary Values</h1>
+            <h1>Report</h1>
             <table>
                 <tr>
                     <th>Key</th>
@@ -40,7 +40,7 @@ class Report:
         # Add the images to the HTML
         html_content += """
             </table>
-            <h1>PNG Files</h1>"""
+            <h1>Plots/Confusion Matrix</h1>"""
         
         # Loop through the folder and add PNG files
         for filename in os.listdir(folder_path):
@@ -51,7 +51,7 @@ class Report:
                 <img src="{file_path}" alt="{filename}">"""
         
         html_content += """
-        <h1>CSV Files</h1>"""
+        <h1>Original text Vs Perturbed Text</h1>"""
     
         for filename in os.listdir(folder_path):
             if filename.lower().endswith('.csv'):
@@ -80,7 +80,7 @@ class Report:
         </html>"""
         
         # Write the HTML to a file
-        with open(f'{folder_path}/results', 'w') as file:
+        with open(f'{folder_path}/results.htmls', 'w') as file:
             file.write(html_content)
         
         print(f"Report generated: {folder_path}/results")
