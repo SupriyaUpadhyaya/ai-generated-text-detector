@@ -13,7 +13,7 @@ from sklearn.metrics import f1_score
 import matplotlib.pyplot as plt
 import shap
 from xgboost_detector.featureExtractor import FeatureExtractor
-from main import results_report
+from src.shared import results_report
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 

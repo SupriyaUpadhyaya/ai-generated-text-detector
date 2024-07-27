@@ -7,7 +7,7 @@ import torch
 import os
 from safetensors.torch import save_file
 from torch.utils.tensorboard import SummaryWriter
-from main import results_report
+from src.shared import results_report
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 

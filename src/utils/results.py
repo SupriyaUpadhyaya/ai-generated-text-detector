@@ -1,5 +1,5 @@
 import pandas as pfd
-from main import results_report
+from src.shared import results_report
 import os
 
 class Report:

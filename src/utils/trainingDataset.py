@@ -1,7 +1,7 @@
 import yaml
 from datasets import load_dataset, DatasetDict, concatenate_datasets
 import numpy as np
-from main import results_report
+from src.shared import results_report
 
 class TrainingDataset:
     def __init__(self, yaml_path='config/dataset_paths.yaml'):

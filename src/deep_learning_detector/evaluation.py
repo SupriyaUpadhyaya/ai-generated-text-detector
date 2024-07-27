@@ -5,7 +5,7 @@ import yaml
 import os
 import torch
 from safetensors.torch import load_file
-from main import results_report
+from src.shared import results_report
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
