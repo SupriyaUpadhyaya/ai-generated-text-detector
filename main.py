@@ -1,14 +1,14 @@
 import argparse
-from utils.trainingDataset import TrainingDataset
+from src.utils.trainingDataset import TrainingDataset
 from deep_learning_detector.training import Train
 from deep_learning_detector.evaluation import Evaluation
 from xgboost_detector.xgboost import TrainXGBoost
 from xgboost_detector.xgboostEvaluation import EvaluationXGBoost
-from utils.evaluationDataset import EvaluationDataset
+from src.utils.evaluationDataset import EvaluationDataset
 from attack.attackDataset import AttackDataset
 from attack.attack import Attack
 import torch
-from utils.results import Report
+from src.utils.results import Report
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 results_report = {}
