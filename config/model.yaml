@@ -8,4 +8,4 @@ bloomz:
 
 xgboost:
   pretrained: "data/chatgpt_abstract_with_train.jsonl"
-  finetuned: "data/chatgpt_abstract_with_validation.jsonl"
+  finetuned: "na"

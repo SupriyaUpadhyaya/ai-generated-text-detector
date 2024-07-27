@@ -1,7 +1,7 @@
 from tkinter.filedialog import SaveFileDialog
 from transformers import RobertaTokenizer, RobertaForSequenceClassification, Trainer, TrainingArguments
 from datasets import load_dataset
-from src.metrics import Metrics
+from utils.metrics import Metrics
 import yaml
 import torch
 import os

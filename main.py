@@ -1,8 +1,10 @@
 import argparse
-from src.trainingDataset import TrainingDataset
-from src.training import Train
-from src.evaluation import Evaluation
-from src.evaluationDataset import EvaluationDataset
+from utils.trainingDataset import TrainingDataset
+from deep_learning_detector.training import Train
+from deep_learning_detector.evaluation import Evaluation
+from xgboost_detector.xgboost import TrainXGBoost
+from xgboost_detector.xgboostEvaluation import EvaluationXGBoost
+from utils.evaluationDataset import EvaluationDataset
 from attack.attackDataset import AttackDataset
 from attack.attack import Attack
 import torch
@@ -52,13 +54,19 @@ def main():
             training_dataset = TrainingDataset()
             dataset = training_dataset.getDataset(trainData=train_data, dataType=data_type, newLine=new_line)
             print(f"Dataset obtained: {dataset}")
-            training = Train(model_type, log_path)
-            model_path = training.train(dataset)
+            if model_type is not 'xgboost':
+                training = Train(model_type, log_path)
+            else:
+                training = TrainXGBoost(model_type, log_path)
+            training.train()
         
         evaluation_dataset = EvaluationDataset()
         dataset = evaluation_dataset.getDataset()
         print(f"Dataset obtained: {dataset}")
-        evaluation = Evaluation(model_type, log_path)
+        if model_type is not 'xgboost':
+            evaluation = Evaluation(model_type, log_path)
+        else:
+            evaluation = EvaluationXGBoost(model_type, log_path)
         evaluation.evaluate(dataset)
     
     if attack:

@@ -26,7 +26,7 @@ class InputReductionFeng2018(AttackRecipe):
         # the model changes its prediction.
         transformation = WordDeletion()
 
-        constraints = [RepeatModification(), StopwordModification()]
+        constraints = [RepeatModification(), StopwordModification(), MaxModificationRate(max_rate=0.05, min_threshold=1)]
         #
         # Goal is untargeted classification
         #
@@ -52,7 +52,7 @@ class PWWSRen2019_threshold(AttackRecipe):
     @staticmethod
     def build(model_wrapper, target_max_score=None):
         transformation = WordSwapWordNet()
-        constraints = [RepeatModification(), StopwordModification()]
+        constraints = [RepeatModification(), StopwordModification(), MaxModificationRate(max_rate=0.05, min_threshold=1)]
         goal_function = UntargetedClassification(model_wrapper, target_max_score=target_max_score)
         # search over words based on a combination of their saliency score, and how efficient the WordSwap transform is
         search_method = GreedyWordSwapWIR("weighted-saliency")
