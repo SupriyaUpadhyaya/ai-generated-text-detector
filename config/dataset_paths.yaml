@@ -1,5 +1,5 @@
 chatgpt_abstract_without:
-  train: "data/without_n/arxiv_chatGPT_test.jsonl"
+  train: "data/without_n/arxiv_chatGPT_train.jsonl"
   validation: "data/without_n/arxiv_chatGPT_val.jsonl"
   test: "data/without_n/arxiv_chatGPT_test.jsonl"
   human_text_column: 'human_text'

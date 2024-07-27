@@ -30,7 +30,7 @@ class Evaluation:
             else:
                 print(f"No weights found at {weights_path}. Using the pre-trained model without additional weights.")
         elif model_type == 'bloomz':
-            self.tokenizer = AutoTokenizer.from_pretrained(model_name, padding="max_length", truncation=True, max_length = 256)
+            self.tokenizer = AutoTokenizer.from_pretrained(model_name)
             self.model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
             weights_path = self.config[model_type].get('finetuned')
             print('weights_path :', weights_path)
@@ -48,7 +48,11 @@ class Evaluation:
         """
         Tokenizes the input examples.
         """
-        return self.tokenizer(examples['text'], padding='max_length', truncation=True)
+        if self.model_type == 'roberta':
+            tokenized_input = self.tokenizer(examples['text'], padding='max_length', truncation=True)
+        elif self.model_type == 'bloomz':
+            tokenized_input = self.tokenizer(examples['text'], padding='max_length', truncation=True, max_length = 256)
+        return tokenized_input
     
     def preprocess(self, dataset):
         """
