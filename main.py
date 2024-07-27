@@ -10,6 +10,7 @@ from src.attack.attack import Attack
 import torch
 from src.shared import results_report
 from src.utils.results import Report
+import json
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -95,6 +96,8 @@ def main():
         RobertaAttacker.attack(dataset[f'{train_data}_{data_type}_{new_line}'])
 
     Report.generateReport()
+    with open(f'{results_report['log_path']}/results_report.json', 'w') as json_file:
+        json.dump(results_report, json_file, indent=4)
 
 if __name__ == "__main__":
     main()
