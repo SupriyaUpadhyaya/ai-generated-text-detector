@@ -80,10 +80,10 @@ class Report:
         </html>"""
         
         # Write the HTML to a file
-        with open(f'{folder_path}/results.htmls', 'w') as file:
+        with open(f'{folder_path}/results.html', 'w') as file:
             file.write(html_content)
         
-        print(f"Report generated: {folder_path}/results")
+        print(f"Report generated: {folder_path}/results.html")
         #webbrowser.open(f'file://{os.path.abspath(output_file)}')
 
     # def writeAttackHtml(self, log_path):
