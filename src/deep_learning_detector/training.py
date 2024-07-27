@@ -38,7 +38,7 @@ class Train:
             tokenized_input = self.tokenizer(examples['text'], padding='max_length', truncation=True)
         elif self.model_type == 'bloomz':
             tokenized_input = self.tokenizer(examples['text'], padding='max_length', truncation=True, max_length = 512)
-        return 
+        return tokenized_input
     
     def preprocess(self, dataset):
         """
