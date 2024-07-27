@@ -1,6 +1,7 @@
-import pandas as pfd
+import pandas as pd
 from src.shared import results_report
 import os
+
 
 class Report:
     @staticmethod
