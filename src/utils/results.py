@@ -55,7 +55,7 @@ class Report:
     
         for filename in os.listdir(folder_path):
             if filename.lower().endswith('.csv'):
-                file_path = os.path.join(folder_path, filename)
+                file_path = filename
                 df = pd.read_csv(file_path)
                 html_content += f"""
                 <h2>{filename}</h2>
