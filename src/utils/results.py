@@ -45,7 +45,7 @@ class Report:
         # Loop through the folder and add PNG files
         for filename in os.listdir(folder_path):
             if filename.lower().endswith('.png'):
-                file_path = os.path.join(folder_path, filename)
+                file_path = filename
                 html_content += f"""
                 <h2>{filename}</h2>
                 <img src="{file_path}" alt="{filename}">"""

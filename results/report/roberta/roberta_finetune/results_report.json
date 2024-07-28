@@ -1,0 +1,103 @@
+{
+    "Model Type": "roberta",
+    "Train": true,
+    "Training Data": "chatgpt",
+    "Data Type": "abstract",
+    "New Line": "without",
+    "Log Folder Name": "roberta_finetune",
+    "Title": "Roberta Finetune and Evaluation",
+    "Attack": false,
+    "Train input path": "data/without_n/arxiv_chatGPT_test.jsonl",
+    "Test input path": "data/without_n/arxiv_chatGPT_test.jsonl",
+    "Validation input path": "data/without_n/arxiv_chatGPT_val.jsonl",
+    "Human text column name": "human_text",
+    "Machine text column name": "machine_text",
+    "log_path": "results/report/roberta/roberta_finetune//",
+    "Validation results": {
+        "eval_loss": 0.024717610329389572,
+        "eval_accuracy": 0.996875,
+        "eval_precision": 0.9937888198757764,
+        "eval_recall": 1.0,
+        "eval_f1": 0.9968847352024921,
+        "eval_runtime": 31.7261,
+        "eval_samples_per_second": 30.259,
+        "eval_steps_per_second": 1.891,
+        "epoch": 3.0
+    },
+    "Test results": {
+        "test_loss": 3.7012461689300835e-05,
+        "test_accuracy": 1.0,
+        "test_precision": 1.0,
+        "test_recall": 1.0,
+        "test_f1": 1.0,
+        "test_runtime": 38.2312,
+        "test_samples_per_second": 31.388,
+        "test_steps_per_second": 1.962
+    },
+    "Evaluation for chatgpt_abstract_without": {
+        "test_loss": 3.7012461689300835e-05,
+        "test_model_preparation_time": 0.0034,
+        "test_accuracy": 1.0,
+        "test_precision": 1.0,
+        "test_recall": 1.0,
+        "test_f1": 1.0,
+        "test_runtime": 39.165,
+        "test_samples_per_second": 30.64,
+        "test_steps_per_second": 1.915
+    },
+    "Evaluation for bloomz_abstract_without": {
+        "test_loss": 3.6432442665100098,
+        "test_model_preparation_time": 0.0035,
+        "test_accuracy": 0.5858333333333333,
+        "test_precision": 1.0,
+        "test_recall": 0.17166666666666666,
+        "test_f1": 0.2930298719772404,
+        "test_runtime": 38.7456,
+        "test_samples_per_second": 30.971,
+        "test_steps_per_second": 1.936
+    },
+    "Evaluation for llama3_abstract_without": {
+        "test_loss": 0.02472444251179695,
+        "test_model_preparation_time": 0.0033,
+        "test_accuracy": 0.9975,
+        "test_precision": 0.998330550918197,
+        "test_recall": 0.9966666666666667,
+        "test_f1": 0.9974979149291077,
+        "test_runtime": 38.0676,
+        "test_samples_per_second": 31.523,
+        "test_steps_per_second": 1.97
+    },
+    "Evaluation for cohere_abstract_without": {
+        "test_loss": 2.235363483428955,
+        "test_model_preparation_time": 0.0054,
+        "test_accuracy": 0.7166666666666667,
+        "test_precision": 1.0,
+        "test_recall": 0.43333333333333335,
+        "test_f1": 0.6046511627906976,
+        "test_runtime": 38.7876,
+        "test_samples_per_second": 30.938,
+        "test_steps_per_second": 1.934
+    },
+    "Evaluation for davinci_abstract_without": {
+        "test_loss": 1.802911639213562,
+        "test_model_preparation_time": 0.0034,
+        "test_accuracy": 0.7683333333333333,
+        "test_precision": 0.9938650306748467,
+        "test_recall": 0.54,
+        "test_f1": 0.6997840172786178,
+        "test_runtime": 38.1337,
+        "test_samples_per_second": 31.468,
+        "test_steps_per_second": 1.967
+    },
+    "Evaluation for flant5_abstract_without": {
+        "test_loss": 1.076575517654419,
+        "test_model_preparation_time": 0.0037,
+        "test_accuracy": 0.8591666666666666,
+        "test_precision": 1.0,
+        "test_recall": 0.7183333333333334,
+        "test_f1": 0.8360814742967994,
+        "test_runtime": 37.7905,
+        "test_samples_per_second": 31.754,
+        "test_steps_per_second": 1.985
+    }
+}

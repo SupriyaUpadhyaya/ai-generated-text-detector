@@ -1,0 +1,98 @@
+
+        <html>
+        <head>
+            <title>Report</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                h1 { color: #333; }
+                table { border-collapse: collapse; width: 100%; }
+                th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+                th { background-color: #f2f2f2; }
+                img { max-width: 100%; height: auto; margin: 10px 0; }
+            </style>
+        </head>
+        <body>
+            <h1>Report</h1>
+            <table>
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Model Type</td>
+                    <td>roberta</td>
+                </tr>
+                <tr>
+                    <td>Train</td>
+                    <td>False</td>
+                </tr>
+                <tr>
+                    <td>Training Data</td>
+                    <td>chatgpt</td>
+                </tr>
+                <tr>
+                    <td>Data Type</td>
+                    <td>abstract</td>
+                </tr>
+                <tr>
+                    <td>New Line</td>
+                    <td>without</td>
+                </tr>
+                <tr>
+                    <td>Log Folder Name</td>
+                    <td>roberta_eval</td>
+                </tr>
+                <tr>
+                    <td>Title</td>
+                    <td>Roberta Finetune and Evaluation</td>
+                </tr>
+                <tr>
+                    <td>Attack</td>
+                    <td>False</td>
+                </tr>
+                <tr>
+                    <td>log_path</td>
+                    <td>results/report/roberta/roberta_eval//</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for chatgpt_abstract_without</td>
+                    <td>{'test_loss': 3.7012461689300835e-05, 'test_model_preparation_time': 0.0062, 'test_accuracy': 1.0, 'test_precision': 1.0, 'test_recall': 1.0, 'test_f1': 1.0, 'test_runtime': 74.9745, 'test_samples_per_second': 16.005, 'test_steps_per_second': 1.0}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for bloomz_abstract_without</td>
+                    <td>{'test_loss': 3.6432442665100098, 'test_model_preparation_time': 0.0058, 'test_accuracy': 0.5858333333333333, 'test_precision': 1.0, 'test_recall': 0.17166666666666666, 'test_f1': 0.2930298719772404, 'test_runtime': 78.671, 'test_samples_per_second': 15.253, 'test_steps_per_second': 0.953}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for llama3_abstract_without</td>
+                    <td>{'test_loss': 0.02472444251179695, 'test_model_preparation_time': 0.0085, 'test_accuracy': 0.9975, 'test_precision': 0.998330550918197, 'test_recall': 0.9966666666666667, 'test_f1': 0.9974979149291077, 'test_runtime': 79.596, 'test_samples_per_second': 15.076, 'test_steps_per_second': 0.942}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for cohere_abstract_without</td>
+                    <td>{'test_loss': 2.235363483428955, 'test_model_preparation_time': 0.0056, 'test_accuracy': 0.7166666666666667, 'test_precision': 1.0, 'test_recall': 0.43333333333333335, 'test_f1': 0.6046511627906976, 'test_runtime': 79.7095, 'test_samples_per_second': 15.055, 'test_steps_per_second': 0.941}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for davinci_abstract_without</td>
+                    <td>{'test_loss': 1.802911639213562, 'test_model_preparation_time': 0.0088, 'test_accuracy': 0.7683333333333333, 'test_precision': 0.9938650306748467, 'test_recall': 0.54, 'test_f1': 0.6997840172786178, 'test_runtime': 79.1264, 'test_samples_per_second': 15.166, 'test_steps_per_second': 0.948}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for flant5_abstract_without</td>
+                    <td>{'test_loss': 1.076575517654419, 'test_model_preparation_time': 0.0065, 'test_accuracy': 0.8591666666666666, 'test_precision': 1.0, 'test_recall': 0.7183333333333334, 'test_f1': 0.8360814742967994, 'test_runtime': 78.8514, 'test_samples_per_second': 15.219, 'test_steps_per_second': 0.951}</td>
+                </tr>
+            </table>
+            <h1>Plots/Confusion Matrix</h1>
+                <h2>confusion_matrix_chatgpt_abstract_without.png</h2>
+                <img src="confusion_matrix_chatgpt_abstract_without.png" alt="confusion_matrix_chatgpt_abstract_without.png">
+                <h2>confusion_matrix_bloomz_abstract_without.png</h2>
+                <img src="confusion_matrix_bloomz_abstract_without.png" alt="confusion_matrix_bloomz_abstract_without.png">
+                <h2>confusion_matrix_llama3_abstract_without.png</h2>
+                <img src="confusion_matrix_llama3_abstract_without.png" alt="confusion_matrix_llama3_abstract_without.png">
+                <h2>confusion_matrix_cohere_abstract_without.png</h2>
+                <img src="confusion_matrix_cohere_abstract_without.png" alt="confusion_matrix_cohere_abstract_without.png">
+                <h2>confusion_matrix_davinci_abstract_without.png</h2>
+                <img src="confusion_matrix_davinci_abstract_without.png" alt="confusion_matrix_davinci_abstract_without.png">
+                <h2>confusion_matrix_flant5_abstract_without.png</h2>
+                <img src="confusion_matrix_flant5_abstract_without.png" alt="confusion_matrix_flant5_abstract_without.png">
+        <h1>Original text Vs Perturbed Text</h1>
+            <h1>Attack Summary</h1>
+        </body>
+        </html>
