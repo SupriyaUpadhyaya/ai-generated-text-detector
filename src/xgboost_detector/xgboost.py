@@ -50,6 +50,9 @@ class TrainXGBoost:
         importances_weight = pd.DataFrame()
         importances_cover = pd.DataFrame()
         importances_total_gain = pd.DataFrame()
+        print(X_train)
+        print(y_train)
+        print(evalset)
 
         self.xgb_classifier.fit(X_train, y_train,
                         eval_set=evalset,

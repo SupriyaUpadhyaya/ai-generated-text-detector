@@ -242,7 +242,7 @@ class FeatureExtractor():
     def featureExtractor(self, text):
         machine_abstract = text
 
-        print('machine_abstract : ', machine_abstract)
+        #print('machine_abstract : ', machine_abstract)
 
         #num_sentence_human = self.count_sentences_per_paragraph(abstract)
         num_sentence_machine = self.count_sentences_per_paragraph(machine_abstract)
