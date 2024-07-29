@@ -11,6 +11,7 @@ from src.utils.metrics import Metrics
 import torch
 from src.xgboost_detector.featureExtractor import FeatureExtractor
 from src.shared import results_report
+from src.utils.misc import Misc
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -106,6 +107,7 @@ class TrainXGBoost:
                                     ascending=False), 
                                     palette='gray')
         plt.savefig(f'{self.log_path}_importance.png')
+        Misc.create_directory(f'{self.log_path}/save_models/')
         self.xgb_classifier.save_model(f'{self.log_path}/save_models/xgboost_model.json')
 
         self.performance_test(X_test, y_test)
