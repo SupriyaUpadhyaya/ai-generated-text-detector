@@ -105,7 +105,7 @@ def main():
             XGBoostAttacker.attack(dataset[f'{train_data}_{data_type}_{new_line}'])
 
     if TrainOnSubset:
-        subset = 10
+        subset = 0.1
         training_dataset = TrainingDataset()
         for i in range(1,10):
             print(f'Percentage of training data used :', {(subset * i)})
