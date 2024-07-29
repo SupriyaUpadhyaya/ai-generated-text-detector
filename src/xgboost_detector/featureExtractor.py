@@ -354,45 +354,45 @@ class FeatureExtractor():
         #     data[param] = dfs.loc[count, param]
 
         #data['no_sentence_human'] = [num_sentence_human]
-        data['no_sentence_machine'] = [num_sentence_machine]
+        data['no_sentence_machine'] = [num_sentence_machine].astype(float)
         #data['num_words_human'] = [num_words_human]
-        data['num_words_machine'] = [num_words_machine]
+        data['num_words_machine'] = [num_words_machine].astype(float)
         #data['character0_human'] = [character0_human]
         #data['character1_human'] = [character1_human]
         #data['character2_3_human'] = [character2_3_human]
         #data['character4_human'] = [character4_human]
         #data['character5_human'] = [character5_human]
-        data['character0_machine'] = [character0_machine]
-        data['character1_machine'] = [character1_machine]
-        data['character2_3_machine'] = [character2_3_machine]
-        data['character4_machine'] = [character4_machine]
-        data['character5_machine'] = [character5_machine]
+        data['character0_machine'] = [character0_machine].astype(float)
+        data['character1_machine'] = [character1_machine].astype(float)
+        data['character2_3_machine'] = [character2_3_machine].astype(float)
+        data['character4_machine'] = [character4_machine].astype(float)
+        data['character5_machine'] = [character5_machine].astype(float)
         #data['std_dev_human'] = [std_dev_human]
-        data['std_dev_machine'] = [std_dev_machine]
+        data['std_dev_machine'] = [std_dev_machine].astype(float)
         #data['sent_len_diff_human'] = [sent_len_diff_human]
-        data['sent_len_diff_machine'] = [sent_len_diff_machine]
+        data['sent_len_diff_machine'] = [sent_len_diff_machine].astype(float)
         #data['count_short_sentences_in_paragraphs_human'] = [count_short_sentences_in_paragraphs_human]
-        data['count_short_sentences_in_paragraphs_machine'] = [count_short_sentences_in_paragraphs_machine]
+        data['count_short_sentences_in_paragraphs_machine'] = [count_short_sentences_in_paragraphs_machine].astype(float)
         #data['count_long_sentences_in_paragraphs_human'] = [count_long_sentences_in_paragraphs_human]
-        data['count_long_sentences_in_paragraphs_machine'] = [count_long_sentences_in_paragraphs_machine]
+        data['count_long_sentences_in_paragraphs_machine'] = [count_long_sentences_in_paragraphs_machine].astype(float)
         #data['check_word0_human'] = [check_word0_human]
         #data['check_word1_human'] = [check_word1_human]
         #data['check_word2_3_human'] = [check_word2_3_human]
         #data['check_word3_human'] = [check_word3_human]
         #data['check_word4_human'] = [check_word4_human]
         #data['check_word5_human'] = [check_word5_human]
-        data['check_word0_machine'] = [check_word0_machine]
-        data['check_word1_machine'] = [check_word1_machine]
-        data['check_word2_3_machine'] = [check_word2_3_machine]
-        data['check_word3_machine'] = [check_word3_machine]
-        data['check_word4_machine'] = [check_word4_machine]
-        data['check_word5_machine'] = [check_word5_machine]
+        data['check_word0_machine'] = [check_word0_machine].astype(float)
+        data['check_word1_machine'] = [check_word1_machine].astype(float)
+        data['check_word2_3_machine'] = [check_word2_3_machine].astype(float)
+        data['check_word3_machine'] = [check_word3_machine].astype(float)
+        data['check_word4_machine'] = [check_word4_machine].astype(float)
+        data['check_word5_machine'] = [check_word5_machine].astype(float)
         #data['check_num_human'] = [check_num_human]
-        data['check_num_machine'] = [check_num_machine]
+        data['check_num_machine'] = [check_num_machine].astype(float)
         #data['check_capitals_human'] = [check_capitals_human]
-        data['check_capitals_machine'] = [check_capitals_machine]
+        data['check_capitals_machine'] = [check_capitals_machine].astype(float)
         #data['check_et_human'] = [check_et_human]
-        data['check_et_machine'] = [check_et_machine]
+        data['check_et_machine'] = [check_et_machine].astype(float)
 
         #count += 1
         df = pd.DataFrame(data)
@@ -401,14 +401,14 @@ class FeatureExtractor():
         
         #df = pd.read_csv(outputfilename)
         #df['no_sentence_human'] = self.normalize_column(df['no_sentence_human'])
-        df['no_sentence_machine'] = self.scaler.fit_transform(df[['no_sentence_machine']])
+        df['no_sentence_machine'] = self.scaler.fit_transform(df['no_sentence_machine']).astype(float)
         print(self.scaler.fit_transform(df[['no_sentence_machine']]))
         #df['num_words_human'] = self.normalize_column(df['num_words_human'])
-        df['num_words_machine'] = self.scaler.fit_transform(df[['num_words_machine']])
+        df['num_words_machine'] = self.scaler.fit_transform(df['num_words_machine']).astype(float)
         #df['std_dev_human'] = self.normalize_column(df['std_dev_human'])
         #df['sent_len_diff_human'] = self.normalize_column(df['sent_len_diff_human'])
-        df['std_dev_machine'] = self.scaler.fit_transform(df[['std_dev_machine']])
-        df['sent_len_diff_machine'] = self.scaler.fit_transform(df[['sent_len_diff_machine']])
+        df['std_dev_machine'] = self.scaler.fit_transform(df['std_dev_machine']).astype(float)
+        df['sent_len_diff_machine'] = self.scaler.fit_transform(df['sent_len_diff_machine']).astype(float)
         #print(df.values.tolist())
         return df
     
