@@ -15,6 +15,7 @@ class FeatureExtractor():
     def count_sentences(self, text):
         # Tokenize the text into sentences
         sentences = nltk.sent_tokenize(text)
+        print(len(sentences))
         return len(sentences)
 
     def count_sentences_per_paragraph(self, text):
@@ -34,6 +35,7 @@ class FeatureExtractor():
     def count_words(self, text):
         # Tokenize the text into words
         words = text.split()
+        print(len(words))
         return len(words)
 
     def count_words_per_paragraph(self, text):
