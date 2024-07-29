@@ -22,6 +22,9 @@ class TrainXGBoost:
         self.model_type = model_type
         self.log_path = f'results/report/{self.model_type}/{log_folder_name}/'
         results_report['log_path']=self.log_path
+        with open('config/model.yaml', 'r') as file:
+            self.config = yaml.safe_load(file)
+        print("self.config : ", self.config)
         self.metrics = Metrics(f'{self.log_path}/{self.model_type}/logs')
         lr = 0.01
         weight = 4.5
