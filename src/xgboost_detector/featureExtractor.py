@@ -389,11 +389,11 @@ class FeatureExtractor():
         #df['sent_len_diff_human'] = self.normalize_column(df['sent_len_diff_human'])
         df['std_dev_machine'] = self.normalize_column(df['std_dev_machine'])
         df['sent_len_diff_machine'] = self.normalize_column(df['sent_len_diff_machine'])
-        print(df.values.tolist())
+        #print(df.values.tolist())
         return df.values.tolist()
     
     def getFeatures(self, text_input_list):
-        input_features = np.array([self.featureExtractor(text) for text in text_input_list])
-        print(input_features[0].shape)
-        df = pd.DataFrame(input_features[0])
+        input_features = (self.featureExtractor(text) for text in text_input_list)
+        print(input_features.shape)
+        df = pd.DataFrame(input_features)
         return df
