@@ -395,26 +395,31 @@ class FeatureExtractor():
         data['check_et_machine'] = [check_et_machine]
 
         #count += 1
-        df = pd.DataFrame(data, dtype=float)
+        df = pd.DataFrame(data[:, 0, :], dtype=float)
         #df1.to_csv(outputfilename, mode='a', index=False, header=header)
-        header = data
+        #header = data
         
         #df = pd.read_csv(outputfilename)
         #df['no_sentence_human'] = self.normalize_column(df['no_sentence_human'])
-        df['no_sentence_machine'] = self.scaler.fit_transform(df[['no_sentence_machine']]).astype(float)
-        print(self.scaler.fit_transform(df[['no_sentence_machine']]))
+        
+        #print(self.scaler.fit_transform(df[['no_sentence_machine']]))
         #df['num_words_human'] = self.normalize_column(df['num_words_human'])
-        df['num_words_machine'] = self.scaler.fit_transform(df[['num_words_machine']]).astype(float)
+        
         #df['std_dev_human'] = self.normalize_column(df['std_dev_human'])
         #df['sent_len_diff_human'] = self.normalize_column(df['sent_len_diff_human'])
-        df['std_dev_machine'] = self.scaler.fit_transform(df[['std_dev_machine']]).astype(float)
-        df['sent_len_diff_machine'] = self.scaler.fit_transform(df[['sent_len_diff_machine']]).astype(float)
+        
+        
         #print(df.values.tolist())
         return df
     
     def getFeatures(self, text_input_list):
-        input_features = np.array([self.featureExtractor(text) for text in text_input_list])
-        input_featuresdf = pd.DataFrame(input_features[:, 0, :])
-        print(input_featuresdf)
-        feature_names = ['no_sentence', 'num_words', 'character0', 'character1', 'character2_3', 'character4', 'character5', 'std_dev', 'sent_len_diff', 'count_short_sentences_in_paragraphs', 'count_long_sentences_in_paragraphs', 'check_word0', 'check_word1', 'check_word2_3', 'check_word3', 'check_word4', 'check_word5', 'check_num', 'check_capitals', 'check_et']
-        return pd.DataFrame(input_featuresdf), feature_names
+        df = pd.DataFrame([self.featureExtractor(text) for text in text_input_list])
+        df['no_sentence_machine'] = self.scaler.fit_transform(df[['no_sentence_machine']]).astype(float)
+        df['num_words_machine'] = self.scaler.fit_transform(df[['num_words_machine']]).astype(float)
+        df['std_dev_machine'] = self.scaler.fit_transform(df[['std_dev_machine']]).astype(float)
+        df['sent_len_diff_machine'] = self.scaler.fit_transform(df[['sent_len_diff_machine']]).astype(float)
+        #input_features = np.array()
+        #input_featuresdf = pd.DataFrame(input_features[:, 0, :])
+        print(df.head())
+        #feature_names = ['no_sentence', 'num_words', 'character0', 'character1', 'character2_3', 'character4', 'character5', 'std_dev', 'sent_len_diff', 'count_short_sentences_in_paragraphs', 'count_long_sentences_in_paragraphs', 'check_word0', 'check_word1', 'check_word2_3', 'check_word3', 'check_word4', 'check_word5', 'check_num', 'check_capitals', 'check_et']
+        return df

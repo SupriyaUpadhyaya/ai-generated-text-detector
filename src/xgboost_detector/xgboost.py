@@ -36,9 +36,9 @@ class TrainXGBoost:
 
     def train(self, dataset):
         featExtractor = FeatureExtractor()
-        X_train, X_train_col = featExtractor.getFeatures(dataset['train']['text'])
-        X_val, X_val_col = featExtractor.getFeatures(dataset['validation']['text'])
-        X_test, X_test_col = featExtractor.getFeatures(dataset['test']['text'])
+        X_train = featExtractor.getFeatures(dataset['train']['text'])
+        X_val = featExtractor.getFeatures(dataset['validation']['text'])
+        X_test = featExtractor.getFeatures(dataset['test']['text'])
         y_train = dataset['train']['label']
         y_val = dataset['validation']['label']
         y_test = dataset['test']['label']
@@ -67,7 +67,7 @@ class TrainXGBoost:
         plt.plot(results['validation_0']['logloss'], label='train')
         plt.plot(results['validation_1']['logloss'], label='validation')
         
-        values = X_train_col
+        values = X_train.columns.values
         print("values :", values)
         title = ' '.join(values)
         plt.title('Loss vs. Epoch for ')
