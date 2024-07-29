@@ -46,11 +46,12 @@ class EvaluationXGBoost:
         self.metrics = Metrics(self.log_path)
     
     def evaluate(self, datasets):
+        featExtractor = FeatureExtractor()
         for dstype in datasets:
             print(f'************* Evaluation for {dstype} *************')
             # Load dataset
             dataset = datasets[dstype]
-            X_test = FeatureExtractor.getFeatures(dataset['text'])
+            X_test = featExtractor.getFeatures(dataset['text'])
             y_test = dataset['label']
             self.performance_test(X_test, y_test, dstype)
             
