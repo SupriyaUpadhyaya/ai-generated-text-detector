@@ -12,6 +12,7 @@ import torch
 from src.xgboost_detector.featureExtractor import FeatureExtractor
 from src.shared import results_report
 from src.utils.misc import Misc
+import yaml
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -109,6 +110,9 @@ class TrainXGBoost:
         plt.savefig(f'{self.log_path}_importance.png')
         Misc.create_directory(f'{self.log_path}/save_models/')
         self.xgb_classifier.save_model(f'{self.log_path}/save_models/xgboost_model.json')
+        self.config[self.model_type]['finetuned']= f'{self.log_path}/save_models/xgboost_model.json'
+        with open('config/model.yaml', 'w') as file:
+            yaml.safe_dump(self.config, file)
 
         self.performance_test(X_test, y_test)
 
