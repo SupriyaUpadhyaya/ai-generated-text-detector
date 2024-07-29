@@ -36,6 +36,7 @@ def main():
     parser.add_argument('--title', type=str, required=True, help='Title')
     parser.add_argument("--TrainOnSubset", type=lambda x: (str(x).lower() == 'true'), default=False,
                         help="Train the model with subset of training data: true or false")
+    parser.add_argument('--percentage', type=int, required=False, help='percentage')
 
     # Parse the arguments
     args = parser.parse_args()
@@ -48,6 +49,7 @@ def main():
     attack = args.attack
     title = args.title
     TrainOnSubset = args.TrainOnSubset
+    percentage = args.percentage
 
     # Print the arguments
     print(f"Title: {title}")
@@ -58,7 +60,8 @@ def main():
     print(f"Data Type: {data_type}")
     print(f"New Line: {new_line}")
     print(f"Log folder name: {log_folder_name}")
-    print(f'Train On Subset :', {TrainOnSubset})
+    print(f'Train On Subset :', TrainOnSubset)
+    print(f'percentage : ', percentage)
 
     results_report['Model Type'] = model_type
     results_report['Train'] = train
@@ -69,6 +72,7 @@ def main():
     results_report['Title'] = title
     results_report['Attack'] = attack
     results_report['Train On Subset'] = TrainOnSubset
+    results_report['percentage'] = percentage
 
     if not attack and not TrainOnSubset:
         # If train is true, create a TrainingDataset object and call getDataset
@@ -115,17 +119,16 @@ def main():
 
 
     if TrainOnSubset:
-        subset = 0.1
         training_dataset = TrainingDataset()
         if model_type != 'xgboost':
             training = Train(model_type)
         else:
-            training = TrainXGBoost(model_type, f'log_folder_name_{int(subset * i * 10)}')
-        for i in range(1,10):
-            print(f'Percentage of training data used :', {(subset * i)})
-            dataset = training_dataset.getDataset(trainData=train_data, dataType=data_type, newLine=new_line, subset=(subset * i))
-            print(f"dataset : {dataset}")
-            training.train(dataset, f'log_folder_name_{int(subset * i * 10)}')
+            training = TrainXGBoost(model_type, f'log_folder_name_{int(percentage * 10)}')
+        
+        print(f'Percentage of training data used :', {(percentage)})
+        dataset = training_dataset.getDataset(trainData=train_data, dataType=data_type, newLine=new_line, subset=(percentage))
+        print(f"dataset : {dataset}")
+        training.train(dataset, f'log_folder_name_{int(percentage * 10)}')
 
 
         Report.generateReport()
