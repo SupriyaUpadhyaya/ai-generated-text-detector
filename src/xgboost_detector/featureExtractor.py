@@ -395,4 +395,4 @@ class FeatureExtractor():
     def getFeatures(self, text_input_list):
         input_features = (self.featureExtractor(text) for text in text_input_list)
         print(type(input_features))
-        return input_features
+        return pd.DataFrame(input_features)
