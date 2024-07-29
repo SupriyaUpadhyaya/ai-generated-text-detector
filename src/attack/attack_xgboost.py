@@ -13,7 +13,6 @@ from textattack import Attacker
 from safetensors.torch import load_file
 from src.shared import results_report
 from xgboost import XGBClassifier
-from src.xgboost_detector.featureExtractor import FeatureExtractor
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 

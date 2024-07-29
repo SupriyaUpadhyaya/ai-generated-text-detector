@@ -426,7 +426,7 @@ class FeatureExtractor():
         #feature_names = ['no_sentence', 'num_words', 'character0', 'character1', 'character2_3', 'character4', 'character5', 'std_dev', 'sent_len_diff', 'count_short_sentences_in_paragraphs', 'count_long_sentences_in_paragraphs', 'check_word0', 'check_word1', 'check_word2_3', 'check_word3', 'check_word4', 'check_word5', 'check_num', 'check_capitals', 'check_et']
         return concatenated_df
     
-    def getFeatures(self, text_input_list):
+    def getFeaturesForAttack(self, text_input_list):
         #df = pd.DataFrame(self.featureExtractor(text) for text in text_input_list)
         #feature_dfs = [self.featureExtractor(text) for text in text_input_list]
         concatenated_df = self.featureExtractor(text_input_list)
