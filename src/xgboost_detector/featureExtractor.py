@@ -4,10 +4,13 @@ import re
 from statistics import stdev, mean
 import pandas as pd
 import nltk
+from sklearn.preprocessing import MinMaxScaler
+
 
 class FeatureExtractor():
     def __init__(self):
         self.characters = [")", "-", ";", ":", "?", "'"]
+        self.scaler = MinMaxScaler()
 
     def count_sentences(self, text):
         # Tokenize the text into sentences
@@ -396,13 +399,13 @@ class FeatureExtractor():
         
         #df = pd.read_csv(outputfilename)
         #df['no_sentence_human'] = self.normalize_column(df['no_sentence_human'])
-        df['no_sentence_machine'] = self.normalize_column(df['no_sentence_machine'])
+        df['no_sentence_machine'] = self.scaler.fit_transform(df[['no_sentence_machine']])
         #df['num_words_human'] = self.normalize_column(df['num_words_human'])
-        df['num_words_machine'] = self.normalize_column(df['num_words_machine'])
+        df['num_words_machine'] = self.scaler.fit_transform(df[['num_words_machine']])
         #df['std_dev_human'] = self.normalize_column(df['std_dev_human'])
         #df['sent_len_diff_human'] = self.normalize_column(df['sent_len_diff_human'])
-        df['std_dev_machine'] = self.normalize_column(df['std_dev_machine'])
-        df['sent_len_diff_machine'] = self.normalize_column(df['sent_len_diff_machine'])
+        df['std_dev_machine'] = self.scaler.fit_transform(df[['std_dev_machine']])
+        df['sent_len_diff_machine'] = self.scaler.fit_transform(df[['sent_len_diff_machine']])
         #print(df.values.tolist())
         return df
     
