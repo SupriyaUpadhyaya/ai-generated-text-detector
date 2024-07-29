@@ -396,4 +396,5 @@ class FeatureExtractor():
         input_features = np.array([self.featureExtractor(text) for text in text_input_list])
         input_featuresdf = pd.DataFrame(input_features[:, 0, :])
         print(type(input_featuresdf))
-        return pd.DataFrame(input_featuresdf)
+        feature_names = ['no_sentence', 'num_words', 'character0', 'character1', 'character2_3', 'character4', 'character5', 'std_dev', 'sent_len_diff', 'count_short_sentences_in_paragraphs', 'count_long_sentences_in_paragraphs', 'check_word0', 'check_word1', 'check_word2_3', 'check_word3', 'check_word4', 'check_word5', 'check_num', 'check_capitals', 'check_et']
+        return pd.DataFrame(input_featuresdf), feature_names
