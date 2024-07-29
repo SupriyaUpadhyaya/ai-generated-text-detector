@@ -44,7 +44,7 @@ class AttackXGBoost:
             print(f"Model weights loaded from {weights_path}")
         else:
             print(f"No weights found at {weights_path}. Using the pre-trained model without additional weights.")
-        self.model_wrapper = XGBoostWrapper(self.model)
+        self.model_wrapper = XGBoostWrapper(self.xgb_classifier)
         self.metrics = Metrics(self.log_path)
         self.attack_recipe = ['pwws']
         print(f'************************** LOG PATH - {self.log_path} ***********************')
