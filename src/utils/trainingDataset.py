@@ -41,9 +41,9 @@ class TrainingDataset:
         dataset = load_dataset('json', data_files={'data': file_path})['data']
 
         if subset != None:
-            value = len(dataset) * subset
+            value = int(len(dataset) * subset)
             print("dataset len : ", len(dataset))
-            dataset = dataset.select(value)
+            dataset = dataset.select(range(value))
         # Functions to process human text and machine text
         def process_human_example(example):
             return {'text': example[human_text_column], 'label': human_label}
