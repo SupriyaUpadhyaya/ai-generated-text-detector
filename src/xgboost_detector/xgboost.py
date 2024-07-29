@@ -65,6 +65,7 @@ class TrainXGBoost:
 
         plt.plot(results['validation_0']['logloss'], label='train')
         plt.plot(results['validation_1']['logloss'], label='validation')
+        print("values :", values)
         values = list(X_train.columns.values)
         title = ' '.join(values)
         plt.title('Loss vs. Epoch for ')

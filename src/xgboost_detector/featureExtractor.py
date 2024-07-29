@@ -390,11 +390,9 @@ class FeatureExtractor():
         df['std_dev_machine'] = self.normalize_column(df['std_dev_machine'])
         df['sent_len_diff_machine'] = self.normalize_column(df['sent_len_diff_machine'])
         #print(df.values.tolist())
-        return df.values.tolist()[0]
+        return df
     
     def getFeatures(self, text_input_list):
         input_features = (self.featureExtractor(text) for text in text_input_list)
         print(type(input_features))
-        #print(input_features.shape)
-        df = pd.DataFrame(input_features)
-        return df
+        return input_features
