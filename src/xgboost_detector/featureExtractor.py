@@ -430,7 +430,7 @@ class FeatureExtractor():
     def getFeaturesForAttack(self, text_input_list):
         #df = pd.DataFrame(self.featureExtractor(text) for text in text_input_list)
         #feature_dfs = [self.featureExtractor(text) for text in text_input_list]
-        concatenated_df = self.featureExtractor(text_input_list)
+        concatenated_df = self.featureExtractor(text_input_list[0])
         concatenated_df['no_sentence_machine'] = self.scaler.fit_transform(concatenated_df[['no_sentence_machine']]).astype(float)
         concatenated_df['num_words_machine'] = self.scaler.fit_transform(concatenated_df[['num_words_machine']]).astype(float)
         concatenated_df['std_dev_machine'] = self.scaler.fit_transform(concatenated_df[['std_dev_machine']]).astype(float)
