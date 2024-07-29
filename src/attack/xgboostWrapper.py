@@ -5,13 +5,13 @@ from src.xgboost_detector.featureExtractor import FeatureExtractor
 class XGBoostWrapper(SklearnModelWrapper):
     def __init__(self, model):
         self.model = model
-        self.featureExtractor = FeatureExtractor()
+        self.featExtractor = FeatureExtractor()
         print("Hello model!")
         
     
     def __call__(self, text_input_list):
         print("text_input_list: ", text_input_list)
-        input_array = np.array([self.featureExtractor.getFeatures(text) for text in text_input_list])
-        print("Input features : ", input_array[0])
-        probs = self.model.predict_proba(input_array[0])
+        input_array = self.featExtractor.getFeatures(text_input_list)
+        #print("Input features : ", input_array[0])
+        probs = self.model.predict_proba(input_array)
         return probs
