@@ -401,14 +401,14 @@ class FeatureExtractor():
         
         #df = pd.read_csv(outputfilename)
         #df['no_sentence_human'] = self.normalize_column(df['no_sentence_human'])
-        df['no_sentence_machine'] = self.scaler.fit_transform(df['no_sentence_machine']).astype(float)
+        df['no_sentence_machine'] = self.scaler.fit_transform(df[['no_sentence_machine']]).astype(float)
         print(self.scaler.fit_transform(df[['no_sentence_machine']]))
         #df['num_words_human'] = self.normalize_column(df['num_words_human'])
-        df['num_words_machine'] = self.scaler.fit_transform(df['num_words_machine']).astype(float)
+        df['num_words_machine'] = self.scaler.fit_transform(df[['num_words_machine']]).astype(float)
         #df['std_dev_human'] = self.normalize_column(df['std_dev_human'])
         #df['sent_len_diff_human'] = self.normalize_column(df['sent_len_diff_human'])
-        df['std_dev_machine'] = self.scaler.fit_transform(df['std_dev_machine']).astype(float)
-        df['sent_len_diff_machine'] = self.scaler.fit_transform(df['sent_len_diff_machine']).astype(float)
+        df['std_dev_machine'] = self.scaler.fit_transform(df[['std_dev_machine']]).astype(float)
+        df['sent_len_diff_machine'] = self.scaler.fit_transform(df[['sent_len_diff_machine']]).astype(float)
         #print(df.values.tolist())
         return df
     
