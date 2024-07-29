@@ -409,7 +409,7 @@ class FeatureExtractor():
         #df['sent_len_diff_human'] = self.normalize_column(df['sent_len_diff_human'])
         
         
-        #print(df.values.tolist())
+        print(df.head())
         return df
     
     def getFeatures(self, text_input_list):
