@@ -395,5 +395,5 @@ class FeatureExtractor():
     def getFeatures(self, text_input_list):
         input_features = np.array([self.featureExtractor(text) for text in text_input_list])
         input_featuresdf = pd.DataFrame(input_features[:, 0, :])
-        print(type(input_features))
-        return pd.DataFrame(input_features)
+        print(type(input_featuresdf))
+        return pd.DataFrame(input_featuresdf)
