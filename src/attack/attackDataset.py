@@ -27,7 +27,7 @@ class AttackDataset:
     def load_and_process_jsonl_dataset(self, file_path, human_text_column, machine_text_column, human_label, machine_label):
         # Load the dataset
         dataset = load_dataset('json', data_files={'data': file_path})['data']
-        dataset = dataset.select(range(2))
+        dataset = dataset.select(range(5))
         
         # Functions to process human text and machine text
         def process_human_example(example):

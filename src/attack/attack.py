@@ -14,6 +14,7 @@ import textattack
 from textattack import Attacker
 from safetensors.torch import load_file
 from src.shared import results_report
+import json
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 class Attack:
@@ -84,7 +85,7 @@ class Attack:
                     target_max_score = metrics["eval_aip_threshold_human"]
                  else:
                     raise ValueError('Unknown attack class %s'%args.attack_class)
-                 attack = PWWSRen2019_threshold.build(model_wrapper, target_max_score=target_max_score)
+                 attack = PWWSRen2019_threshold.build(self.model_wrapper, target_max_score=target_max_score)
             elif attackrecipe == 'pwwsThp': # add threshold human as positive
                 with open(f"{args.output_dir}/predict_results.json", "r") as fin:
                     metrics = json.load(fin)
@@ -94,9 +95,9 @@ class Attack:
                     target_max_score = metrics["eval_hp_threshold_human"]
                 else:
                     raise ValueError('Unknown attack class %s'%args.attack_class)
-                attack = PWWSRen2019_threshold.build(model_wrapper, target_max_score=target_max_score)
+                attack = PWWSRen2019_threshold.build(self.model_wrapper, target_max_score=target_max_score)
             elif attackrecipe == 'pruthi': # char sub delete insert etc
-                attack = Pruthi2019.build(model_wrapper, max_num_word_swaps=max_num_word_swaps)
+                attack = Pruthi2019.build(self.model_wrapper, max_num_word_swaps=max_num_word_swaps)
                 attack_class = 'ai'
             elif attackrecipe == 'deep-word-bug': # word sub, char sub, word del, word insert etc
                  attack = DeepWordBugGao2018.build(self.model_wrapper)

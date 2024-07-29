@@ -129,7 +129,7 @@ class TextFoolerJin2019(AttackRecipe):
         #
         # Greedily swap words with "Word Importance Ranking".
         #
-        search_method = GreedyWordSwapWIR(wir_method="weighted-saliency")
+        search_method = GreedyWordSwapWIR(wir_method="delete")
 
         return Attack(goal_function, constraints, transformation, search_method)
 
