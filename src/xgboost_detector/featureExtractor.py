@@ -413,7 +413,7 @@ class FeatureExtractor():
         return df
     
     def getFeatures(self, text_input_list):
-        df = pd.DataFrame([self.featureExtractor(text) for text in text_input_list])
+        df = pd.DataFrame(self.featureExtractor(text) for text in text_input_list)
         df['no_sentence_machine'] = self.scaler.fit_transform(df[['no_sentence_machine']]).astype(float)
         df['num_words_machine'] = self.scaler.fit_transform(df[['num_words_machine']]).astype(float)
         df['std_dev_machine'] = self.scaler.fit_transform(df[['std_dev_machine']]).astype(float)
