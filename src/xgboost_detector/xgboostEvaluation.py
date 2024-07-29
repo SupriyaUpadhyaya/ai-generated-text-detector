@@ -50,8 +50,8 @@ class EvaluationXGBoost:
             print(f'************* Evaluation for {dstype} *************')
             # Load dataset
             dataset = datasets[dstype]
-            X_test = FeatureExtractor.getFeatures(dataset['test']['text'])
-            y_test = dataset['test']['label']
+            X_test = FeatureExtractor.getFeatures(dataset['text'])
+            y_test = dataset['label']
             self.performance_test(X_test, y_test, dstype)
             
     
