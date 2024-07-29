@@ -13,6 +13,7 @@ class FeatureExtractor():
         self.scaler = MinMaxScaler()
 
     def count_sentences(self, text):
+        print("text : ", text)
         # Tokenize the text into sentences
         sentences = nltk.sent_tokenize(text)
         #print(len(sentences))
