@@ -47,54 +47,68 @@ class FeatureExtractor():
 
         return total
 
+    # def check_character_presence(self, text, character):
+    #     # Split the text into paragraphs
+    #     paragraphs = text.split('\n\n')  # Assuming paragraphs are separated by double newline characters
+    #     character_presence = 0
+    #     count = 0
+
+    #     # Iterate through each paragraph and check if the character is present
+    #     for paragraph in paragraphs:
+    #         if character in paragraph:
+    #             character_presence = 1
+    #             count += 1
+
+    #     return count
+
     def check_character_presence(self, text, character):
         # Split the text into paragraphs
-        paragraphs = text.split('\n\n')  # Assuming paragraphs are separated by double newline characters
+        textlist = text.split()  # Assuming paragraphs are separated by double newline characters
         character_presence = 0
         count = 0
 
         # Iterate through each paragraph and check if the character is present
-        for paragraph in paragraphs:
-            if character in paragraph:
+        for value in textlist:
+            if character in value:
                 character_presence = 1
                 count += 1
 
-        return count
+        return character_presence
 
     def paragraph_sentence_length_std_dev(self, text):
         # Split the text into paragraphs
-        paragraphs = text.split('\n\n')  # Assuming paragraphs are separated by double newline characters
+        #paragraphs = text.split('\n\n')  # Assuming paragraphs are separated by double newline characters
         
-        paragraph_std_devs = []
-        total = 0
+        #paragraph_std_devs = []
+        #total = 0
         
-        for paragraph in paragraphs:
+        #for paragraph in paragraphs:
             # Tokenize the paragraph into sentences
-            sentences = nltk.sent_tokenize(paragraph)
+        sentences = nltk.sent_tokenize(text)
 
-            # Calculate the length of each sentence
-            sentence_lengths = [len(nltk.word_tokenize(sentence)) for sentence in sentences]
+        # Calculate the length of each sentence
+        sentence_lengths = [len(nltk.word_tokenize(sentence)) for sentence in sentences]
 
-            if len(sentence_lengths) > 1:
-                # Calculate the mean length of sentences
-                mean_length = np.mean(sentence_lengths)
+        if len(sentence_lengths) > 1:
+            # Calculate the mean length of sentences
+            mean_length = np.mean(sentence_lengths)
 
-                # Calculate the squared differences between each sentence length and the mean
-                squared_diffs = [(length - mean_length) ** 2 for length in sentence_lengths]
+            # Calculate the squared differences between each sentence length and the mean
+            squared_diffs = [(length - mean_length) ** 2 for length in sentence_lengths]
 
-                # Calculate the variance
-                variance = np.mean(squared_diffs)
+            # Calculate the variance
+            variance = np.mean(squared_diffs)
 
-                # Calculate the standard deviation
-                std_dev = np.sqrt(variance)
-            else:
-                # If there's only one sentence in the paragraph, standard deviation is 0
-                std_dev = 0
-            
-            paragraph_std_devs.append(std_dev)
-            total += std_dev
+            # Calculate the standard deviation
+            std_dev = np.sqrt(variance)
+        else:
+            # If there's only one sentence in the paragraph, standard deviation is 0
+            std_dev = 0
+        
+        #paragraph_std_devs.append(std_dev)
+        #total += std_dev
 
-        return total
+        return std_dev
 
     def max_length_difference_paragraph(self, paragraph):
         # Tokenize the paragraph into sentences
@@ -245,10 +259,10 @@ class FeatureExtractor():
         #print('machine_abstract : ', machine_abstract)
 
         #num_sentence_human = self.count_sentences_per_paragraph(abstract)
-        num_sentence_machine = self.count_sentences_per_paragraph(machine_abstract)
+        num_sentence_machine = self.count_sentences(machine_abstract)
 
         #num_words_human = self.count_words_per_paragraph(abstract)
-        num_words_machine = self.count_words_per_paragraph(machine_abstract)
+        num_words_machine = self.count_words(machine_abstract)
 
         # character0_human = self.check_character_presence(abstract, self.characters[0])
         # character1_human = self.check_character_presence(abstract, self.characters[1])
@@ -308,7 +322,7 @@ class FeatureExtractor():
         check_word5_machine = self.check_words_in_paragraphs(machine_abstract, words[5])
 
         #check_word6_human = self.check_words_in_paragraphs(abstract, words[6])
-        check_word6_machine = self.check_words_in_paragraphs(machine_abstract, words[6])
+        #check_word6_machine = self.check_words_in_paragraphs(machine_abstract, words[6])
 
         check_word2_3_machine = 0
 
