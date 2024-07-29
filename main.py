@@ -31,9 +31,11 @@ def main():
     parser.add_argument("--newLine", type=str, choices=["with", "without"], default="without",
                         help="Include new lines in the output: with or without")
     parser.add_argument('--log_folder_name', type=str, required=True, help='Log folder name')
-    parser.add_argument("--attack", type=lambda x: (str(x).lower() == 'true'), default=True,
-                        help="Train the model: true or false")
+    parser.add_argument("--attack", type=lambda x: (str(x).lower() == 'true'), default=False,
+                        help="Run attack on the model: true or false")
     parser.add_argument('--title', type=str, required=True, help='Title')
+    parser.add_argument("--TrainOnSubset", type=lambda x: (str(x).lower() == 'true'), default=False,
+                        help="Train the model with subset of training data: true or false")
 
     # Parse the arguments
     args = parser.parse_args()
@@ -45,6 +47,7 @@ def main():
     log_folder_name = args.log_folder_name
     attack = args.attack
     title = args.title
+    TrainOnSubset = args.TrainOnSubset
 
     # Print the arguments
     print(f"Title: {title}")
@@ -55,6 +58,7 @@ def main():
     print(f"Data Type: {data_type}")
     print(f"New Line: {new_line}")
     print(f"Log folder name: {log_folder_name}")
+    print(f'Train On Subset :', {TrainOnSubset})
 
     results_report['Model Type'] = model_type
     results_report['Train'] = train
@@ -64,8 +68,9 @@ def main():
     results_report['Log Folder Name'] = log_folder_name
     results_report['Title'] = title
     results_report['Attack'] = attack
+    results_report['Train On Subset'] = TrainOnSubset
 
-    if not attack:
+    if not attack and not TrainOnSubset:
         # If train is true, create a TrainingDataset object and call getDataset
         if train:
             training_dataset = TrainingDataset()
@@ -87,7 +92,7 @@ def main():
             evaluation = EvaluationXGBoost(model_type, log_folder_name)
         evaluation.evaluate(dataset)
     
-    if attack:
+    if attack and not TrainOnSubset:
         attack_dataset = AttackDataset()
         dataset = attack_dataset.getDataset()
         print(f"Dataset obtained: {dataset}")
@@ -98,6 +103,19 @@ def main():
         else:
             XGBoostAttacker = AttackXGBoost(model_type, log_folder_name)
             XGBoostAttacker.attack(dataset[f'{train_data}_{data_type}_{new_line}'])
+
+    if TrainOnSubset:
+        subset = 10
+        training_dataset = TrainingDataset()
+        for i in range(1,10):
+            print(f'Percentage of training data used :', {(subset * i)})
+            dataset = training_dataset.getDataset(trainData=train_data, dataType=data_type, newLine=new_line, subset=(subset * i))
+            print(f"dataset : {dataset}")
+            if model_type != 'xgboost':
+                training = Train(model_type, f'log_folder_name_{subset*i}')
+            else:
+                training = TrainXGBoost(model_type, f'log_folder_name_{subset*i}')
+            training.train(dataset)
 
 
     Report.generateReport()

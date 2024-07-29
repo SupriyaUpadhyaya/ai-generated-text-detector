@@ -11,7 +11,7 @@ class XGBoostWrapper(SklearnModelWrapper):
     
     def __call__(self, text_input_list):
         print("text_input_list: ", text_input_list)
-        input_array = self.featExtractor.getFeaturesForAttack(text_input_list)
+        input_feat = self.featExtractor.getFeaturesForAttack(text_input_list)
         #print("Input features : ", input_array[0])
-        probs = self.model.predict_proba(input_array)
+        probs = self.model.predict(input_feat)
         return probs
