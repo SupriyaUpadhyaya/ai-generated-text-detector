@@ -59,4 +59,4 @@ class AttackDataset:
         # Create a DatasetDict with all splits
         dataset_dict = DatasetDict(dataset)
 
-        return textattack_dataset
+        return dataset_dict

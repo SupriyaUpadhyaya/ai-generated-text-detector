@@ -54,7 +54,7 @@ class Attack:
                 print(f"No weights found at {weights_path}. Using the pre-trained model without additional weights.")
             self.model_wrapper = HuggingFaceModelWrapper(self.model, self.tokenizer)
         self.metrics = Metrics(self.log_path)
-        self.attack_recipe = ['TextFoolerJin2019']
+        self.attack_recipe = ['pruthi']
         print(f'************************** LOG PATH - {self.log_path} ***********************')
     
     def attack(self, dataset):
