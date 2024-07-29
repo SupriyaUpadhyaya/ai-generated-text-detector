@@ -1,6 +1,6 @@
 roberta:
   pretrained: "andreas122001/roberta-academic-detector"
-  finetuned: "/content/drive/MyDrive/roberta/saved_weights/model.safetensors"
+  finetuned: "/Users/shashankhmg/Documents/Marcus_Project/roberta/saved_weights/model.safetensors"
 
 bloomz:
   pretrained: "andreas122001/bloomz-560m-academic-detector"
