@@ -26,7 +26,7 @@ class FeatureExtractor():
             sentences_per_paragraph.append(num_sentences)
             total += num_sentences
 
-        return total/len(paragraphs)
+        return total
 
     def count_words(self, text):
         # Tokenize the text into words
@@ -45,7 +45,7 @@ class FeatureExtractor():
             words_per_paragraph.append(num_words)
             total += num_words
 
-        return total/len(paragraphs)
+        return total
 
     def check_character_presence(self, text, character):
         # Split the text into paragraphs
@@ -94,7 +94,7 @@ class FeatureExtractor():
             paragraph_std_devs.append(std_dev)
             total += std_dev
 
-        return total/len(paragraphs)
+        return total
 
     def max_length_difference_paragraph(self, paragraph):
         # Tokenize the paragraph into sentences
