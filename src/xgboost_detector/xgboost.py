@@ -143,6 +143,6 @@ class TrainXGBoost:
         precision_recall_fscore = precision_recall_fscore_support(y_test_list, y_pred, zero_division=1.0)
         print("F1 score : ", f1score)
         print("precision_recall_fscore : ", precision_recall_fscore)
-        results_report["precision_recall_fscore"]= precision_recall_fscore
-        results_report['F1 score']=f1score
+        results_report["precision_recall_fscore"]= str(precision_recall_fscore)
+        results_report['F1 score'] = str(f1score)
 

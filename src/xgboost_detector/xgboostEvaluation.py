@@ -79,5 +79,5 @@ class EvaluationXGBoost:
         precision_recall_fscore = precision_recall_fscore_support(y_test_list, y_pred, zero_division=1.0)
         print(f"F1 score {dstype}: ", f1score)
         print(f"precision_recall_fscore {dstype}: ", precision_recall_fscore)
-        results_report[f"precision_recall_fscore {dstype}"]= precision_recall_fscore
-        results_report[f'F1 score {dstype}']=f1score
+        results_report[f"precision_recall_fscore {dstype}"]= str(precision_recall_fscore)
+        results_report[f'F1 score {dstype}']=str(f1score)
