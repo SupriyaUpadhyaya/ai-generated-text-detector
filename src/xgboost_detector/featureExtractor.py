@@ -395,7 +395,7 @@ class FeatureExtractor():
         data['check_et_machine'] = [check_et_machine]
 
         #count += 1
-        df = pd.DataFrame(data[:, 0, :], dtype=float)
+        df = pd.DataFrame(data, dtype=float)
         #df1.to_csv(outputfilename, mode='a', index=False, header=header)
         #header = data
         
