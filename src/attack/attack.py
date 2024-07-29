@@ -14,7 +14,6 @@ import textattack
 from textattack import Attacker
 from safetensors.torch import load_file
 from src.shared import results_report
-
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 class Attack:
@@ -75,33 +74,36 @@ class Attack:
             if attackrecipe == 'pwws': # word sub
                 attack = PWWSRen2019.build(self.model_wrapper)
                 attack_class = 'ai'
-            # elif attackrecipe == 'pwwsTaip': # add threshold ai as positive
-            #     # get threshold
-            #     with open(f"{args.output_dir}/predict_results.json", "r") as fin:
-            #         metrics = json.load(fin)
-            #     if args.attack_class == "ai":
-            #         target_max_score = metrics["eval_aip_threshold_chatgpt"]
-            #     elif args.attack_class == "human":
-            #         target_max_score = metrics["eval_aip_threshold_human"]
-            #     else:
-            #         raise ValueError('Unknown attack class %s'%args.attack_class)
-            #     attack = PWWSRen2019_threshold.build(model_wrapper, target_max_score=target_max_score)
-            # elif attackrecipe == 'pwwsThp': # add threshold human as positive
-            #     with open(f"{args.output_dir}/predict_results.json", "r") as fin:
-            #         metrics = json.load(fin)
-            #     if args.attack_class == "ai":
-            #         target_max_score = metrics["eval_hp_threshold_chatgpt"]
-            #     elif args.attack_class == "human":
-            #         target_max_score = metrics["eval_hp_threshold_human"]
-            #     else:
-            #         raise ValueError('Unknown attack class %s'%args.attack_class)
-            #     attack = PWWSRen2019_threshold.build(model_wrapper, target_max_score=target_max_score)
-            # elif attackrecipe == 'pruthi': # char sub delete insert etc
-            #     attack = Pruthi2019.build(model_wrapper, max_num_word_swaps=max_num_word_swaps)
+            elif attackrecipe == 'pwwsTaip': # add threshold ai as positive
+                 # get threshold
+                 with open(f"{args.output_dir}/predict_results.json", "r") as fin:
+                     metrics = json.load(fin)
+                 if args.attack_class == "ai":
+                     target_max_score = metrics["eval_aip_threshold_chatgpt"]
+                 elif args.attack_class == "human":
+                    target_max_score = metrics["eval_aip_threshold_human"]
+                 else:
+                    raise ValueError('Unknown attack class %s'%args.attack_class)
+                 attack = PWWSRen2019_threshold.build(model_wrapper, target_max_score=target_max_score)
+            elif attackrecipe == 'pwwsThp': # add threshold human as positive
+                with open(f"{args.output_dir}/predict_results.json", "r") as fin:
+                    metrics = json.load(fin)
+                if args.attack_class == "ai":
+                    target_max_score = metrics["eval_hp_threshold_chatgpt"]
+                elif args.attack_class == "human":
+                    target_max_score = metrics["eval_hp_threshold_human"]
+                else:
+                    raise ValueError('Unknown attack class %s'%args.attack_class)
+                attack = PWWSRen2019_threshold.build(model_wrapper, target_max_score=target_max_score)
+            elif attackrecipe == 'pruthi': # char sub delete insert etc
+                attack = Pruthi2019.build(model_wrapper, max_num_word_swaps=max_num_word_swaps)
+                attack_class = 'ai'
             elif attackrecipe == 'deep-word-bug': # word sub, char sub, word del, word insert etc
                  attack = DeepWordBugGao2018.build(self.model_wrapper)
+                 attack_class = 'ai'
             elif attackrecipe == 'TextFoolerJin2019': # word sub, char sub, word del, word insert etc
                  attack = TextFoolerJin2019.build(self.model_wrapper)
+                 attack_class = 'ai'
             else:
                 raise ValueError('Unknown attack recipe %s'%attackrecipe)
             
