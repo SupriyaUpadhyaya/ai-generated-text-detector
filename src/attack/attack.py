@@ -8,7 +8,7 @@ from safetensors.torch import save_file
 from torch.utils.tensorboard import SummaryWriter
 from textattack.models.wrappers import HuggingFaceModelWrapper
 import numpy as np
-from textattack.attack_recipes import PWWSRen2019, Pruthi2019, DeepWordBugGao2018
+from textattack.attack_recipes import PWWSRen2019, Pruthi2019, DeepWordBugGao2018, TextFoolerJin2019
 from src.attack.attack_recipes import PWWSRen2019_threshold
 import textattack
 from textattack import Attacker
@@ -98,8 +98,10 @@ class Attack:
             #     attack = PWWSRen2019_threshold.build(model_wrapper, target_max_score=target_max_score)
             # elif attackrecipe == 'pruthi': # char sub delete insert etc
             #     attack = Pruthi2019.build(model_wrapper, max_num_word_swaps=max_num_word_swaps)
-            # elif attackrecipe == 'deep-word-bug': # word sub, char sub, word del, word insert etc
-            #     attack = DeepWordBugGao2018.build(model_wrapper)
+            elif attackrecipe == 'deep-word-bug': # word sub, char sub, word del, word insert etc
+                 attack = DeepWordBugGao2018.build(self.model_wrapper)
+            elif attackrecipe == 'TextFoolerJin2019': # word sub, char sub, word del, word insert etc
+                 attack = TextFoolerJin2019.build(self.model_wrapper)
             else:
                 raise ValueError('Unknown attack recipe %s'%attackrecipe)
             
