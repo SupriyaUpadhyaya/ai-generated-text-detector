@@ -106,7 +106,7 @@ class TrainXGBoost:
                                     ascending=False), 
                                     palette='gray')
         plt.savefig(f'{self.log_path}_importance.png')
-        self.xgb_classifier.save_model('save_models/xgboost_model.json')
+        self.xgb_classifier.save_model(f'{self.log_path}/save_models/xgboost_model.json')
 
         self.performance_test(X_test, y_test)
 
