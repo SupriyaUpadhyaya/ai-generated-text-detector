@@ -12,9 +12,11 @@ from src.shared import results_report
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 class Train:
-    def __init__(self, model_type, num_labels=2):
+    def __init__(self, model_type, log_folder_name, num_labels=2):
         print("model_type : ", model_type)
         self.model_type = model_type
+        self.log_path = f'results/report/{self.model_type}/{log_folder_name}/'
+        results_report['log_path']=self.log_path
         with open('config/model.yaml', 'r') as file:
             self.config = yaml.safe_load(file)
         print("self.config : ", self.config)
@@ -25,6 +27,8 @@ class Train:
         elif model_type == 'bloomz':
             self.tokenizer = AutoTokenizer.from_pretrained(model_name)
             self.model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
+        self.metrics = Metrics(self.log_path)
+        print(f'************************** Results PATH - {self.log_path} ***********************')
 
     def preprocess_function(self, examples):
         """
@@ -42,15 +46,10 @@ class Train:
         """
         return dataset.map(lambda x: self.preprocess_function(x), batched=True)
     
-    def train(self, dataset, log_folder_name, learning_rate=2e-5, train_batch_size=8, eval_batch_size=8, num_train_epochs=3, weight_decay=0.01):
+    def train(self, dataset, learning_rate=2e-5, train_batch_size=8, eval_batch_size=8, num_train_epochs=3, weight_decay=0.01):
         """
         Trains the model using the provided dataset.
         """
-        self.log_path = f'results/report/{self.model_type}/{log_folder_name}/'
-        results_report['log_path']=self.log_path
-        self.metrics = Metrics(self.log_path)
-        print(f'************************** Results PATH - {self.log_path} ***********************')
-        
         tokenized_datasets = self.preprocess(dataset)
 
         # Define training arguments
