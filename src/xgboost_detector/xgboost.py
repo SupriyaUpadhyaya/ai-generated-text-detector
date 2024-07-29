@@ -34,9 +34,10 @@ class TrainXGBoost:
         print(f'************************** LOG PATH - {self.log_path} ***********************')
 
     def train(self, dataset):
-        X_train = FeatureExtractor.getFeatures(dataset['train']['text'])
-        X_val = FeatureExtractor.getFeatures(dataset['validation']['text'])
-        X_test = FeatureExtractor.getFeatures(dataset['test']['text'])
+        featExtractor = FeatureExtractor()
+        X_train = featExtractor.getFeatures(dataset['train']['text'])
+        X_val = featExtractor.getFeatures(dataset['validation']['text'])
+        X_test = featExtractor.getFeatures(dataset['test']['text'])
         y_train = dataset['train']['label']
         y_val = dataset['validation']['label']
         y_test = dataset['test']['label']
