@@ -45,7 +45,7 @@ class Report:
         # Loop through the folder and add PNG files
         for filename in os.listdir(folder_path):
             if filename.lower().endswith('.png'):
-                file_path = filename
+                file_path = os.path.join(folder_path, filename)
                 html_content += f"""
                 <h2>{filename}</h2>
                 <img src="{file_path}" alt="{filename}">"""
@@ -54,8 +54,8 @@ class Report:
         <h1>Original text Vs Perturbed Text</h1>"""
     
         for filename in os.listdir(folder_path):
-            if file_path == os.path.join(folder_path, filename):
-                file_path = filename
+            if filename.lower().endswith('.csv'):
+                file_path = os.path.join(folder_path, filename)
                 df = pd.read_csv(file_path)
                 html_content += f"""
                 <h2>{filename}</h2>
