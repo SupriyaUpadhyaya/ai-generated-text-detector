@@ -378,7 +378,7 @@ class FeatureExtractor():
         #count += 1
         df = pd.DataFrame(data)
         #df1.to_csv(outputfilename, mode='a', index=False, header=header)
-        header = False
+        header = data
         
         #df = pd.read_csv(outputfilename)
         #df['no_sentence_human'] = self.normalize_column(df['no_sentence_human'])
@@ -395,6 +395,6 @@ class FeatureExtractor():
     def getFeatures(self, text_input_list):
         input_features = (self.featureExtractor(text) for text in text_input_list)
         print(type(input_features))
-        print(input_features.shape)
+        #print(input_features.shape)
         df = pd.DataFrame(input_features)
         return df
