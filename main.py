@@ -91,6 +91,11 @@ def main():
         else:
             evaluation = EvaluationXGBoost(model_type, log_folder_name)
         evaluation.evaluate(dataset)
+
+        Report.generateReport()
+        with open(f'{results_report["log_path"]}/results_report.json', 'w') as json_file:
+            json.dump(results_report, json_file, indent=4)
+
     
     if attack and not TrainOnSubset:
         attack_dataset = AttackDataset()
@@ -103,24 +108,29 @@ def main():
         else:
             XGBoostAttacker = AttackXGBoost(model_type, log_folder_name)
             XGBoostAttacker.attack(dataset[f'{train_data}_{data_type}_{new_line}'])
+        
+        Report.generateReport()
+        with open(f'{results_report["log_path"]}/results_report.json', 'w') as json_file:
+            json.dump(results_report, json_file, indent=4)
+
 
     if TrainOnSubset:
         subset = 0.1
         training_dataset = TrainingDataset()
         for i in range(1,10):
             print(f'Percentage of training data used :', {(subset * i)})
-            dataset = training_dataset.getDataset(trainData=train_data, dataType=data_type, newLine=new_line, subset=(subset * i))
+            dataset = training_dataset.getDataset(trainData=train_data, dataType=data_type, newLine=new_line, subset=int(subset * i))
             print(f"dataset : {dataset}")
             if model_type != 'xgboost':
-                training = Train(model_type, f'log_folder_name_{subset*i}')
+                training = Train(model_type, f'log_folder_name_{int(subset * i)}')
             else:
-                training = TrainXGBoost(model_type, f'log_folder_name_{subset*i}')
+                training = TrainXGBoost(model_type, f'log_folder_name_{int(subset * i)}')
             training.train(dataset)
 
 
-    Report.generateReport()
-    with open(f'{results_report["log_path"]}/results_report.json', 'w') as json_file:
-        json.dump(results_report, json_file, indent=4)
+        Report.generateReport()
+        with open(f'{results_report["log_path"]}/results_report.json', 'w') as json_file:
+            json.dump(results_report, json_file, indent=4)
 
 if __name__ == "__main__":
     main()
