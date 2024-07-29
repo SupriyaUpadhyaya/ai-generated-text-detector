@@ -36,7 +36,7 @@ def main():
     parser.add_argument('--title', type=str, required=True, help='Title')
     parser.add_argument("--TrainOnSubset", type=lambda x: (str(x).lower() == 'true'), default=False,
                         help="Train the model with subset of training data: true or false")
-    parser.add_argument('--percentage', type=int, required=False, help='percentage')
+    parser.add_argument('--percentage', type=float, required=False, help='percentage')
 
     # Parse the arguments
     args = parser.parse_args()
