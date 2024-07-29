@@ -394,4 +394,4 @@ class FeatureExtractor():
     
     def getFeatures(self, text_input_list):
         input_features = np.array([self.featureExtractor(text) for text in text_input_list])
-        return input_features
+        return input_features[0]
