@@ -7,6 +7,7 @@ from src.xgboost_detector.xgboostEvaluation import EvaluationXGBoost
 from src.utils.evaluationDataset import EvaluationDataset
 from src.attack.attackDataset import AttackDataset
 from src.attack.attack import Attack
+from src.attack.attack_xgboost import AttackXGBoost
 import torch
 from src.shared import results_report
 from src.utils.results import Report
@@ -90,9 +91,14 @@ def main():
         attack_dataset = AttackDataset()
         dataset = attack_dataset.getDataset()
         print(f"Dataset obtained: {dataset}")
-        RobertaAttacker = Attack(model_type, log_folder_name)
         print("dataset : ", f'{train_data}_{data_type}_{new_line}')
-        RobertaAttacker.attack(dataset[f'{train_data}_{data_type}_{new_line}'])
+        if model_type != 'xgboost':
+            DLAttacker = Attack(model_type, log_folder_name)
+            DLAttacker.attack(dataset[f'{train_data}_{data_type}_{new_line}'])
+        else:
+            XGBoostAttacker = AttackXGBoost(model_type, log_folder_name)
+            XGBoostAttacker.attack(dataset[f'{train_data}_{data_type}_{new_line}'])
+
 
     Report.generateReport()
     with open(f'{results_report["log_path"]}/results_report.json', 'w') as json_file:
