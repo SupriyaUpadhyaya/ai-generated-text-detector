@@ -105,4 +105,5 @@ class Train:
         test_predictions = test_results.predictions.argmax(axis=-1)
         test_labels = tokenized_datasets['test']['label']
         self.metrics.compute_metrics((torch.tensor(test_results.predictions), torch.tensor(test_labels)))
-        self.metrics.plot_confusion_matrix(test_predictions, test_labels, 'Test', self.lo
+        self.metrics.plot_confusion_matrix(test_predictions, test_labels, 'Test', self.log_path)
+
