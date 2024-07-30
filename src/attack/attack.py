@@ -75,7 +75,7 @@ class Attack:
         for attackrecipe in self.attack_recipe:
             if attackrecipe == 'pwws': # word sub
                 attack = PWWSRen2019_threshold.build(self.model_wrapper)
-                attack_class = 'ai'
+                #attack_class = 'ai'
             # elif attackrecipe == 'pwwsTaip': # add threshold ai as positive
             #     # get threshold
             #     with open(f"{args.output_dir}/predict_results.json", "r") as fin:
@@ -108,11 +108,11 @@ class Attack:
             
             attack_args = textattack.AttackArgs(
             num_examples=num_examples,
-            log_to_csv='%s/attack_results_%s_%s.csv'%(self.log_path, attack_class, attackrecipe),
+            log_to_csv='%s/attack_results_%s.csv'%(self.log_path, attackrecipe),
             csv_coloring_style='html', 
             )
             attacker = Attacker(attack, dataset, attack_args)
             results = attacker.attack_dataset()
-            attacker.attack_log_manager.add_output_file(filename="%s/attack_summary_%s_%s.txt"%(self.log_path, attack_class, attackrecipe), color_method="file")
+            attacker.attack_log_manager.add_output_file(filename="%s/attack_summary_%s.txt"%(self.log_path, attackrecipe), color_method="file")
             attacker.attack_log_manager.log_summary()
 
