@@ -73,7 +73,7 @@ class Attack:
 
         for attackrecipe in self.attack_recipe:
             if attackrecipe == 'pwws': # word sub
-                attack = PWWSRen2019.build(self.model_wrapper)
+                attack = PWWSRen2019_threshold.build(self.model_wrapper)
                 attack_class = 'ai'
             # elif attackrecipe == 'pwwsTaip': # add threshold ai as positive
             #     # get threshold
@@ -96,8 +96,8 @@ class Attack:
             #     else:
             #         raise ValueError('Unknown attack class %s'%args.attack_class)
             #     attack = PWWSRen2019_threshold.build(model_wrapper, target_max_score=target_max_score)
-            # elif attackrecipe == 'pruthi': # char sub delete insert etc
-            #     attack = Pruthi2019.build(model_wrapper, max_num_word_swaps=max_num_word_swaps)
+            elif attackrecipe == 'pruthi': # char sub delete insert etc
+                attack = Pruthi2019.build(self.model_wrapper, max_num_word_swaps=max_num_word_swaps)
             # elif attackrecipe == 'deep-word-bug': # word sub, char sub, word del, word insert etc
             #     attack = DeepWordBugGao2018.build(model_wrapper)
             else:
