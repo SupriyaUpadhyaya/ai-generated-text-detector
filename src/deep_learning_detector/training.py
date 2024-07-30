@@ -50,12 +50,12 @@ class Train:
         results_report['log_path']=self.log_path
         self.metrics = Metrics(self.log_path)
         print(f'************************** Results PATH - {self.log_path} ***********************')
-        
+
         tokenized_datasets = self.preprocess(dataset)
 
         # Define training arguments
         training_args = TrainingArguments(
-            output_dir=f'{self.log_path}/results',          # output directory
+            output_dir=f'/content/results',          # output directory
             eval_strategy="epoch",     # evaluate after each epoch
             learning_rate=learning_rate,     # learning rate
             per_device_train_batch_size=train_batch_size,   # batch size for training
