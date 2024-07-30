@@ -121,23 +121,23 @@ def main():
     if TrainOnSubset:
         training_dataset = TrainingDataset()
         if model_type != 'xgboost':
-            training = Train(model_type, f'log_folder_name_{(percentage * 100)}')
+            training = Train(model_type, f'log_folder_name_{str(percentage * 100)}')
         else:
-            training = TrainXGBoost(model_type, f'log_folder_name_{(percentage * 100)}')
+            training = TrainXGBoost(model_type, f'log_folder_name_{str(percentage * 100)}')
         
         print(f'Percentage of training data used :', {(percentage)})
         dataset = training_dataset.getDataset(trainData=train_data, dataType=data_type, newLine=new_line, subset=(percentage))
         print(f"dataset : {dataset}")
-        training.train(dataset, f'log_folder_name_{(percentage * 100)}')
+        training.train(dataset, f'log_folder_name_{str(percentage * 100)}')
 
         evaluation_dataset = EvaluationDataset()
         dataset = evaluation_dataset.getDataset()
         print(f"dataset : {dataset}")
 
         if model_type != 'xgboost':
-            evaluation = Evaluation(model_type, f'log_folder_name_{(percentage * 100)}')
+            evaluation = Evaluation(model_type, f'log_folder_name_{str(percentage * 100)}')
         else:
-            evaluation = EvaluationXGBoost(model_type, f'log_folder_name_{(percentage * 100)}')
+            evaluation = EvaluationXGBoost(model_type, f'log_folder_name_{str(percentage * 100)}')
         evaluation.evaluate(dataset)
 
         Report.generateReport()
