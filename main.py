@@ -1,6 +1,6 @@
 import argparse
 from src.utils.trainingDataset import TrainingDataset
-from src.deep_learning_detector.training import Train
+from deep_learning_detector.training import Train
 from src.deep_learning_detector.evaluation import Evaluation
 from src.xgboost_detector.xgboost import TrainXGBoost
 from src.xgboost_detector.xgboostEvaluation import EvaluationXGBoost
@@ -129,7 +129,7 @@ def main():
         print(f'Percentage of training data used :', {(percentage)})
         dataset = training_dataset.getDataset(trainData=train_data, dataType=data_type, newLine=new_line, subset=(percentage))
         print(f"dataset : {dataset}")
-        training.train(dataset, f'log_folder_name_{name_suffix}')
+        training.train(dataset)
 
         evaluation_dataset = EvaluationDataset()
         dataset = evaluation_dataset.getDataset()
