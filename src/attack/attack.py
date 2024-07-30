@@ -8,8 +8,8 @@ from safetensors.torch import save_file
 from torch.utils.tensorboard import SummaryWriter
 from textattack.models.wrappers import HuggingFaceModelWrapper
 import numpy as np
-from textattack.attack_recipes import PWWSRen2019, Pruthi2019, DeepWordBugGao2018, TextFoolerJin2019, Pruthi2019_threshold
-from src.attack.attack_recipes import PWWSRen2019_threshold
+from textattack.attack_recipes import PWWSRen2019, Pruthi2019, DeepWordBugGao2018, TextFoolerJin2019
+from src.attack.attack_recipes import PWWSRen2019_threshold, Pruthi2019_threshold
 import textattack
 from textattack import Attacker
 from safetensors.torch import load_file
@@ -54,7 +54,8 @@ class Attack:
                 print(f"No weights found at {weights_path}. Using the pre-trained model without additional weights.")
             self.model_wrapper = HuggingFaceModelWrapper(self.model, self.tokenizer)
         self.metrics = Metrics(self.log_path)
-        self.attack_recipe = ['pwws', 'pruthi', 'deep-word-bug', 'textfoolerjin2019']
+        #self.attack_recipe = ['pwws', 'pruthi', 'deep-word-bug', 'textfoolerjin2019']
+        self.attack_recipe = ['pruthi', 'deep-word-bug', 'textfoolerjin2019']
         print(f'************************** LOG PATH - {self.log_path} ***********************')
     
     def attack(self, dataset):
