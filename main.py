@@ -123,12 +123,12 @@ def main():
         if model_type != 'xgboost':
             training = Train(model_type)
         else:
-            training = TrainXGBoost(model_type, f'log_folder_name_{int(percentage * 10)}')
+            training = TrainXGBoost(model_type, f'log_folder_name_{int(percentage * 100)}')
         
         print(f'Percentage of training data used :', {(percentage)})
         dataset = training_dataset.getDataset(trainData=train_data, dataType=data_type, newLine=new_line, subset=(percentage))
         print(f"dataset : {dataset}")
-        training.train(dataset, f'log_folder_name_{int(percentage * 10)}')
+        training.train(dataset, f'log_folder_name_{int(percentage * 100)}')
 
 
         Report.generateReport()
