@@ -121,7 +121,7 @@ def main():
     if TrainOnSubset:
         training_dataset = TrainingDataset()
         if model_type != 'xgboost':
-            training = Train(model_type)
+            training = Train(model_type, f'log_folder_name_{int(percentage * 100)}')
         else:
             training = TrainXGBoost(model_type, f'log_folder_name_{int(percentage * 100)}')
         
