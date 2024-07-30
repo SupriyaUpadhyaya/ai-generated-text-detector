@@ -130,6 +130,20 @@ def main():
         print(f"dataset : {dataset}")
         training.train(dataset, f'log_folder_name_{int(percentage * 100)}')
 
+        evaluation_dataset = EvaluationDataset()
+        dataset = evaluation_dataset.getDataset()
+        print(f"dataset : {dataset}")
+
+        if model_type != 'xgboost':
+            evaluation = Evaluation(model_type, f'log_folder_name_{int(percentage * 100)}')
+        else:
+            evaluation = EvaluationXGBoost(model_type, f'log_folder_name_{int(percentage * 100)}')
+        evaluation.evaluate(dataset)
+
+        Report.generateReport()
+        with open(f'{results_report["log_path"]}/results_report.json', 'w') as json_file:
+            json.dump(results_report, json_file, indent=4)
+
 
         Report.generateReport()
         with open(f'{results_report["log_path"]}/results_report.json', 'w') as json_file:
