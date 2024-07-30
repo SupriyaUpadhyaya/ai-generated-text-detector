@@ -1,6 +1,6 @@
 import argparse
 from src.utils.trainingDataset import TrainingDataset
-from deep_learning_detector.training import Train
+from src.deep_learning_detector.training import Train
 from src.deep_learning_detector.evaluation import Evaluation
 from src.xgboost_detector.xgboost import TrainXGBoost
 from src.xgboost_detector.xgboostEvaluation import EvaluationXGBoost
