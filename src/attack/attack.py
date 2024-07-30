@@ -55,7 +55,7 @@ class Attack:
             self.model_wrapper = HuggingFaceModelWrapper(self.model, self.tokenizer)
         self.metrics = Metrics(self.log_path)
         #self.attack_recipe = ['pwws', 'pruthi', 'deep-word-bug', 'textfoolerjin2019']
-        self.attack_recipe = ['pwws', 'pruthi']
+        self.attack_recipe = ['pwws', 'textfoolerjin2019', 'pruthi']
         print(f'************************** LOG PATH - {self.log_path} ***********************')
     
     def attack(self, dataset):
