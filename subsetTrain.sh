@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 # Check if modelType and trainData arguments are provided
 if [ "$#" -ne 2 ]; then
@@ -17,7 +17,7 @@ percentages=(1 2 4 8 10 15 20 25 30 35 40)
 # Loop through each percentage
 for percentage in "${percentages[@]}"; do
     # Calculate the value for --percentage
-    percentage_value=$(echo "scale=2; $percentage / 100" | bc)
+    percentage_value=$(awk "BEGIN {print $percentage / 100}")
     
     # Define the log folder name
     log_folder_name="${modelType}_trainOnSubset_eval_$percentage"
@@ -40,16 +40,16 @@ for percentage in "${percentages[@]}"; do
     echo "Title: $title"
     
     # Run the command and print the command being executed
-    echo "Executing command: nohup python3 -u main.py --modelType $modelType --task trainOnSubset --percentage \"$percentage_value\" --trainData $trainData --dataType abstract --newLine without --log_folder_name \"$log_folder_name\" --title \"$title\" &> \"$log_file\" &"
-    nohup python3 -u main.py \
+    echo "Executing command: python3 main.py --modelType $modelType --task trainOnSubset --percentage \"$percentage_value\" --trainData $trainData --dataType abstract --newLine without --log_folder_name \"$log_folder_name\" --title \"$title\""
+    python3 main.py \
         --modelType "$modelType" \
-        --task trainOnSubset \
+        --task "trainOnSubset" \
         --percentage "$percentage_value" \
         --trainData "$trainData" \
-        --dataType abstract \
-        --newLine without \
+        --dataType "abstract" \
+        --newLine "without" \
         --log_folder_name "$log_folder_name" \
-        --title "$title" &> "$log_file" &
+        --title "$title"
     
     # Print the PID of the background process
     echo "Started background process with PID $!"

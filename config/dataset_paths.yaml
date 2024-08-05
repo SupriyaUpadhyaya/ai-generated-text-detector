@@ -68,7 +68,7 @@ cohere_wiki_without:
   human_text_column: 'human_text'
   machine_text_column: 'machine_text'
 
-cohere_wiki_without:
+davinci_wiki_without:
   train: "data/without_n_wiki_preprocessed/wikipedia_davinci_train.jsonl"
   validation: "data/without_n_wiki_preprocessed/wikipedia_davinci_val.jsonl"
   test: "data/without_n_wiki_preprocessed/wikipedia_davinci_test.jsonl"
