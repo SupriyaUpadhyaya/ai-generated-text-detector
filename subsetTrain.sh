@@ -11,8 +11,8 @@ modelType=$1
 trainData=$2
 
 # Define the percentages
-percentages=(1 2 4 8 10 15 20 25 30 35 40)
-#percentages=(45 50 60 70 80 90 100)
+# percentages=(1 2 4 8 10 15 20 25 30 35 40)
+percentages=(45 50 60 70 80 90 100)
 
 # Loop through each percentage
 for percentage in "${percentages[@]}"; do
