@@ -122,4 +122,4 @@ class DataPreprocessing:
 # converted_text2 = DataPreprocessing.convert_latex_to_text(text2)
 # print(converted_text2)
 
-DataPreprocessing.process_jsonl_files('./data')
+DataPreprocessing.process_jsonl_files('./data/with_n/llama31')
