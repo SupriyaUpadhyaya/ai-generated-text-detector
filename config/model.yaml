@@ -4,7 +4,7 @@ roberta:
 
 bloomz:
   pretrained: "andreas122001/bloomz-560m-academic-detector"
-  finetuned: "data/chatgpt_abstract_with_validation.jsonl"
+  finetuned: "/content/drive/MyDrive/model.safetensors"
 
 xgboost:
   pretrained: "na"
