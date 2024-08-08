@@ -48,30 +48,30 @@ llama3_ml_with:
   machine_text_column: 'machine_text'
 
 bloomz_wiki_with:
-  train: "data/wiki/wikipedia_bloomz_train.jsonl"
-  validation: "data/wiki/wikipedia_bloomz_val.jsonl"
-  test: "data/wiki/wikipedia_bloomz_test.jsonl"
+  train: "data/wiki_processed/wikipedia_bloomz_train.jsonl"
+  validation: "data/wiki_processed/wikipedia_bloomz_val.jsonl"
+  test: "data/wiki_processed/wikipedia_bloomz_test.jsonl"
   human_text_column: 'text'
   machine_text_column: 'machine_abstract'
 
 chatgpt_wiki_with:
-  train: "data/wiki/wikipedia_chatgpt_train.jsonl"
-  validation: "data/wiki/wikipedia_chatgpt_val.jsonl"
-  test: "data/wiki/wikipedia_chatgpt_test.jsonl"
+  train: "data/wiki_processed/wikipedia_chatgpt_train.jsonl"
+  validation: "data/wiki_processed/wikipedia_chatgpt_val.jsonl"
+  test: "data/wiki_processed/wikipedia_chatgpt_test.jsonl"
   human_text_column: 'human_text'
   machine_text_column: 'machine_text'
 
 cohere_wiki_with:
-  train: "data/wiki/wikipedia_cohere_train.jsonl"
-  validation: "data/wiki/wikipedia_cohere_val.jsonl"
-  test: "data/wiki/wikipedia_cohere_test.jsonl"
+  train: "data/wiki_processed/wikipedia_cohere_train.jsonl"
+  validation: "data/wiki_processed/wikipedia_cohere_val.jsonl"
+  test: "data/wiki_processed/wikipedia_cohere_test.jsonl"
   human_text_column: 'human_text'
   machine_text_column: 'machine_text'
 
 davinci_wiki_with:
-  train: "data/wiki/wikipedia_davinci_train.jsonl"
-  validation: "data/wiki/wikipedia_davinci_val.jsonl"
-  test: "data/wiki/wikipedia_davinci_test.jsonl"
+  train: "data/wiki_processed/wikipedia_davinci_train.jsonl"
+  validation: "data/wiki_processed/wikipedia_davinci_val.jsonl"
+  test: "data/wiki_processed/wikipedia_davinci_test.jsonl"
   human_text_column: 'human_text'
   machine_text_column: 'machine_text'
 
