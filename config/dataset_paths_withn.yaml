@@ -12,12 +12,12 @@ bloomz_abstract_with:
   human_text_column: 'abstract'
   machine_text_column: 'machine_abstract'
 
-llama3_abstract_with:
-  train: "data/with_n/arxiv_llama3_train.jsonl"
-  validation: "data/with_n/arxiv_llama3_validation.jsonl"
-  test: "data/with_n/arxiv_llama3_test.jsonl"
-  human_text_column: 'abstract'
-  machine_text_column: 'machine_text'
+# llama3_abstract_with:
+#   train: "data/with_n/arxiv_llama3_train.jsonl"
+#   validation: "data/with_n/arxiv_llama3_validation.jsonl"
+#   test: "data/with_n/arxiv_llama3_test.jsonl"
+#   human_text_column: 'abstract'
+#   machine_text_column: 'machine_text'
 
 cohere_abstract_with:
   train: "data/with_n/arxiv_cohere_train.jsonl"
