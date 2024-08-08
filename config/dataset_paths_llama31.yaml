@@ -7,3 +7,9 @@ llama31_abstract_without_pattack:
   test: "data/with_n/llama31/llama31_preprocessed/arxiv_llama3_1_promptattack.jsonl"
   human_text_column: 'human_text'
   machine_text_column: 'machine_text'
+
+llama31_abstract_without_pattack2:
+  test: "data/with_n/llama31/llama31_preprocessed/M4_arxiv_papers_llama3_1_ATTACK3.jsonl"
+  human_text_column: 'human_text'
+  machine_text_column: 'machine_text'
+  
