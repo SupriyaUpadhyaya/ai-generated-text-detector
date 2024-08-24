@@ -9,6 +9,6 @@ gemini_abstract_without_active_passive:
   machine_text_column: 'attack_machine_text'
 
 gemini_abstract_without_spellings_punctuations:
-  test: "data/prompt_attack_preprocessed/arxiv_gemini_spellings_punctuations.jsonll"
+  test: "data/prompt_attack_preprocessed/arxiv_gemini_spellings_punctuations.jsonl"
   human_text_column: 'machine_text'
   machine_text_column: 'attack_machine_text'
