@@ -1,0 +1,14 @@
+gemini_abstract_without_change_tense:
+  test: "data/prompt_attack_preprocessed/arxiv_gemini_change_tense.jsonl"
+  human_text_column: 'machine_text'
+  machine_text_column: 'attack_machine_text'
+
+gemini_abstract_without_active_passive:
+  test: "data/prompt_attack_preprocessed/arxiv_gemini_active_passive.jsonl"
+  human_text_column: 'machine_text'
+  machine_text_column: 'attack_machine_text'
+
+gemini_abstract_without_spellings_punctuations:
+  test: "data/prompt_attack_preprocessed/arxiv_gemini_spellings_punctuations.jsonll"
+  human_text_column: 'machine_text'
+  machine_text_column: 'attack_machine_text'

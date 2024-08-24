@@ -66,14 +66,14 @@ class DataPreprocessing:
                 if file.endswith('.jsonl'):
                     # Determine the human and machine text columns based on filename
                     if 'bloomz' in file:
-                        human_text_column = 'abstract'
-                        machine_text_column = 'machine_abstract'
+                        human_text_column = 'machine_text'
+                        machine_text_column = 'attack_machine_text'
                     elif 'MT_llama' in file:
-                        human_text_column = 'Abstract'
-                        machine_text_column = 'machine_abstract'
+                        human_text_column = 'machine_text'
+                        machine_text_column = 'attack_machine_text'
                     else:
-                        human_text_column = 'human_text'
-                        machine_text_column = 'machine_text'
+                        human_text_column = 'machine_text'
+                        machine_text_column = 'attack_machine_text'
 
                     # Path to the JSONL file
                     jsonl_path = os.path.join(root, file)
@@ -122,4 +122,4 @@ class DataPreprocessing:
 # converted_text2 = DataPreprocessing.convert_latex_to_text(text2)
 # print(converted_text2)
 
-DataPreprocessing.process_jsonl_files('./data/with_n/llama31')
+DataPreprocessing.process_jsonl_files('./data/prompt_attack')
