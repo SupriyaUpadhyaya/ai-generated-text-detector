@@ -2,7 +2,7 @@ import yaml
 from datasets import load_dataset, DatasetDict, concatenate_datasets
 
 class EvaluationDataset:
-    def __init__(self, yaml_path='config/dataset_paths_llama31.yaml'):
+    def __init__(self, yaml_path='config/dataset_paths.yaml'):
         self.yaml_path = yaml_path
 
     def getDataset(self):
