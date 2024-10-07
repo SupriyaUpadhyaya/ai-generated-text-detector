@@ -12,6 +12,20 @@ bloomz_abstract_with:
   human_text_column: 'abstract'
   machine_text_column: 'machine_abstract'
 
+chatgpt_abstract_paraphrased_with:
+  train: "data/with_n/arxiv_chatGPT_paraphrased_train.jsonl"
+  validation: "data/with_n/arxiv_chatGPT_paraphrased_validation.jsonl"
+  test: "data/with_n/arxiv_chatGPT_paraphrased_test.jsonl"
+  human_text_column: 'human_text'
+  machine_text_column: 'machine_text'
+
+bloomz_abstract_paraphrased_with:
+  train: "data/with_n/arxiv_bloomz_paraphrased_train.jsonl"
+  validation: "data/with_n/arxiv_bloomz_paraphrased_validation.jsonl"
+  test: "data/with_n/arxiv_bloomz_paraphrased_test.jsonl"
+  human_text_column: 'abstract'
+  machine_text_column: 'machine_abstract'
+
 # llama3_abstract_with:
 #   train: "data/with_n/arxiv_llama3_train.jsonl"
 #   validation: "data/with_n/arxiv_llama3_validation.jsonl"
