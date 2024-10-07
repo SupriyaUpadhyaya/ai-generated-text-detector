@@ -117,7 +117,8 @@ class TrainXGBoost:
         with open('config/model.yaml', 'w') as file:
             yaml.safe_dump(self.config, file)
 
-        self.performance_test(X_test, y_test)
+        #self.performance_test(X_test, y_test)
+        self.metrics.plot_confusion_matrix(yhat, y_test, 'Test', self.log_path)
 
         return self.xgb_classifier, score
     

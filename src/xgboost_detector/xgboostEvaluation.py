@@ -60,21 +60,22 @@ class EvaluationXGBoost:
     def performance_test(self, X_test_list, y_test_list, dstype):
         y_pred = self.xgb_classifier.predict(X_test_list)
         # Compute confusion matrix
-        cm = confusion_matrix(y_test_list, y_pred)
+        self.metrics.plot_confusion_matrix(y_pred, y_test_list, dstype, self.log_path)
+        # cm = confusion_matrix(y_test_list, y_pred)
 
         # Plot confusion matrix using seaborn heatmap
-        plt.figure(figsize=(8, 6))
-        cmn = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
-        sns.heatmap(cmn, annot=True, fmt='.2f', xticklabels=['Human', 'Machine'], yticklabels=['Human', 'Machine'])
-        plt.xlabel('Predicted')
-        plt.ylabel('True')
-        plt.title('Confusion Matrix')
-        plt.show(block=False)
+        # plt.figure(figsize=(8, 6))
+        # cmn = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+        # sns.heatmap(cmn, annot=True, fmt='.2f', xticklabels=['Human', 'Machine'], yticklabels=['Human', 'Machine'])
+        # plt.xlabel('Predicted')
+        # plt.ylabel('True')
+        # plt.title('Confusion Matrix')
+        #plt.show(block=False)
         explainer = shap.Explainer(self.xgb_classifier)
         shap_values = explainer(X_test_list)
         shap.summary_plot(shap_values, X_test_list)
         shap.plots.heatmap(shap_values)
-        plt.savefig(f'{self.log_path}/{dstype}_confusion_matrix.png')
+        #plt.savefig(f'{self.log_path}/{dstype}_confusion_matrix.png')
         f1score = f1_score(y_test_list, y_pred, zero_division=1.0)
         precision_recall_fscore = precision_recall_fscore_support(y_test_list, y_pred, zero_division=1.0)
         print(f"F1 score {dstype}: ", f1score)
