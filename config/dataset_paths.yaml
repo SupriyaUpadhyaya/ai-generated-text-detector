@@ -5,10 +5,24 @@ chatgpt_abstract_without:
   human_text_column: 'human_text'
   machine_text_column: 'machine_text'
 
+chatgpt_abstract_paraphrased_without:
+  train: "data/without_n_preprocessed/arxiv_chatGPT_paraphrased_train.jsonl"
+  validation: "data/without_n_preprocessed/arxiv_chatGPT_paraphrased_validation.jsonl"
+  test: "data/without_n_preprocessed/arxiv_chatGPT_paraphrased_test.jsonl"
+  human_text_column: 'human_text'
+  machine_text_column: 'machine_text'
+
 bloomz_abstract_without:
   train: "data/without_n_preprocessed/arxiv_bloomz_train.jsonl"
   validation: "data/without_n_preprocessed/arxiv_bloomz_val.jsonl"
   test: "data/without_n_preprocessed/arxiv_bloomz_test.jsonl"
+  human_text_column: 'abstract'
+  machine_text_column: 'machine_abstract'
+
+bloomz_abstract_paraphrased_without:
+  train: "data/without_n_preprocessed/arxiv_bloomz_paraphrased_train.jsonl"
+  validation: "data/without_n_preprocessed/arxiv_bloomz_paraphrased_validation.jsonl"
+  test: "data/without_n_preprocessed/arxiv_bloomz_paraphrased_test.jsonl"
   human_text_column: 'abstract'
   machine_text_column: 'machine_abstract'
 
