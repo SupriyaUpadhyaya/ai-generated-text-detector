@@ -82,6 +82,7 @@ def main():
             if model_type != 'xgboost':
                 training = Train(model_type, log_folder_name)
             else:
+                print("Model : xgboost")
                 training = TrainXGBoost(model_type, log_folder_name)
             training.train(dataset)
     
@@ -92,6 +93,7 @@ def main():
         if model_type != 'xgboost':
             evaluation = Evaluation(model_type, log_folder_name)
         else:
+            print("Model : xgboost")
             evaluation = EvaluationXGBoost(model_type, log_folder_name)
         evaluation.evaluate(dataset)
 
