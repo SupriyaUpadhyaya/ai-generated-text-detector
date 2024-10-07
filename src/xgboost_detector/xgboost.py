@@ -110,7 +110,7 @@ class TrainXGBoost:
                                     data=mean_total_gain.sort_values('Importance',
                                     ascending=False), 
                                     palette='gray')
-        plt.savefig(f'{self.log_path}_importance.png')
+        plt.savefig(f'{self.log_path}/importance.png')
         Misc.create_directory(f'{self.log_path}/save_models/')
         self.xgb_classifier.save_model(f'{self.log_path}/save_models/xgboost_model.json')
         self.config[self.model_type]['finetuned']= f'{self.log_path}/save_models/xgboost_model.json'
@@ -133,16 +133,17 @@ class TrainXGBoost:
         plt.xlabel('Predicted')
         plt.ylabel('True')
         plt.title('Confusion Matrix')
-        plt.show(block=False)
         explainer = shap.Explainer(self.xgb_classifier)
         shap_values = explainer(X_test_list)
         shap.summary_plot(shap_values, X_test_list)
         shap.plots.heatmap(shap_values)
-        plt.savefig(f'{self.log_path}/confusion_matrix_test.png')
+        plot_path = f'{self.log_path}/confusion_matrix_test.png'
+        plt.savefig(plot_path)
         f1score = f1_score(y_test_list, y_pred, zero_division=1.0)
         precision_recall_fscore = precision_recall_fscore_support(y_test_list, y_pred, zero_division=1.0)
         print("F1 score : ", f1score)
         print("precision_recall_fscore : ", precision_recall_fscore)
         results_report["precision_recall_fscore"]= str(precision_recall_fscore)
         results_report['F1 score'] = str(f1score)
+        plt.close()
 
