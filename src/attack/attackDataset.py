@@ -3,7 +3,7 @@ from datasets import load_dataset, DatasetDict, concatenate_datasets
 from textattack.datasets import Dataset as TextAttackDataset
 
 class AttackDataset:
-    def __init__(self, yaml_path='config/dataset_paths_withn.yaml'):
+    def __init__(self, yaml_path='config/dataset_paths.yaml'):
         self.yaml_path = yaml_path
 
     def getDataset(self):
