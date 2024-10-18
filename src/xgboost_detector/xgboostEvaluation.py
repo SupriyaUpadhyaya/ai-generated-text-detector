@@ -7,9 +7,8 @@ import torch
 from safetensors.torch import load_file
 from xgboost import XGBClassifier
 from sklearn.metrics import confusion_matrix
-from sklearn.metrics import accuracy_score, f1_score, precision_recall_fscore_support
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 import seaborn as sns
-from sklearn.metrics import f1_score
 import matplotlib.pyplot as plt
 import shap
 from src.xgboost_detector.featureExtractor import FeatureExtractor
@@ -76,9 +75,15 @@ class EvaluationXGBoost:
         shap.summary_plot(shap_values, X_test_list)
         shap.plots.heatmap(shap_values)
         #plt.savefig(f'{self.log_path}/{dstype}_confusion_matrix.png')
-        f1score = f1_score(y_test_list, y_pred, zero_division=1.0)
-        precision_recall_fscore = precision_recall_fscore_support(y_test_list, y_pred, zero_division=1.0)
+        f1score = f1_score(y_test_list, y_pred, average='micro', zero_division=1.0)
+        precision_score = precision_score(y_test_list, y_pred, average='micro', zero_division=1.0)
+        recall_score = recall_score(y_test_list, y_pred, average='micro', zero_division=1.0)
+        accuracy_score = accuracy_score(y_test_list, y_pred)
         print(f"F1 score {dstype}: ", f1score)
-        print(f"precision_recall_fscore {dstype}: ", precision_recall_fscore)
-        results_report[f"precision_recall_fscore {dstype}"]= str(precision_recall_fscore)
+        print(f"precision_score {dstype}: ", precision_score)
+        print(f"recall_score {dstype}: ", recall_score)
+        print(f"accuracy_score {dstype}: ", accuracy_score)
+        results_report[f"precision_score {dstype}"]= str(precision_score)
         results_report[f'F1 score {dstype}']=str(f1score)
+        results_report[f'Accuracy Score {dstype}']=str(accuracy_score)
+        results_report[f'Recall Score {dstype}']=str(recall_score)
