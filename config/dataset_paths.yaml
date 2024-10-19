@@ -58,7 +58,7 @@ llama3_ml_without:
   train: "data/ml_without_n_preprocessed/arxiv_papers_with_MT_llama_train.jsonl"
   validation: "data/ml_without_n_preprocessed/arxiv_papers_with_MT_llama_validation.jsonl"
   test: "data/ml_without_n_preprocessed/arxiv_papers_with_MT_llama_test.jsonl"
-  human_text_column: 'Abstract'
+  human_text_column: 'abstract'
   machine_text_column: 'machine_text'
 
 bloomz_wiki_without:
