@@ -89,4 +89,11 @@ davinci_wiki_without:
   human_text_column: 'human_text'
   machine_text_column: 'machine_text'
 
+chatgptBloomz_abstract_without:
+  train: "data/without_n_preprocessed/arxiv_chatgptBloomz_train.jsonl"
+  validation: "data/without_n_preprocessed/arxiv_chatgptBloomz_validation.jsonl"
+  test: "data/without_n_preprocessed/arxiv_chatgptBloomz_test.jsonl"
+  human_text_column: 'abstract'
+  machine_text_column: 'machine_abstract'
+
 # Continue for other trainData, dataType, and newLine combinations
