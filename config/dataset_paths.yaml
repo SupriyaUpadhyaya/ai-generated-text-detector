@@ -96,4 +96,18 @@ chatgptBloomz_abstract_without:
   human_text_column: 'abstract'
   machine_text_column: 'machine_abstract'
 
+bloomzWiki_abstract_without:
+  train: "data/without_n_preprocessed/arxiv_bloomzWiki_train.jsonl"
+  validation: "data/without_n_preprocessed/arxiv_bloomzWiki_validation.jsonl"
+  test: "data/without_n_preprocessed/arxiv_bloomzWiki_test.jsonl"
+  human_text_column: 'abstract'
+  machine_text_column: 'machine_abstract'
+
+bloomzWikiML_abstract_without:
+  train: "data/without_n_preprocessed/arxiv_bloomzWikiML_train.jsonl"
+  validation: "data/without_n_preprocessed/arxiv_bloomzWikiML_validation.jsonl"
+  test: "data/without_n_preprocessed/arxiv_bloomzWikiML_test.jsonl"
+  human_text_column: 'abstract'
+  machine_text_column: 'machine_abstract'
+
 # Continue for other trainData, dataType, and newLine combinations

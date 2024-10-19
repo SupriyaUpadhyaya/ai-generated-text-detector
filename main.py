@@ -24,7 +24,7 @@ def main():
                         help="Type of the model: roberta, bloomz, or xgboost")
     parser.add_argument("--train", type=lambda x: (str(x).lower() == 'true'), default=True,
                          help="Train the model: true or false")
-    parser.add_argument("--trainData", type=str, choices=["chatgpt", "bloomz", "cohere", "flat5", "davinci", "llama3", "gemini", "chatgptBloomz"], default="chatgpt",
+    parser.add_argument("--trainData", type=str, choices=["chatgpt", "bloomz", "cohere", "flat5", "davinci", "llama3", "gemini", "chatgptBloomz", "bloomzWiki", "bloomzWikiML"], default="chatgpt",
                         help="Training data source: chatgpt, bloomz, cohere, flat5, davinci or llama3")
     parser.add_argument("--dataType", type=str, choices=["abstract", "wiki", "ml"], default="abstract",
                         help="Type of data: abstract, wiki, or ml")
