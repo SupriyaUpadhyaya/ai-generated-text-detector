@@ -105,11 +105,12 @@ class TrainXGBoost:
 
         mean_total_gain = importances_total_gain[['Importance', 'Feature']].groupby('Feature').mean()
         mean_total_gain = mean_total_gain.reset_index()
-        plt.figure(figsize=(17, 8))
+        plt.figure(figsize=(10, 8))
         sns.barplot(x='Importance', y='Feature', 
                                     data=mean_total_gain.sort_values('Importance',
                                     ascending=False), 
                                     palette='gray')
+        plt.tight_layout()
         plt.savefig(f'{self.log_path}/importance.png')
         Misc.create_directory(f'{self.log_path}/save_models/')
         self.xgb_classifier.save_model(f'{self.log_path}/save_models/xgboost_model.json')
