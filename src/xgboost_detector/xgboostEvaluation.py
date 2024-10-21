@@ -34,7 +34,7 @@ class EvaluationXGBoost:
                                     eta=lr,
                                     reg_lambda=1,
                                     min_child_weight=weight)
-        weights_path = f'./results/report/{self.model_type}/{log_folder_name}/xgboost_model.json'
+        weights_path = f'./results/report/{self.model_type}/{log_folder_name}/save_models/xgboost_model.json'
         print('weights_path :', weights_path)
         # Load the model weights from the local directory
         if os.path.exists(weights_path):
