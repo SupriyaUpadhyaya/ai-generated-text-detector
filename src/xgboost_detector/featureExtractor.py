@@ -265,10 +265,10 @@ class FeatureExtractor():
         #print('machine_abstract : ', machine_abstract)
 
         #num_sentence_human = self.count_sentences_per_paragraph(abstract)
-        num_sentence_machine = self.count_sentences(machine_abstract)
+        num_sentence = self.count_sentences(machine_abstract)
 
         #num_words_human = self.count_words_per_paragraph(abstract)
-        num_words_machine = self.count_words(machine_abstract)
+        num_words = self.count_words(machine_abstract)
 
         # character0_human = self.check_character_presence(abstract, self.characters[0])
         # character1_human = self.check_character_presence(abstract, self.characters[1])
@@ -282,58 +282,58 @@ class FeatureExtractor():
         # if character2_human == 1 or character3_human == 1:
         #     character2_3_human = 1
 
-        character0_machine = self.check_character_presence(machine_abstract, self.characters[0])
-        character1_machine = self.check_character_presence(machine_abstract, self.characters[1])
-        character2_machine = self.check_character_presence(machine_abstract, self.characters[2])
-        character3_machine = self.check_character_presence(machine_abstract, self.characters[3])
-        character4_machine = self.check_character_presence(machine_abstract, self.characters[4])
-        character5_machine = self.check_character_presence(machine_abstract, self.characters[5])
+        character0 = self.check_character_presence(machine_abstract, self.characters[0])
+        character1 = self.check_character_presence(machine_abstract, self.characters[1])
+        character2 = self.check_character_presence(machine_abstract, self.characters[2])
+        character3 = self.check_character_presence(machine_abstract, self.characters[3])
+        character4 = self.check_character_presence(machine_abstract, self.characters[4])
+        character5 = self.check_character_presence(machine_abstract, self.characters[5])
 
-        character2_3_machine = 0
+        character2_3 = 0
 
-        if character2_machine == 1 or character3_machine == 1:
-            character2_3_machine = 1
+        if character2 == 1 or character3 == 1:
+            character2_3 = 1
         
         #std_dev_human = self.paragraph_sentence_length_std_dev(abstract)
-        std_dev_machine = self.paragraph_sentence_length_std_dev(machine_abstract)
+        std_dev = self.paragraph_sentence_length_std_dev(machine_abstract)
 
         #sent_len_diff_human = self.max_length_difference_paragraph(abstract)
-        sent_len_diff_machine = self.max_length_difference_paragraph(machine_abstract)
+        sent_len_diff = self.max_length_difference_paragraph(machine_abstract)
 
         #count_short_sentences_in_paragraphs_human = self.count_short_sentences_in_paragraphs(abstract)
-        count_short_sentences_in_paragraphs_machine = self.count_short_sentences_in_paragraphs(machine_abstract)
+        count_short_sentences_in_paragraphs = self.count_short_sentences_in_paragraphs(machine_abstract)
 
         #count_long_sentences_in_paragraphs_human = self.count_long_sentences_in_paragraphs(abstract)
-        count_long_sentences_in_paragraphs_machine = self.count_long_sentences_in_paragraphs(machine_abstract)
+        count_long_sentences_in_paragraphs = self.count_long_sentences_in_paragraphs(machine_abstract)
 
 
         words = ["although", "However", "but", "because", "this", "others", "researchers"]
 
         #check_word0_human = self.check_words_in_paragraphs(abstract, words[0])
-        check_word0_machine = self.check_words_in_paragraphs(machine_abstract, words[0])
+        check_word0 = self.check_words_in_paragraphs(machine_abstract, words[0])
 
         #check_word1_human = self.check_words_in_paragraphs(abstract, words[1])
-        check_word1_machine = self.check_words_in_paragraphs(machine_abstract, words[1])
+        check_word1 = self.check_words_in_paragraphs(machine_abstract, words[1])
 
         #check_word2_human = self.check_words_in_paragraphs(abstract, words[2])
-        check_word2_machine = self.check_words_in_paragraphs(machine_abstract, words[2])
+        check_word2 = self.check_words_in_paragraphs(machine_abstract, words[2])
 
         #check_word3_human = self.check_words_in_paragraphs(abstract, words[3])
-        check_word3_machine = self.check_words_in_paragraphs(machine_abstract, words[3])
+        check_word3 = self.check_words_in_paragraphs(machine_abstract, words[3])
 
         #check_word4_human = self.check_words_in_paragraphs(abstract, words[4])
-        check_word4_machine = self.check_words_in_paragraphs(machine_abstract, words[4])
+        check_word4 = self.check_words_in_paragraphs(machine_abstract, words[4])
 
         #check_word5_human = self.check_words_in_paragraphs(abstract, words[5])
-        check_word5_machine = self.check_words_in_paragraphs(machine_abstract, words[5])
+        check_word5 = self.check_words_in_paragraphs(machine_abstract, words[5])
 
         #check_word6_human = self.check_words_in_paragraphs(abstract, words[6])
-        #check_word6_machine = self.check_words_in_paragraphs(machine_abstract, words[6])
+        #check_word6 = self.check_words_in_paragraphs(machine_abstract, words[6])
 
-        check_word2_3_machine = 0
+        check_word2_3 = 0
 
-        if check_word2_machine == 1 or check_word3_machine == 1:
-            check_word2_3_machine = 1
+        if check_word2 == 1 or check_word3 == 1:
+            check_word2_3 = 1
 
         # check_word2_3_human = 0
 
@@ -341,13 +341,13 @@ class FeatureExtractor():
         #     check_word2_3_human = 1
 
         #check_num_human = self.check_numbers_in_paragraphs(abstract)
-        check_num_machine = self.check_numbers_in_paragraphs(machine_abstract)
+        check_num = self.check_numbers_in_paragraphs(machine_abstract)
 
         #check_capitals_human = self.check_capitals_to_periods_ratio(abstract)
-        check_capitals_machine = self.check_capitals_to_periods_ratio(machine_abstract)
+        check_capitals = self.check_capitals_to_periods_ratio(machine_abstract)
 
         #check_et_human = self.check_et_in_paragraphs(abstract)
-        check_et_machine = self.check_et_in_paragraphs(machine_abstract)
+        check_et = self.check_et_in_paragraphs(machine_abstract)
 
         data = {}
 
@@ -355,45 +355,45 @@ class FeatureExtractor():
         #     data[param] = dfs.loc[count, param]
 
         #data['no_sentence_human'] = [num_sentence_human]
-        data['no_sentence_machine'] = [num_sentence_machine]
+        data['no_sentence'] = [num_sentence]
         #data['num_words_human'] = [num_words_human]
-        data['num_words_machine'] = [num_words_machine]
+        data['num_words'] = [num_words]
         #data['character0_human'] = [character0_human]
         #data['character1_human'] = [character1_human]
         #data['character2_3_human'] = [character2_3_human]
         #data['character4_human'] = [character4_human]
         #data['character5_human'] = [character5_human]
-        data['character0_machine'] = [character0_machine]
-        data['character1_machine'] = [character1_machine]
-        data['character2_3_machine'] = [character2_3_machine]
-        data['character4_machine'] = [character4_machine]
-        data['character5_machine'] = [character5_machine]
+        data['character0'] = [character0]
+        data['character1'] = [character1]
+        data['character2_3'] = [character2_3]
+        data['character4'] = [character4]
+        data['character5'] = [character5]
         #data['std_dev_human'] = [std_dev_human]
-        data['std_dev_machine'] = [std_dev_machine]
+        data['std_dev'] = [std_dev]
         #data['sent_len_diff_human'] = [sent_len_diff_human]
-        data['sent_len_diff_machine'] = [sent_len_diff_machine]
+        data['sent_len_diff'] = [sent_len_diff]
         #data['count_short_sentences_in_paragraphs_human'] = [count_short_sentences_in_paragraphs_human]
-        data['count_short_sentences_in_paragraphs_machine'] = [count_short_sentences_in_paragraphs_machine]
+        data['count_short_sentences_in_paragraphs'] = [count_short_sentences_in_paragraphs]
         #data['count_long_sentences_in_paragraphs_human'] = [count_long_sentences_in_paragraphs_human]
-        data['count_long_sentences_in_paragraphs_machine'] = [count_long_sentences_in_paragraphs_machine]
+        data['count_long_sentences_in_paragraphs'] = [count_long_sentences_in_paragraphs]
         #data['check_word0_human'] = [check_word0_human]
         #data['check_word1_human'] = [check_word1_human]
         #data['check_word2_3_human'] = [check_word2_3_human]
         #data['check_word3_human'] = [check_word3_human]
         #data['check_word4_human'] = [check_word4_human]
         #data['check_word5_human'] = [check_word5_human]
-        data['check_word0_machine'] = [check_word0_machine]
-        data['check_word1_machine'] = [check_word1_machine]
-        data['check_word2_3_machine'] = [check_word2_3_machine]
-        data['check_word3_machine'] = [check_word3_machine]
-        data['check_word4_machine'] = [check_word4_machine]
-        data['check_word5_machine'] = [check_word5_machine]
+        data['check_word0'] = [check_word0]
+        data['check_word1'] = [check_word1]
+        data['check_word2_3'] = [check_word2_3]
+        data['check_word3'] = [check_word3]
+        data['check_word4'] = [check_word4]
+        data['check_word5'] = [check_word5]
         #data['check_num_human'] = [check_num_human]
-        data['check_num_machine'] = [check_num_machine]
+        data['check_num'] = [check_num]
         #data['check_capitals_human'] = [check_capitals_human]
-        data['check_capitals_machine'] = [check_capitals_machine]
+        data['check_capitals'] = [check_capitals]
         #data['check_et_human'] = [check_et_human]
-        data['check_et_machine'] = [check_et_machine]
+        data['check_et'] = [check_et]
 
         #count += 1
         df = pd.DataFrame(data, dtype=float)
@@ -403,7 +403,7 @@ class FeatureExtractor():
         #df = pd.read_csv(outputfilename)
         #df['no_sentence_human'] = self.normalize_column(df['no_sentence_human'])
         
-        #print(self.scaler.fit_transform(df[['no_sentence_machine']]))
+        #print(self.scaler.fit_transform(df[['no_sentence']]))
         #df['num_words_human'] = self.normalize_column(df['num_words_human'])
         
         #df['std_dev_human'] = self.normalize_column(df['std_dev_human'])
@@ -417,10 +417,10 @@ class FeatureExtractor():
         #df = pd.DataFrame(self.featureExtractor(text) for text in text_input_list)
         feature_dfs = [self.featureExtractor(text) for text in text_input_list]
         concatenated_df = pd.concat(feature_dfs, ignore_index=True)
-        concatenated_df['no_sentence_machine'] = self.scaler.fit_transform(concatenated_df[['no_sentence_machine']]).astype(float)
-        concatenated_df['num_words_machine'] = self.scaler.fit_transform(concatenated_df[['num_words_machine']]).astype(float)
-        concatenated_df['std_dev_machine'] = self.scaler.fit_transform(concatenated_df[['std_dev_machine']]).astype(float)
-        concatenated_df['sent_len_diff_machine'] = self.scaler.fit_transform(concatenated_df[['sent_len_diff_machine']]).astype(float)
+        concatenated_df['no_sentence'] = self.scaler.fit_transform(concatenated_df[['no_sentence']]).astype(float)
+        concatenated_df['num_words'] = self.scaler.fit_transform(concatenated_df[['num_words']]).astype(float)
+        concatenated_df['std_dev'] = self.scaler.fit_transform(concatenated_df[['std_dev']]).astype(float)
+        concatenated_df['sent_len_diff'] = self.scaler.fit_transform(concatenated_df[['sent_len_diff']]).astype(float)
         #input_features = np.array()
         #input_featuresdf = pd.DataFrame(input_features[:, 0, :])
         print(concatenated_df.head())
@@ -431,10 +431,10 @@ class FeatureExtractor():
         #df = pd.DataFrame(self.featureExtractor(text) for text in text_input_list)
         #feature_dfs = [self.featureExtractor(text) for text in text_input_list]
         concatenated_df = self.featureExtractor(text_input_list[0])
-        concatenated_df['no_sentence_machine'] = self.scaler.fit_transform(concatenated_df[['no_sentence_machine']]).astype(float)
-        concatenated_df['num_words_machine'] = self.scaler.fit_transform(concatenated_df[['num_words_machine']]).astype(float)
-        concatenated_df['std_dev_machine'] = self.scaler.fit_transform(concatenated_df[['std_dev_machine']]).astype(float)
-        concatenated_df['sent_len_diff_machine'] = self.scaler.fit_transform(concatenated_df[['sent_len_diff_machine']]).astype(float)
+        concatenated_df['no_sentence'] = self.scaler.fit_transform(concatenated_df[['no_sentence']]).astype(float)
+        concatenated_df['num_words'] = self.scaler.fit_transform(concatenated_df[['num_words']]).astype(float)
+        concatenated_df['std_dev'] = self.scaler.fit_transform(concatenated_df[['std_dev']]).astype(float)
+        concatenated_df['sent_len_diff'] = self.scaler.fit_transform(concatenated_df[['sent_len_diff']]).astype(float)
         #input_features = np.array()
         #input_featuresdf = pd.DataFrame(input_features[:, 0, :])
         print(concatenated_df.head())
