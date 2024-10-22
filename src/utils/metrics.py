@@ -21,17 +21,29 @@ class Metrics:
         recall = recall_score(labels, predictions)
         f1 = f1_score(labels, predictions)
 
+        # Calculate confusion matrix
+        cm = confusion_matrix(labels, predictions)
+        tn, fp, fn, tp = cm.ravel()
+        
+        # Calculate sensitivity and specificity
+        sensitivity = tp / (tp + fn)
+        specificity = tn / (tn + fp)
+
         # Log metrics to TensorBoard
         self.writer.add_scalar('eval/accuracy', accuracy)
         self.writer.add_scalar('eval/precision', precision)
         self.writer.add_scalar('eval/recall', recall)
         self.writer.add_scalar('eval/f1', f1)
+        self.writer.add_scalar('eval/sensitivity', sensitivity)
+        self.writer.add_scalar('eval/specificity', specificity)
 
         return {
             'accuracy': accuracy,
             'precision': precision,
             'recall': recall,
-            'f1': f1
+            'f1': f1,
+            'sensitivity': sensitivity,
+            'specificity': specificity
         }
     
     def plot_metrics(self, trainer, path):

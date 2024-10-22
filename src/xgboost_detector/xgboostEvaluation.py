@@ -7,13 +7,13 @@ import torch
 from safetensors.torch import load_file
 from xgboost import XGBClassifier
 from sklearn.metrics import confusion_matrix
-from sklearn.metrics import accuracy_score, f1_score, precision_recall_fscore_support
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 import seaborn as sns
-from sklearn.metrics import f1_score
 import matplotlib.pyplot as plt
 import shap
 from src.xgboost_detector.featureExtractor import FeatureExtractor
 from src.shared import results_report
+import numpy as np
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -34,7 +34,7 @@ class EvaluationXGBoost:
                                     eta=lr,
                                     reg_lambda=1,
                                     min_child_weight=weight)
-        weights_path = self.config[model_type].get('finetuned')
+        weights_path = f'./results/report/{self.model_type}/{log_folder_name}/save_models/xgboost_model.json'
         print('weights_path :', weights_path)
         # Load the model weights from the local directory
         if os.path.exists(weights_path):
@@ -46,36 +46,44 @@ class EvaluationXGBoost:
         self.metrics = Metrics(self.log_path)
     
     def evaluate(self, datasets):
+        featExtractor = FeatureExtractor()
         for dstype in datasets:
             print(f'************* Evaluation for {dstype} *************')
             # Load dataset
             dataset = datasets[dstype]
-            X_test = FeatureExtractor.getFeatures(dataset['test']['text'])
-            y_test = dataset['test']['label']
+            X_test = featExtractor.getFeatures(dataset['text'])
+            y_test = dataset['label']
             self.performance_test(X_test, y_test, dstype)
             
     
     def performance_test(self, X_test_list, y_test_list, dstype):
         y_pred = self.xgb_classifier.predict(X_test_list)
         # Compute confusion matrix
-        cm = confusion_matrix(y_test_list, y_pred)
+        self.metrics.plot_confusion_matrix(y_pred, y_test_list, dstype, self.log_path)
+        # cm = confusion_matrix(y_test_list, y_pred)
 
         # Plot confusion matrix using seaborn heatmap
-        plt.figure(figsize=(8, 6))
-        cmn = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
-        sns.heatmap(cmn, annot=True, fmt='.2f', xticklabels=['Human', 'Machine'], yticklabels=['Human', 'Machine'])
-        plt.xlabel('Predicted')
-        plt.ylabel('True')
-        plt.title('Confusion Matrix')
-        plt.show(block=False)
+        # plt.figure(figsize=(8, 6))
+        # cmn = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+        # sns.heatmap(cmn, annot=True, fmt='.2f', xticklabels=['Human', 'Machine'], yticklabels=['Human', 'Machine'])
+        # plt.xlabel('Predicted')
+        # plt.ylabel('True')
+        # plt.title('Confusion Matrix')
+        #plt.show(block=False)
         explainer = shap.Explainer(self.xgb_classifier)
         shap_values = explainer(X_test_list)
         shap.summary_plot(shap_values, X_test_list)
         shap.plots.heatmap(shap_values)
-        plt.savefig(f'{self.log_path}/{dstype}_confusion_matrix.png')
-        f1score = f1_score(y_test_list, y_pred, zero_division=1.0)
-        precision_recall_fscore = precision_recall_fscore_support(y_test_list, y_pred, zero_division=1.0)
+        #plt.savefig(f'{self.log_path}/{dstype}_confusion_matrix.png')
+        f1score = f1_score(y_test_list, y_pred, average='binary', zero_division=1.0)
+        precisionscore = precision_score(y_test_list, y_pred, average='binary', zero_division=1.0)
+        recallscore = recall_score(y_test_list, y_pred, average='binary', zero_division=1.0)
+        accuracyscore = accuracy_score(y_test_list, y_pred)
         print(f"F1 score {dstype}: ", f1score)
-        print(f"precision_recall_fscore {dstype}: ", precision_recall_fscore)
-        results_report[f"precision_recall_fscore {dstype}"]= precision_recall_fscore
-        results_report[f'F1 score {dstype}']=f1score
+        print(f"precision_score {dstype}: ", precisionscore)
+        print(f"recall_score {dstype}: ", recallscore)
+        print(f"accuracy_score {dstype}: ", accuracyscore)
+        results_report[f"precision_score {dstype}"]= str(precisionscore)
+        results_report[f'F1 score {dstype}']=str(f1score)
+        results_report[f'Accuracy Score {dstype}']=str(accuracyscore)
+        results_report[f'Recall Score {dstype}']=str(recallscore)

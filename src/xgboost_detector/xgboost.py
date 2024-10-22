@@ -11,6 +11,8 @@ from src.utils.metrics import Metrics
 import torch
 from src.xgboost_detector.featureExtractor import FeatureExtractor
 from src.shared import results_report
+from src.utils.misc import Misc
+import yaml
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -20,6 +22,9 @@ class TrainXGBoost:
         self.model_type = model_type
         self.log_path = f'results/report/{self.model_type}/{log_folder_name}/'
         results_report['log_path']=self.log_path
+        with open('config/model.yaml', 'r') as file:
+            self.config = yaml.safe_load(file)
+        print("self.config : ", self.config)
         self.metrics = Metrics(f'{self.log_path}/{self.model_type}/logs')
         lr = 0.01
         weight = 4.5
@@ -34,9 +39,10 @@ class TrainXGBoost:
         print(f'************************** LOG PATH - {self.log_path} ***********************')
 
     def train(self, dataset):
-        X_train = FeatureExtractor.getFeatures(dataset['train']['text'])
-        X_val = FeatureExtractor.getFeatures(dataset['validation']['text'])
-        X_test = FeatureExtractor.getFeatures(dataset['test']['text'])
+        featExtractor = FeatureExtractor()
+        X_train = featExtractor.getFeatures(dataset['train']['text'])
+        X_val = featExtractor.getFeatures(dataset['validation']['text'])
+        X_test = featExtractor.getFeatures(dataset['test']['text'])
         y_train = dataset['train']['label']
         y_val = dataset['validation']['label']
         y_test = dataset['test']['label']
@@ -49,6 +55,9 @@ class TrainXGBoost:
         importances_weight = pd.DataFrame()
         importances_cover = pd.DataFrame()
         importances_total_gain = pd.DataFrame()
+        print(X_train)
+        print(y_train)
+        print(evalset)
 
         self.xgb_classifier.fit(X_train, y_train,
                         eval_set=evalset,
@@ -61,7 +70,9 @@ class TrainXGBoost:
 
         plt.plot(results['validation_0']['logloss'], label='train')
         plt.plot(results['validation_1']['logloss'], label='validation')
-        values = list(X_train.columns.values)
+        
+        values = X_train.columns.values
+        print("values :", values)
         title = ' '.join(values)
         plt.title('Loss vs. Epoch for ')
         plt.xlabel('Epoch')
@@ -94,15 +105,21 @@ class TrainXGBoost:
 
         mean_total_gain = importances_total_gain[['Importance', 'Feature']].groupby('Feature').mean()
         mean_total_gain = mean_total_gain.reset_index()
-        plt.figure(figsize=(17, 8))
+        plt.figure(figsize=(10, 8))
         sns.barplot(x='Importance', y='Feature', 
                                     data=mean_total_gain.sort_values('Importance',
                                     ascending=False), 
                                     palette='gray')
-        plt.savefig(f'{self.log_path}_importance.png')
-        self.xgb_classifier.save_model('save_models/xgboost_model.json')
+        plt.tight_layout()
+        plt.savefig(f'{self.log_path}/importance.png')
+        Misc.create_directory(f'{self.log_path}/save_models/')
+        self.xgb_classifier.save_model(f'{self.log_path}/save_models/xgboost_model.json')
+        self.config[self.model_type]['finetuned']= f'{self.log_path}/save_models/xgboost_model.json'
+        with open('config/model.yaml', 'w') as file:
+            yaml.safe_dump(self.config, file)
 
-        self.performance_test(X_test, y_test)
+        #self.performance_test(X_test, y_test)
+        self.metrics.plot_confusion_matrix(yhat, y_test, 'Test', self.log_path)
 
         return self.xgb_classifier, score
     
@@ -118,16 +135,17 @@ class TrainXGBoost:
         plt.xlabel('Predicted')
         plt.ylabel('True')
         plt.title('Confusion Matrix')
-        plt.show(block=False)
         explainer = shap.Explainer(self.xgb_classifier)
         shap_values = explainer(X_test_list)
         shap.summary_plot(shap_values, X_test_list)
         shap.plots.heatmap(shap_values)
-        plt.savefig(f'{self.log_path}/confusion_matrix_test.png')
+        plot_path = f'{self.log_path}/confusion_matrix_test.png'
+        plt.savefig(plot_path)
         f1score = f1_score(y_test_list, y_pred, zero_division=1.0)
         precision_recall_fscore = precision_recall_fscore_support(y_test_list, y_pred, zero_division=1.0)
         print("F1 score : ", f1score)
         print("precision_recall_fscore : ", precision_recall_fscore)
-        results_report["precision_recall_fscore"]= precision_recall_fscore
-        results_report['F1 score']=f1score
+        results_report["precision_recall_fscore"]= str(precision_recall_fscore)
+        results_report['F1 score'] = str(f1score)
+        plt.close()
 

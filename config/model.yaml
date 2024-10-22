@@ -1,10 +1,10 @@
 roberta:
   pretrained: "andreas122001/roberta-academic-detector"
-  finetuned: "/content/drive/MyDrive/roberta/saved_weights/model.safetensors"
+  finetuned: "/content/drive/MyDrive/modelForAttack.safetensors"
 
 bloomz:
   pretrained: "andreas122001/bloomz-560m-academic-detector"
-  finetuned: "data/chatgpt_abstract_with_validation.jsonl"
+  finetuned: "/content/drive/MyDrive/model.safetensors"
 
 xgboost:
   pretrained: "na"

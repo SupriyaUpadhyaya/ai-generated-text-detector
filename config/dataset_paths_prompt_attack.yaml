@@ -1,0 +1,28 @@
+gemini_abstract_without_grammar_mistakes_attack:
+  test: "data/prompt_attack_preprocessed/M4_arxiv_gemini_grammar_mistakes_attack.jsonl"
+  human_text_column: 'human_text'
+  machine_text_column: 'attack_machine_text'
+
+gemini_abstract_without_idioms_attack:
+  test: "data/prompt_attack_preprocessed/M4_arxiv_gemini_idioms_attack.jsonl"
+  human_text_column: 'human_text'
+  machine_text_column: 'attack_machine_text'
+
+gemini_abstract_without_sentence_restructure_attack:
+  test: "data/prompt_attack_preprocessed/M4_arxiv_gemini_sentence_restructure_attack.jsonl"
+  human_text_column: 'human_text'
+  machine_text_column: 'attack_machine_text'
+
+gemini_abstract_without_informal_slang_attack:
+  test: "data/prompt_attack_preprocessed/M4_arxiv_gemini_informal_slang_attack.jsonl"
+  human_text_column: 'human_text'
+  machine_text_column: 'attack_machine_text'
+
+gemini_abstract_without_synonym_attack:
+  test: "data/prompt_attack_preprocessed/M4_arxiv_gemini_synonym_attack.jsonl"
+  human_text_column: 'human_text'
+  machine_text_column: 'attack_machine_text'
+
+
+  
+  
