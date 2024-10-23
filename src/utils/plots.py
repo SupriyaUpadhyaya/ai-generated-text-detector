@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 # Step 1: Find all results_report.json files in the current directory and subdirectories
 json_files = []
-for root, dirs, files in os.walk('results/report/roberta'):
+for root, dirs, files in os.walk('../../final-results/subset-training/bloomzOnCohere'):
     for file in files:
         if file == 'results_report.json':
             json_files.append(os.path.join(root, file))
