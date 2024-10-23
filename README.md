@@ -20,7 +20,7 @@ Full report and presentation is available at [results](results)
 |Prof. Dr.-Ing. Andreas Nürnberger|
 ##
 ### Execution instruction to run the experiments
-Following notebook is a reference on how to run the experiments [run experiments](SupriyaUpadhyaya/ai-generated-text-detector/notebooks/run_experiment.ipynb). 
+Following notebook is a reference on how to run the experiments [run experiments](notebooks/run_experiment.ipynb). 
 
 ```
 !nohup python3 -u main.py --modelType xgboost --task finetuneAndEval --trainData chatgpt --dataType abstract --preprocessing True --log_folder_name xgboost_finetuneval_chatgpt --title 'XGBoost Finetune and Evaluation - chatgpt' &> ./results/logs/xgboost_finetuneeval_chatgpt.log&
