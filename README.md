@@ -14,7 +14,7 @@ Full report and presentation is available at [results](results)
 
 |Supervisors|
 | -------- |
-|M.Sc Marcus Thil|
+|M.Sc Marcus Thiel|
 |Prof. Dr.-Ing. Andreas Nürnberger|
 ##
 ### Execution instruction to run the experiments
