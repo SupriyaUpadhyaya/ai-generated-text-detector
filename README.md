@@ -20,7 +20,8 @@ Full report and presentation is available at [results](results)
 ### Execution instruction to run the experiments
 Following notebook is a reference on how to run the experiments [run experiments](SupriyaUpadhyaya/ai-generated-text-detector/notebooks/run_experiment.ipynb). 
 
-```!nohup python3 -u main.py --modelType xgboost --task finetuneAndEval --trainData chatgpt --dataType abstract --preprocessing True --log_folder_name xgboost_finetuneval_chatgpt --title 'XGBoost Finetune and Evaluation - chatgpt' &> ./results/logs/xgboost_finetuneeval_chatgpt.log&
+```
+!nohup python3 -u main.py --modelType xgboost --task finetuneAndEval --trainData chatgpt --dataType abstract --preprocessing True --log_folder_name xgboost_finetuneval_chatgpt --title 'XGBoost Finetune and Evaluation - chatgpt' &> ./results/logs/xgboost_finetuneeval_chatgpt.log&
 options:
   -h, --help            show this help message and exit
   --modelType {roberta,bloomz,xgboost}
@@ -37,7 +38,8 @@ options:
                         Log folder name
   --title TITLE         Title
   --percentage PERCENTAGE
-                        percentage```
+                        percentage
+```
 
 
 ##
