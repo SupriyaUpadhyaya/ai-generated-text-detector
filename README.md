@@ -22,6 +22,8 @@ Following notebook is a reference on how to run the experiments [run experiments
 
 ```
 !nohup python3 -u main.py --modelType xgboost --task finetuneAndEval --trainData chatgpt --dataType abstract --preprocessing True --log_folder_name xgboost_finetuneval_chatgpt --title 'XGBoost Finetune and Evaluation - chatgpt' &> ./results/logs/xgboost_finetuneeval_chatgpt.log&
+```
+```
 options:
   -h, --help            show this help message and exit
   --modelType {roberta,bloomz,xgboost}
