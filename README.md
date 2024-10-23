@@ -21,7 +21,6 @@ Full report and presentation is available at [results](results)
 Following notebook is a reference on how to run the experiments [run experiments](SupriyaUpadhyaya/ai-generated-text-detector/notebooks/run_experiment.ipynb). 
 
 `!nohup python3 -u main.py --modelType xgboost --task finetuneAndEval --trainData chatgpt --dataType abstract --preprocessing True --log_folder_name xgboost_finetuneval_chatgpt --title 'XGBoost Finetune and Evaluation - chatgpt' &> ./results/logs/xgboost_finetuneeval_chatgpt.log&
-
 options:
   -h, --help            show this help message and exit
   --modelType {roberta,bloomz,xgboost}
@@ -43,8 +42,8 @@ options:
 
 ##
 ### Results 
-[Accuracy heatmap for XGBoost based detector](SupriyaUpadhyaya/ai-generated-text-detector/results/xgboost_heatmap_Accuracy.png)
-[F1 Score heatmap for BLOOMZ based detector](SupriyaUpadhyaya/ai-generated-text-detector/results/xgboost_heatmap_Accuracy.png)
+![Accuracy heatmap for XGBoost based detector](SupriyaUpadhyaya/ai-generated-text-detector/results/xgboost_heatmap_Accuracy.png)
+![F1 Score heatmap for BLOOMZ based detector](SupriyaUpadhyaya/ai-generated-text-detector/results/xgboost_heatmap_Accuracy.png)
 
 
 
