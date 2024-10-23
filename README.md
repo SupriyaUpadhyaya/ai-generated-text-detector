@@ -48,7 +48,9 @@ options:
 
 ##
 ### Results 
+Accuracy heatmap for XGBoost based detector
 ![Accuracy heatmap for XGBoost based detector](results/xgboost_heatmap_Accuracy.png)
+F1 Score heatmap for BLOOMZ based detector
 ![F1 Score heatmap for BLOOMZ based detector](results/xgboost_heatmap_Accuracy.png)
 
 
