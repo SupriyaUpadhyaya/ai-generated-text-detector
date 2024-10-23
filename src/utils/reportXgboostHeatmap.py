@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Read CSV file into a DataFrame
-data = pd.read_csv('bloomz-crossdomain.csv', index_col=0)
+
+data = pd.read_csv('model_metrics_results.csv', index_col=0)
 
 x_labels = data.columns[~data.columns.str.contains('^Unnamed')]
 
@@ -20,8 +21,8 @@ data = data.astype(float).round(2)
 
 # Define function to create and save heatmap
 def create_heatmap(df, metric_name):
-    plt.figure(figsize=(3, 3))
-    sns.heatmap(df, annot=True, cmap='Greys', xticklabels=x_labels, mask=df.isnull())
+    plt.figure(figsize=(8, 6))
+    sns.heatmap(df, annot=True, cmap='Blues', xticklabels=x_labels, mask=df.isnull())
     plt.title(f'Heatmap for {metric_name}')
     plt.xlabel("Evaluation dataset")
     plt.ylabel("Training dataset")
@@ -30,13 +31,13 @@ def create_heatmap(df, metric_name):
     plt.show()
 
 # Split the dataframe into separate parts for each metric (assuming columns represent precision, recall, accuracy, f1)
-precision_data = data[['Precision']]
-recall_data = data[['Recall']]
-#accuracy_data = data[['accuracy']]
-f1_score_data = data[['F1']]
+precision_data = data[['precision']]
+recall_data = data[['recall']]
+accuracy_data = data[['accuracy']]
+f1_score_data = data[['f1']]
 
 # Create heatmaps for each metric
 create_heatmap(precision_data, "Precision")
 create_heatmap(recall_data, "Recall")
-#create_heatmap(accuracy_data, "Accuracy")
+create_heatmap(accuracy_data, "Accuracy")
 create_heatmap(f1_score_data, "F1 Score")

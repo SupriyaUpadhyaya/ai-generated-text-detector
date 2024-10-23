@@ -4,15 +4,12 @@ import csv
 
 # Define model names to search for in JSON files
 models = [
-    'chatgpt_abstract_without', 'chatgpt_abstract_paraphrased_without', 'bloomz_abstract_without', 
-    'bloomz_abstract_paraphrased_without', 'llama3_abstract_without', 'cohere_abstract_without', 
-    'davinci_abstract_without', 'flant5_abstract_without', 'llama3_ml_without', 'bloomz_wiki_without', 
-    'chatgpt_wiki_without', 'cohere_wiki_without', 'davinci_wiki_without', 
-    'chatgptBloomz_abstract_without', 'bloomzWiki_abstract_without', 'bloomzWikiML_abstract_without'
+    'Abstract ChatGPT', 'Abstract Bloomz', 'Abstract Davinci', 'Abstract Cohere', 'Abstract Flant5', 
+    'ML Abstract Llama3', 'Wiki ChatGPT', 'Wiki Bloomz', 'Wiki Davinci', 'Wiki Cohere'	
 ]
 
 # Metrics to extract for each model
-metrics = ['precision', 'Recall', 'Accuracy', 'F1']
+metrics = ['Precision', 'Recall', 'Accuracy', 'F1 Score']
 
 # Initialize a dictionary to hold the results
 results = {}
