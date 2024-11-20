@@ -54,6 +54,7 @@ class EvaluationXGBoost:
             X_test = featExtractor.getFeatures(dataset['text'])
             y_test = dataset['label']
             self.performance_test(X_test, y_test, dstype)
+            print("Next qualitative_analysis")
             self.metrics.qualitative_analysis(dataset['text'], X_test, y_test, dstype, self.log_path)
     
     def performance_test(self, X_test_list, y_test_list, dstype):

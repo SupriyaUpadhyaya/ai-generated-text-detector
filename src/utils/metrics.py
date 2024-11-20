@@ -112,6 +112,7 @@ class Metrics:
         plt.close()
 
     def qualitative_analysis(self, text, X_test, y_test, name, path):
+        print("qualitative_analysis")
         y_pred = self.xgb_classifier.predict(X_test)
         mis_cls = [test 
            for test, truth, prediction in 
