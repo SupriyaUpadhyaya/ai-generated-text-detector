@@ -53,15 +53,15 @@ class EvaluationXGBoost:
             dataset = datasets[dstype]
             X_test = featExtractor.getFeatures(dataset['text'])
             y_test = dataset['label']
-            self.performance_test(X_test, y_test, dstype)
+            self.performance_test(dataset['text'], X_test, y_test, dstype)
             print("Next qualitative_analysis")
-            self.metrics.qualitative_analysis(dataset['text'], X_test, y_test, dstype, self.log_path)
     
-    def performance_test(self, X_test_list, y_test_list, dstype):
+    def performance_test(self, text, X_test_list, y_test_list, dstype):
         y_pred = self.xgb_classifier.predict(X_test_list)
 
         # Compute confusion matrix
         self.metrics.plot_confusion_matrix(y_pred, y_test_list, dstype, self.log_path)
+        self.metrics.qualitative_analysis(text, X_test_list, y_test_list, y_pred, dstype, self.log_path)
         # cm = confusion_matrix(y_test_list, y_pred)
 
         # Plot confusion matrix using seaborn heatmap

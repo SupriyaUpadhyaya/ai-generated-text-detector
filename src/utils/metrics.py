@@ -111,9 +111,8 @@ class Metrics:
         self.writer.add_figure(f'{path}/confusion_matrix_{name}.png', plt.gcf())
         plt.close()
 
-    def qualitative_analysis(self, text, X_test, y_test, name, path):
+    def qualitative_analysis(self, text, X_test, y_test, y_pred, name, path):
         print("qualitative_analysis")
-        y_pred = self.xgb_classifier.predict(X_test)
         mis_cls = [test 
            for test, truth, prediction in 
            zip(X_test, y_test, y_pred) 
