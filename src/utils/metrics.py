@@ -119,6 +119,8 @@ class Metrics:
         print("X_test : ", len(X_test))
         print("X_test : ", X_test)
 
+        X_test_df = pd.DataFrame(X_test)
+
         mis_cls = []
         mis_cls_feat = []
         count = 0
@@ -131,7 +133,7 @@ class Metrics:
                     "truth": truth,
                     "prediction": prediction
                 })
-                mis_cls_feat.append[X_test[count, count]]
+                mis_cls_feat.append[X_test_df.iloc[count, :]]
                 count += 1
         print("count : ", count)
 
@@ -147,7 +149,7 @@ class Metrics:
                     "truth": truth,
                     "prediction": prediction
                 })
-                correct_cls_feat.append[X_test[count, count]]
+                correct_cls_feat.append[X_test_df.iloc[count, :]]
                 count += 1
         print("count : ", count)
 
