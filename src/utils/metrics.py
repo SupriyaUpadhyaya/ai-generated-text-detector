@@ -5,6 +5,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 from torch.utils.tensorboard import SummaryWriter
 from transformers import RobertaTokenizer, RobertaForSequenceClassification, Trainer, TrainingArguments
 from datasets import load_dataset, DatasetDict, concatenate_datasets
+import pandas as pd
 
 class Metrics:
     def __init__(self, path):
@@ -109,3 +110,21 @@ class Metrics:
         plt.savefig(plot_path)
         self.writer.add_figure(f'{path}/confusion_matrix_{name}.png', plt.gcf())
         plt.close()
+
+    def qualitative_analysis(self, text, X_test, y_test, dstype):
+        y_pred = self.xgb_classifier.predict(X_test)
+        mis_cls = [test 
+           for test, truth, prediction in 
+           zip(X_test, y_test, y_pred) 
+           if prediction != truth]
+        correct_cls = [test 
+           for test, truth, train, prediction in 
+           zip(X_test, y_test, y_pred) 
+           if prediction == truth]
+        # Converting to DataFrame
+        mis_cls_df = pd.DataFrame(mis_cls)
+        correct_cls_df = pd.DataFrame(correct_cls)
+
+        # Save to CSV
+        mis_cls_df.to_csv('misclassified_samples.csv', index=False)
+        correct_cls_df.to_csv('correct_classified_samples.csv', index=False)

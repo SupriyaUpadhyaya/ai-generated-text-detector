@@ -1,0 +1,29 @@
+,Training Data,score,Evaluation Data,Metric,Detector Type
+0,Abstract - Chatgpt,0.436,ML Abstract Llama3,Precision,XGBoost Detector
+1,Abstract - Bloomz,0.415,ML Abstract Llama3,Precision,XGBoost Detector
+2,"Abstract, WiKi and ML - Bloomz",0.5,ML Abstract Llama3,Precision,XGBoost Detector
+3,Abstract from ML papers - Llama3,0.621,ML Abstract Llama3,Precision,XGBoost Detector
+4,Abstract - Chatgpt,0.148,ML Abstract Llama3,Recall,XGBoost Detector
+5,Abstract - Bloomz,0.342,ML Abstract Llama3,Recall,XGBoost Detector
+6,"Abstract, WiKi and ML - Bloomz",1.0,ML Abstract Llama3,Recall,XGBoost Detector
+7,Abstract from ML papers - Llama3,0.743,ML Abstract Llama3,Recall,XGBoost Detector
+8,Abstract - Chatgpt,0.478,ML Abstract Llama3,Accuracy,XGBoost Detector
+9,Abstract - Bloomz,0.43,ML Abstract Llama3,Accuracy,XGBoost Detector
+10,"Abstract, WiKi and ML - Bloomz",0.501,ML Abstract Llama3,Accuracy,XGBoost Detector
+11,Abstract from ML papers - Llama3,0.645,ML Abstract Llama3,Accuracy,XGBoost Detector
+12,Abstract - Chatgpt,0.221,ML Abstract Llama3,F1-Score,XGBoost Detector
+13,Abstract - Bloomz,0.375,ML Abstract Llama3,F1-Score,XGBoost Detector
+14,"Abstract, WiKi and ML - Bloomz",0.667,ML Abstract Llama3,F1-Score,XGBoost Detector
+15,Abstract from ML papers - Llama3,0.677,ML Abstract Llama3,F1-Score,XGBoost Detector
+16,Abstract - Chatgpt,0.401,ML Abstract Llama3,F1-Score,Bloomz Detector
+17,Abstract - Bloomz,0.765,ML Abstract Llama3,F1-Score,Bloomz Detector
+18,"Abstract, WiKi and ML - Bloomz",0.563,ML Abstract Llama3,F1-Score,Bloomz Detector
+19,Abstract from ML papers - Llama3,0.999,ML Abstract Llama3,F1-Score,Bloomz Detector
+20,Abstract - Chatgpt,0.447,ML Abstract Llama3,Precision,Bloomz Detector
+21,Abstract - Bloomz,0.918,ML Abstract Llama3,Precision,Bloomz Detector
+22,"Abstract, WiKi and ML - Bloomz",0.454,ML Abstract Llama3,Precision,Bloomz Detector
+23,Abstract from ML papers - Llama3,1.0,ML Abstract Llama3,Precision,Bloomz Detector
+24,Abstract - Chatgpt,0.36,ML Abstract Llama3,Recall,Bloomz Detector
+25,Abstract - Bloomz,0.66,ML Abstract Llama3,Recall,Bloomz Detector
+26,"Abstract, WiKi and ML - Bloomz",0.74,ML Abstract Llama3,Recall,Bloomz Detector
+27,Abstract from ML papers - Llama3,0.998,ML Abstract Llama3,Recall,Bloomz Detector

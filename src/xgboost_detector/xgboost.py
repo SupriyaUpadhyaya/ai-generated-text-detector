@@ -64,6 +64,7 @@ class TrainXGBoost:
                         verbose=False)
         results = self.xgb_classifier.evals_result()
         yhat = self.xgb_classifier.predict(X_test)
+        y_test = np.asarray(y_test)
         score = accuracy_score(y_test, yhat)
         print('Accuracy: %.3f' % score)
         results_report['Training accuracy'] = score

@@ -1,0 +1,4 @@
+Performance Metric\Attack Type ,Pruthi,DeepWordBug,PWWS,TextFooler
+Accuracy without attack ,1,1,1,1
+Accuracy under attack,1,0.65,0.75,0.4
+Average perturbed word (in %),1,4.19,4.33,12.22

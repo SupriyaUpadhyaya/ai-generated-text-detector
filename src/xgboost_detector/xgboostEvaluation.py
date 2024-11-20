@@ -54,10 +54,11 @@ class EvaluationXGBoost:
             X_test = featExtractor.getFeatures(dataset['text'])
             y_test = dataset['label']
             self.performance_test(X_test, y_test, dstype)
-            
+            self.metrics.qualitative_analysis(dataset['text'], X_test, y_test, dstype)
     
     def performance_test(self, X_test_list, y_test_list, dstype):
         y_pred = self.xgb_classifier.predict(X_test_list)
+
         # Compute confusion matrix
         self.metrics.plot_confusion_matrix(y_pred, y_test_list, dstype, self.log_path)
         # cm = confusion_matrix(y_test_list, y_pred)

@@ -1,0 +1,9 @@
+Training dataset/Evaluation dataset,Abstract ChatGPT,,,Abstract Bloomz,,,Abstract Davinci,,,Abstract Cohere,,,Abstract Flant5,,,"ML Abstract Llama3",,,Wiki ChatGPT,,,Wiki Bloomz,,,Wiki Davinci,,,Wiki Cohere,,
+,F1-Score,Precision,Recall,F1-Score,Precision,Recall,F1-Score,Precision,Recall,F1-Score,Precision,Recall,F1-Score,Precision,Recall,F1-Score,Precision,Recall,F1-Score,Precision,Recall,F1-Score,Precision,Recall,F1-Score,Precision,Recall,F1-Score,Precision,Recall
+Pretrained Bloomz,1.000,1.000,1.000,0.143,1.000,0.077,0.446,1.000,0.287,0.394,1.000,0.245,0.827,1.000,0.705,,,,,,,,,,,,,,,
+"Abstract - Bloomz (without preprocessing)",1.000,1.000,1.000,0.999,1.000,0.998,0.979,1.000,0.958,0.997,1.000,0.995,1.000,1.000,1.000,,,,,,,,,,,,,,,
+Abstract - Chatgpt,0.925,1.000,0.861,0.994,1.000,0.990,0.690,0.996,0.530,0.545,1.000,0.380,0.889,0.921,0.860,0.401,0.447,0.360,0.900,0.914,0.870,0.146,0.690,0.081,0.074,0.441,0.040,0.052,0.333,0.028
+Abstract - Bloomz,0.997,0.996,0.998,0.103,0.940,0.060,0.426,0.987,0.270,0.244,0.976,0.140,0.600,0.992,0.440,0.765,0.918,0.660,0.000,1.000,0.000,0.089,1.000,0.047,0.021,1.000,0.011,0.046,1.000,0.023
+"Abstract and Wiki - Bloomz",0.981,0.995,0.967,0.897,0.994,0.818,0.717,0.974,0.567,0.095,0.909,0.050,0.909,0.994,0.837,,,,0.996,0.993,1.000,0.357,1.000,0.217,0.099,1.000,0.052,0.391,0.991,0.244
+"Abstract, WiKi and ML - Bloomz",,,,,,,,,,,,,,,,0.563,0.454,0.740,,,,,,,,,,,,
+"Abstract from ML papers - Llama3",,,,,,,,,,,,,,,,0.999,1.000,0.998,,,,,,,,,,,,
