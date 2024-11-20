@@ -119,7 +119,7 @@ class Metrics:
            if prediction != truth]
         correct_cls = [test 
            for test, truth, train, prediction in 
-           zip(X_test, y_test, y_pred) 
+           zip(text, X_test, y_test, y_pred) 
            if prediction == truth]
         # Converting to DataFrame
         mis_cls_df = pd.DataFrame(mis_cls)
