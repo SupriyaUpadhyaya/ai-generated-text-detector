@@ -117,6 +117,7 @@ class Metrics:
         print("y_pred : ", len(y_pred))
         print("text : ", len(text))
         print("X_test : ", len(X_test))
+        print("X_test : ", X_test)
 
         mis_cls = []
         mis_cls_feat = []
