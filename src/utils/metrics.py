@@ -120,7 +120,7 @@ class Metrics:
 
         mis_cls = []
         count = 0
-        for text_sample, features, truth, prediction in zip(text, X_test, y_test, y_pred):
+        for text_sample, truth, prediction in zip(text, y_test, y_pred):
             count += 1
             print("prediction :", prediction)
             print("truth :", truth)
@@ -134,7 +134,7 @@ class Metrics:
         correct_cls = []
 
         count = 0
-        for text_sample, features, truth, prediction in zip(text, X_test, y_test, y_pred):
+        for text_sample, truth, prediction in zip(text, y_test, y_pred):
             count += 1
             print("prediction :", prediction)
             print("truth :", truth)
