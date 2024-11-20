@@ -133,7 +133,7 @@ class Metrics:
                     "truth": truth,
                     "prediction": prediction
                 })
-                mis_cls_feat.append[X_test_df.iloc[count, :]]
+                mis_cls_feat.append(X_test_df.iloc[count, :])
                 count += 1
         print("count : ", count)
 
@@ -149,7 +149,7 @@ class Metrics:
                     "truth": truth,
                     "prediction": prediction
                 })
-                correct_cls_feat.append[X_test_df.iloc[count, :]]
+                correct_cls_feat.append(X_test_df.iloc[count, :])
                 count += 1
         print("count : ", count)
 
