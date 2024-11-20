@@ -165,26 +165,26 @@ class Metrics:
         mis_cls_feat_df.to_csv(f'{path}/misclassified_samples_features_{name}.csv', index=False)
         correct_cls_feat_df.to_csv(f'{path}/correct_classified_samples_features_{name}.csv', index=False)
 
-        plt.figure(figsize=(10, 8))  # Set figure size
-        sns.catplot(data=mis_cls_feat_df.iloc[:, :], kind="box", height=5, aspect=1.5)
+        # plt.figure(figsize=(10, 8))  # Set figure size
+        # sns.catplot(data=mis_cls_feat_df.iloc[:, :], kind="box", height=5, aspect=1.5)
 
-        # Add labels and title
-        plt.title("Boxplot of Values by Category", fontsize=16)
-        plt.xlabel("Category", fontsize=12)
-        plt.ylabel("Values", fontsize=12)
-        plt.xticks(rotation=90)
+        # # Add labels and title
+        # plt.title("Boxplot of Values by Category", fontsize=16)
+        # plt.xlabel("Category", fontsize=12)
+        # plt.ylabel("Values", fontsize=12)
+        # plt.xticks(rotation=90)
 
-        # Save the plot to a file
-        plt.savefig(f'{path}/miscls_{name}_boxplot.png', dpi=300, bbox_inches="tight")
+        # # Save the plot to a file
+        # plt.savefig(f'{path}/miscls_{name}_boxplot.png', dpi=300, bbox_inches="tight")
 
-        plt.figure(figsize=(8, 6))  # Set figure size
-        sns.catplot(data=correct_cls_feat_df.iloc[:, :], kind="box", height=5, aspect=1.5)
+        # plt.figure(figsize=(8, 6))  # Set figure size
+        # sns.catplot(data=correct_cls_feat_df.iloc[:, :], kind="box", height=5, aspect=1.5)
 
-        # Add labels and title
-        plt.title("Boxplot of Values by Category", fontsize=16)
-        plt.xlabel("Category", fontsize=12)
-        plt.ylabel("Values", fontsize=12)
-        plt.xticks(rotation=90)
+        # # Add labels and title
+        # plt.title("Boxplot of Values by Category", fontsize=16)
+        # plt.xlabel("Category", fontsize=12)
+        # plt.ylabel("Values", fontsize=12)
+        # plt.xticks(rotation=90)
 
-        # Save the plot to a file
-        plt.savefig(f'{path}/correct_cls{name}_boxplot.png', dpi=300, bbox_inches="tight")
+        # # Save the plot to a file
+        # plt.savefig(f'{path}/correct_cls{name}_boxplot.png', dpi=300, bbox_inches="tight")
