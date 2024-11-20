@@ -113,6 +113,10 @@ class Metrics:
 
     def qualitative_analysis(self, text, X_test, y_test, y_pred, name, path):
         print("qualitative_analysis")
+        print("y_test : ", len(y_test))
+        print("y_pred : ", len(y_pred))
+        print("text : ", len(text))
+        print("X_test : ", len(X_test))
         mis_cls = [text 
            for text, features, truth, prediction in 
            zip(text, X_test, y_test, y_pred) 
