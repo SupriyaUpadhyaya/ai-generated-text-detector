@@ -113,12 +113,12 @@ class Metrics:
 
     def qualitative_analysis(self, text, X_test, y_test, y_pred, name, path):
         print("qualitative_analysis")
-        mis_cls = [test 
-           for test, truth, prediction in 
-           zip(X_test, y_test, y_pred) 
+        mis_cls = [text 
+           for text, features, truth, prediction in 
+           zip(text, X_test, y_test, y_pred) 
            if prediction != truth]
-        correct_cls = [test 
-           for test, truth, train, prediction in 
+        correct_cls = [text 
+           for text, features, truth, prediction in 
            zip(text, X_test, y_test, y_pred) 
            if prediction == truth]
         # Converting to DataFrame
