@@ -130,7 +130,7 @@ class Metrics:
                     "truth": truth,
                     "prediction": prediction
                 })
-                mis_cls_feat.append[X_test[count]]
+                mis_cls_feat.append[X_test[count, count]]
                 count += 1
         print("count : ", count)
 
@@ -146,7 +146,7 @@ class Metrics:
                     "truth": truth,
                     "prediction": prediction
                 })
-                correct_cls_feat.append[X_test[count]]
+                correct_cls_feat.append[X_test[count, count]]
                 count += 1
         print("count : ", count)
 
