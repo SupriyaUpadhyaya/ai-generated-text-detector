@@ -6,6 +6,8 @@ import pandas as pd
 import nltk
 from sklearn.preprocessing import MinMaxScaler
 
+nltk.download('punkt_tab')
+
 
 class FeatureExtractor():
     def __init__(self):
