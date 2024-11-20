@@ -126,6 +126,8 @@ class Metrics:
            zip(text, X_test, y_test, y_pred) 
            if prediction == truth]
         # Converting to DataFrame
+        print("mis_cls : ", len(mis_cls))
+        print("correct_cls : ", len(correct_cls))
         mis_cls_df = pd.DataFrame(mis_cls)
         correct_cls_df = pd.DataFrame(correct_cls)
 
