@@ -172,6 +172,7 @@ class Metrics:
         plt.title("Boxplot of Values by Category", fontsize=16)
         plt.xlabel("Category", fontsize=12)
         plt.ylabel("Values", fontsize=12)
+        plt.xticks(rotation=90)
 
         # Save the plot to a file
         plt.savefig(f'{path}/miscls_{name}_boxplot.png', dpi=300, bbox_inches="tight")
@@ -183,6 +184,7 @@ class Metrics:
         plt.title("Boxplot of Values by Category", fontsize=16)
         plt.xlabel("Category", fontsize=12)
         plt.ylabel("Values", fontsize=12)
+        plt.xticks(rotation=90)
 
         # Save the plot to a file
         plt.savefig(f'{path}/correct_cls{name}_boxplot.png', dpi=300, bbox_inches="tight")
