@@ -119,26 +119,32 @@ class Metrics:
         print("X_test : ", len(X_test))
 
         mis_cls = []
-
+        count = 0
         for text_sample, features, truth, prediction in zip(text, X_test, y_test, y_pred):
+            count += 1
+            print("prediction :", prediction)
+            print("truth :", truth)
             if prediction != truth:
                 mis_cls.append({
                     "text": text_sample,
-                    "features": features,
                     "truth": truth,
                     "prediction": prediction
                 })
-
+        print("count : ", count)
         correct_cls = []
 
+        count = 0
         for text_sample, features, truth, prediction in zip(text, X_test, y_test, y_pred):
+            count += 1
+            print("prediction :", prediction)
+            print("truth :", truth)
             if prediction == truth:
                 correct_cls.append({
                     "text": text_sample,
-                    "features": features,
                     "truth": truth,
                     "prediction": prediction
                 })
+        print("count : ", count)
 
         # Converting to DataFrame
         print("mis_cls : ", len(mis_cls))
