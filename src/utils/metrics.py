@@ -119,9 +119,9 @@ class Metrics:
         print("X_test : ", len(X_test))
 
         mis_cls = []
+        mis_cls_feat = []
         count = 0
         for text_sample, truth, prediction in zip(text, y_test, y_pred):
-            count += 1
             print("prediction :", prediction)
             print("truth :", truth)
             if prediction != truth:
@@ -130,12 +130,14 @@ class Metrics:
                     "truth": truth,
                     "prediction": prediction
                 })
+                mis_cls_feat.append[X_test[count]]
+                count += 1
         print("count : ", count)
-        correct_cls = []
 
+        correct_cls = []
+        correct_cls_feat = []
         count = 0
         for text_sample, truth, prediction in zip(text, y_test, y_pred):
-            count += 1
             print("prediction :", prediction)
             print("truth :", truth)
             if prediction == truth:
@@ -144,14 +146,22 @@ class Metrics:
                     "truth": truth,
                     "prediction": prediction
                 })
+                correct_cls_feat.append[X_test[count]]
+                count += 1
         print("count : ", count)
 
         # Converting to DataFrame
         print("mis_cls : ", len(mis_cls))
         print("correct_cls : ", len(correct_cls))
+        print("mis_cls_feat : ", len(mis_cls_feat))
+        print("correct_cls_feat : ", len(correct_cls_feat))
         mis_cls_df = pd.DataFrame(mis_cls)
         correct_cls_df = pd.DataFrame(correct_cls)
+        mis_cls_feat_df = pd.DataFrame(mis_cls_feat)
+        correct_cls_feat_df = pd.DataFrame(correct_cls_feat)
 
         # Save to CSV
         mis_cls_df.to_csv(f'{path}/misclassified_samples_{name}.csv', index=False)
         correct_cls_df.to_csv(f'{path}/correct_classified_samples_{name}.csv', index=False)
+        mis_cls_feat_df.to_csv(f'{path}/misclassified_samples_features_{name}.csv', index=False)
+        correct_cls_feat_df.to_csv(f'{path}/correct_classified_samples_features_{name}.csv', index=False)
