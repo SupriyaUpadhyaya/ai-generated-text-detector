@@ -6,6 +6,8 @@ import pandas as pd
 import nltk
 from sklearn.preprocessing import MinMaxScaler
 
+nltk.download('punkt_tab')
+
 
 class FeatureExtractor():
     def __init__(self):
@@ -328,12 +330,12 @@ class FeatureExtractor():
         check_word5 = self.check_words_in_paragraphs(machine_abstract, words[5])
 
         #check_word6_human = self.check_words_in_paragraphs(abstract, words[6])
-        check_word6 = self.check_words_in_paragraphs(machine_abstract, words[6])
+        #check_word6 = self.check_words_in_paragraphs(machine_abstract, words[6])
 
-        check_word5_6 = 0
+        check_word2_3 = 0
 
-        if check_word5 == 1 or check_word6 == 1:
-            check_word5_6 = 1
+        if check_word2 == 1 or check_word3 == 1:
+            check_word2_3 = 1
 
         # check_word2_3_human = 0
 
@@ -354,46 +356,46 @@ class FeatureExtractor():
         # for param in params:
         #     data[param] = dfs.loc[count, param]
 
-        #data['sentences per paragraph_human'] = [num_sentence_human]
-        data['sentences per paragraph'] = [num_sentence]
+        #data['no_sentence_human'] = [num_sentence_human]
+        data['no_sentence'] = [num_sentence]
         #data['num_words_human'] = [num_words_human]
-        data['words per paragraph'] = [num_words]
+        data['num_words'] = [num_words]
         #data['character0_human'] = [character0_human]
         #data['character1_human'] = [character1_human]
         #data['character2_3_human'] = [character2_3_human]
         #data['character4_human'] = [character4_human]
         #data['character5_human'] = [character5_human]
-        data[') present'] = [character0]
-        data['- present'] = [character1]
-        data[': or ; present'] = [character2_3]
-        data['? present'] = [character4]
-        data["' present"] = [character5]
+        data['character0'] = [character0]
+        data['character1'] = [character1]
+        data['character2_3'] = [character2_3]
+        data['character4'] = [character4]
+        data['character5'] = [character5]
         #data['std_dev_human'] = [std_dev_human]
-        data['sentence length standard deviation'] = [std_dev]
+        data['std_dev'] = [std_dev]
         #data['sent_len_diff_human'] = [sent_len_diff_human]
-        data['consecutive sentence length difference'] = [sent_len_diff]
+        data['sent_len_diff'] = [sent_len_diff]
         #data['count_short_sentences_in_paragraphs_human'] = [count_short_sentences_in_paragraphs_human]
-        data['number_short_sentences'] = [count_short_sentences_in_paragraphs]
+        data['count_short_sentences_in_paragraphs'] = [count_short_sentences_in_paragraphs]
         #data['count_long_sentences_in_paragraphs_human'] = [count_long_sentences_in_paragraphs_human]
-        data['number_long_sentences'] = [count_long_sentences_in_paragraphs]
+        data['count_long_sentences_in_paragraphs'] = [count_long_sentences_in_paragraphs]
         #data['check_word0_human'] = [check_word0_human]
         #data['check_word1_human'] = [check_word1_human]
         #data['check_word2_3_human'] = [check_word2_3_human]
         #data['check_word3_human'] = [check_word3_human]
         #data['check_word4_human'] = [check_word4_human]
         #data['check_word5_human'] = [check_word5_human]
-        data['contains - although'] = [check_word0]
-        data['contains - However'] = [check_word1]
-        data['contains - but'] = [check_word2]
-        data['contains - because'] = [check_word3]
-        data['contains - this'] = [check_word4]
-        data['contains - others or researchers'] = [check_word5_6]
+        data['check_word0'] = [check_word0]
+        data['check_word1'] = [check_word1]
+        data['check_word2_3'] = [check_word2_3]
+        data['check_word3'] = [check_word3]
+        data['check_word4'] = [check_word4]
+        data['check_word5'] = [check_word5]
         #data['check_num_human'] = [check_num_human]
-        data['contains numbers'] = [check_num]
+        data['check_num'] = [check_num]
         #data['check_capitals_human'] = [check_capitals_human]
-        data['contains two times more capitals'] = [check_capitals]
+        data['check_capitals'] = [check_capitals]
         #data['check_et_human'] = [check_et_human]
-        data['check - et'] = [check_et]
+        data['check_et'] = [check_et]
 
         #count += 1
         df = pd.DataFrame(data, dtype=float)
@@ -401,9 +403,9 @@ class FeatureExtractor():
         #header = data
         
         #df = pd.read_csv(outputfilename)
-        #df['sentences per paragraph_human'] = self.normalize_column(df['sentences per paragraph_human'])
+        #df['no_sentence_human'] = self.normalize_column(df['no_sentence_human'])
         
-        #print(self.scaler.fit_transform(df[['sentences per paragraph']]))
+        #print(self.scaler.fit_transform(df[['no_sentence']]))
         #df['num_words_human'] = self.normalize_column(df['num_words_human'])
         
         #df['std_dev_human'] = self.normalize_column(df['std_dev_human'])
@@ -417,26 +419,26 @@ class FeatureExtractor():
         #df = pd.DataFrame(self.featureExtractor(text) for text in text_input_list)
         feature_dfs = [self.featureExtractor(text) for text in text_input_list]
         concatenated_df = pd.concat(feature_dfs, ignore_index=True)
-        concatenated_df['sentences per paragraph'] = self.scaler.fit_transform(concatenated_df[['sentences per paragraph']]).astype(float)
-        concatenated_df['words per paragraph'] = self.scaler.fit_transform(concatenated_df[['words per paragraph']]).astype(float)
-        concatenated_df['sentence length standard deviation'] = self.scaler.fit_transform(concatenated_df[['sentence length standard deviation']]).astype(float)
-        concatenated_df['sentence length standard deviation'] = self.scaler.fit_transform(concatenated_df[['sentence length standard deviation']]).astype(float)
+        concatenated_df['no_sentence'] = self.scaler.fit_transform(concatenated_df[['no_sentence']]).astype(float)
+        concatenated_df['num_words'] = self.scaler.fit_transform(concatenated_df[['num_words']]).astype(float)
+        concatenated_df['std_dev'] = self.scaler.fit_transform(concatenated_df[['std_dev']]).astype(float)
+        concatenated_df['sent_len_diff'] = self.scaler.fit_transform(concatenated_df[['sent_len_diff']]).astype(float)
         #input_features = np.array()
         #input_featuresdf = pd.DataFrame(input_features[:, 0, :])
         print(concatenated_df.head())
-        #feature_names = ['sentences per paragraph', 'words per paragraph', ') present', 'character1', 'character2_3', 'character4', 'character5', 'std_dev', 'sent_len_diff', 'count_short_sentences_in_paragraphs', 'count_long_sentences_in_paragraphs', 'check_word0', 'check_word1', 'check_word2_3', 'check_word3', 'check_word4', 'check_word5', 'check_num', 'check_capitals', 'check_et']
+        #feature_names = ['no_sentence', 'num_words', 'character0', 'character1', 'character2_3', 'character4', 'character5', 'std_dev', 'sent_len_diff', 'count_short_sentences_in_paragraphs', 'count_long_sentences_in_paragraphs', 'check_word0', 'check_word1', 'check_word2_3', 'check_word3', 'check_word4', 'check_word5', 'check_num', 'check_capitals', 'check_et']
         return concatenated_df
     
     def getFeaturesForAttack(self, text_input_list):
         #df = pd.DataFrame(self.featureExtractor(text) for text in text_input_list)
         #feature_dfs = [self.featureExtractor(text) for text in text_input_list]
         concatenated_df = self.featureExtractor(text_input_list[0])
-        concatenated_df['sentences per paragraph'] = self.scaler.fit_transform(concatenated_df[['sentences per paragraph']]).astype(float)
-        concatenated_df['words per paragraph'] = self.scaler.fit_transform(concatenated_df[['words per paragraph']]).astype(float)
-        concatenated_df['sentence length standard deviation'] = self.scaler.fit_transform(concatenated_df[['sentence length standard deviation']]).astype(float)
-        concatenated_df['sentence length standard deviation'] = self.scaler.fit_transform(concatenated_df[['sentence length standard deviation']]).astype(float)
+        concatenated_df['no_sentence'] = self.scaler.fit_transform(concatenated_df[['no_sentence']]).astype(float)
+        concatenated_df['num_words'] = self.scaler.fit_transform(concatenated_df[['num_words']]).astype(float)
+        concatenated_df['std_dev'] = self.scaler.fit_transform(concatenated_df[['std_dev']]).astype(float)
+        concatenated_df['sent_len_diff'] = self.scaler.fit_transform(concatenated_df[['sent_len_diff']]).astype(float)
         #input_features = np.array()
         #input_featuresdf = pd.DataFrame(input_features[:, 0, :])
         print(concatenated_df.head())
-        #feature_names = ['sentences per paragraph', 'words per paragraph', ') present', '- present', ': or ; present', '? present', "' present", 'sentence length standard deviation', 'sentence length standard deviation', 'number_short_sentences', 'number_long_sentences', 'contains - although', 'contains - However', 'contains - but', 'contains - because', 'contains - this', 'check_word5', 'contains numbers', 'contains two times more capitals', 'check - et']
+        #feature_names = ['no_sentence', 'num_words', 'character0', 'character1', 'character2_3', 'character4', 'character5', 'std_dev', 'sent_len_diff', 'count_short_sentences_in_paragraphs', 'count_long_sentences_in_paragraphs', 'check_word0', 'check_word1', 'check_word2_3', 'check_word3', 'check_word4', 'check_word5', 'check_num', 'check_capitals', 'check_et']
         return concatenated_df

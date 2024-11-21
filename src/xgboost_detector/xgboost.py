@@ -13,6 +13,7 @@ from src.xgboost_detector.featureExtractor import FeatureExtractor
 from src.shared import results_report
 from src.utils.misc import Misc
 import yaml
+import shap
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -113,6 +114,13 @@ class TrainXGBoost:
                                     palette='gray')
         plt.tight_layout()
         plt.savefig(f'{self.log_path}/importance.png')
+
+        explainer = shap.Explainer(self.xgb_classifier)
+        shap_values = explainer(X_test)
+        shap.summary_plot(shap_values, X_test)
+        shap.plots.heatmap(shap_values)
+        shap.savefig(f'{self.log_path}/shap.png')
+
         Misc.create_directory(f'{self.log_path}/save_models/')
         self.xgb_classifier.save_model(f'{self.log_path}/save_models/xgboost_model.json')
         self.config[self.model_type]['finetuned']= f'{self.log_path}/save_models/xgboost_model.json'

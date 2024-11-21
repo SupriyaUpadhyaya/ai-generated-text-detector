@@ -6,6 +6,7 @@ from torch.utils.tensorboard import SummaryWriter
 from transformers import RobertaTokenizer, RobertaForSequenceClassification, Trainer, TrainingArguments
 from datasets import load_dataset, DatasetDict, concatenate_datasets
 import pandas as pd
+import shap
 
 class Metrics:
     def __init__(self, path):
