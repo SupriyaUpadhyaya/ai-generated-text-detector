@@ -117,9 +117,10 @@ class TrainXGBoost:
 
         explainer = shap.Explainer(self.xgb_classifier)
         shap_values = explainer(X_test)
-        shap.summary_plot(shap_values, X_test)
-        shap.plots.heatmap(shap_values)
-        shap.savefig(f'{self.log_path}/shap.png')
+        shap.summary_plot(shap_values, X_test, show=False)
+        plt.savefig(f'{self.log_path}/shap_summary.png')
+        shap.plots.heatmap(shap_values, show=False)
+        plt.savefig(f'{self.log_path}/shap_heatmap.png')
 
         Misc.create_directory(f'{self.log_path}/save_models/')
         self.xgb_classifier.save_model(f'{self.log_path}/save_models/xgboost_model.json')
