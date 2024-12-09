@@ -4,7 +4,7 @@ import numpy as np
 from src.shared import results_report
 
 class TrainingDataset:
-    def __init__(self, yaml_path='config/dataset_paths.yaml'):
+    def __init__(self, yaml_path='config/dataset_paths_preprocessed.yaml'):
         self.yaml_path = yaml_path
 
     def getDataset(self, trainData, dataType, newLine, subset=None):

@@ -1,0 +1,113 @@
+chatgpt_abstract_without:
+  train: "data/abstract_preprocessed/arxiv_chatGPT_train.jsonl"
+  validation: "data/abstract_preprocessed/arxiv_chatGPT_val.jsonl"
+  test: "data/abstract_preprocessed/arxiv_chatGPT_test.jsonl"
+  human_text_column: 'human_text'
+  machine_text_column: 'machine_text'
+
+chatgpt_abstract_paraphrased_without:
+  train: "data/abstract_preprocessed/arxiv_chatGPT_paraphrased_train.jsonl"
+  validation: "data/abstract_preprocessed/arxiv_chatGPT_paraphrased_validation.jsonl"
+  test: "data/abstract_preprocessed/arxiv_chatGPT_paraphrased_test.jsonl"
+  human_text_column: 'human_text'
+  machine_text_column: 'machine_text'
+
+bloomz_abstract_without:
+  train: "data/abstract_preprocessed/arxiv_bloomz_train.jsonl"
+  validation: "data/abstract_preprocessed/arxiv_bloomz_val.jsonl"
+  test: "data/abstract_preprocessed/arxiv_bloomz_test.jsonl"
+  human_text_column: 'abstract'
+  machine_text_column: 'machine_abstract'
+
+bloomz_abstract_paraphrased_without:
+  train: "data/abstract_preprocessed/arxiv_bloomz_paraphrased_train.jsonl"
+  validation: "data/abstract_preprocessed/arxiv_bloomz_paraphrased_validation.jsonl"
+  test: "data/abstract_preprocessed/arxiv_bloomz_paraphrased_test.jsonl"
+  human_text_column: 'abstract'
+  machine_text_column: 'machine_abstract'
+
+llama3_abstract_without:
+  train: "data/abstract_preprocessed/arxiv_llama3_train.jsonl"
+  validation: "data/abstract_preprocessed/arxiv_llama3_val.jsonl"
+  test: "data/abstract_preprocessed/arxiv_llama3_test.jsonl"
+  human_text_column: 'abstract'
+  machine_text_column: 'machine_text'
+
+cohere_abstract_without:
+  train: "data/abstract_preprocessed/arxiv_cohere_train.jsonl"
+  validation: "data/abstract_preprocessed/arxiv_cohere_validation.jsonl"
+  test: "data/abstract_preprocessed/arxiv_cohere_test.jsonl"
+  human_text_column: 'human_text'
+  machine_text_column: 'machine_text'
+
+davinci_abstract_without:
+  train: "data/abstract_preprocessed/arxiv_davinci_train.jsonl"
+  validation: "data/abstract_preprocessed/arxiv_davinci_validation.jsonl"
+  test: "data/abstract_preprocessed/arxiv_davinci_test.jsonl"
+  human_text_column: 'human_text'
+  machine_text_column: 'machine_text'
+
+flant5_abstract_without:
+  train: "data/abstract_preprocessed/arxiv_flant5_train.jsonl"
+  validation: "data/abstract_preprocessed/arxiv_flant5_validation.jsonl"
+  test: "data/abstract_preprocessed/arxiv_flant5_test.jsonl"
+  human_text_column: 'human_text'
+  machine_text_column: 'machine_text'
+
+llama3_ml_without:
+  train: "data/ml_abstract_preprocessed/arxiv_papers_with_MT_llama_train.jsonl"
+  validation: "data/ml_abstract_preprocessed/arxiv_papers_with_MT_llama_validation.jsonl"
+  test: "data/ml_abstract_preprocessed/arxiv_papers_with_MT_llama_test.jsonl"
+  human_text_column: 'abstract'
+  machine_text_column: 'machine_text'
+
+bloomz_wiki_without:
+  train: "data/wiki_preprocessed/wikipedia_bloomz_train.jsonl"
+  validation: "data/wiki_preprocessed/wikipedia_bloomz_val.jsonl"
+  test: "data/wiki_preprocessed/wikipedia_bloomz_test.jsonl"
+  human_text_column: 'text'
+  machine_text_column: 'machine_abstract'
+
+chatgpt_wiki_without:
+  train: "data/wiki_preprocessed/wikipedia_chatgpt_train.jsonl"
+  validation: "data/wiki_preprocessed/wikipedia_chatgpt_val.jsonl"
+  test: "data/wiki_preprocessed/wikipedia_chatgpt_test.jsonl"
+  human_text_column: 'human_text'
+  machine_text_column: 'machine_text'
+
+cohere_wiki_without:
+  train: "data/wiki_preprocessed/wikipedia_cohere_train.jsonl"
+  validation: "data/wiki_preprocessed/wikipedia_cohere_val.jsonl"
+  test: "data/wiki_preprocessed/wikipedia_cohere_test.jsonl"
+  human_text_column: 'human_text'
+  machine_text_column: 'machine_text'
+
+davinci_wiki_without:
+  train: "data/wiki_preprocessed/wikipedia_davinci_train.jsonl"
+  validation: "data/wiki_preprocessed/wikipedia_davinci_val.jsonl"
+  test: "data/wiki_preprocessed/wikipedia_davinci_test.jsonl"
+  human_text_column: 'human_text'
+  machine_text_column: 'machine_text'
+
+chatgptBloomz_abstract_without:
+  train: "data/abstract_preprocessed/arxiv_chatgptBloomz_train.jsonl"
+  validation: "data/abstract_preprocessed/arxiv_chatgptBloomz_validation.jsonl"
+  test: "data/abstract_preprocessed/arxiv_chatgptBloomz_test.jsonl"
+  human_text_column: 'abstract'
+  machine_text_column: 'machine_abstract'
+
+bloomzWiki_abstract_without:
+  train: "data/abstract_preprocessed/arxiv_bloomzWiki_train.jsonl"
+  validation: "data/abstract_preprocessed/arxiv_bloomzWiki_validation.jsonl"
+  test: "data/abstract_preprocessed/arxiv_bloomzWiki_test.jsonl"
+  human_text_column: 'abstract'
+  machine_text_column: 'machine_abstract'
+
+bloomzWikiML_abstract_without:
+  train: "data/abstract_preprocessed/arxiv_bloomzWikiML_train.jsonl"
+  validation: "data/abstract_preprocessed/arxiv_bloomzWikiML_validation.jsonl"
+  test: "data/abstract_preprocessed/arxiv_bloomzWikiML_test.jsonl"
+  human_text_column: 'abstract'
+  machine_text_column: 'machine_abstract'
+
+# Continue for other trainData, dataType, and newLine combinations
