@@ -1,0 +1,162 @@
+
+        <html>
+        <head>
+            <title>Report</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                h1 { color: #333; }
+                table { border-collapse: collapse; width: 100%; }
+                th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+                th { background-color: #f2f2f2; }
+                img { max-width: 100%; height: auto; margin: 10px 0; }
+            </style>
+        </head>
+        <body>
+            <h1>Report</h1>
+            <table>
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Model Type</td>
+                    <td>roberta</td>
+                </tr>
+                <tr>
+                    <td>Task</td>
+                    <td>trainOnSubset</td>
+                </tr>
+                <tr>
+                    <td>Training Data</td>
+                    <td>bloomz</td>
+                </tr>
+                <tr>
+                    <td>Data Type</td>
+                    <td>abstract</td>
+                </tr>
+                <tr>
+                    <td>New Line</td>
+                    <td>without</td>
+                </tr>
+                <tr>
+                    <td>Log Folder Name</td>
+                    <td>roberta_trainOnSubset_eval_40</td>
+                </tr>
+                <tr>
+                    <td>Title</td>
+                    <td>roberta Finetune on bloomz with 40% Data and cross-model Evaluation</td>
+                </tr>
+                <tr>
+                    <td>percentage</td>
+                    <td>0.4</td>
+                </tr>
+                <tr>
+                    <td>log_path</td>
+                    <td>results/report/roberta/roberta_trainOnSubset_eval_40//</td>
+                </tr>
+                <tr>
+                    <td>Train input path</td>
+                    <td>data/without_n_preprocessed/arxiv_bloomz_train.jsonl</td>
+                </tr>
+                <tr>
+                    <td>Test input path</td>
+                    <td>data/without_n_preprocessed/arxiv_bloomz_test.jsonl</td>
+                </tr>
+                <tr>
+                    <td>Validation input path</td>
+                    <td>data/without_n_preprocessed/arxiv_bloomz_val.jsonl</td>
+                </tr>
+                <tr>
+                    <td>Human text column name</td>
+                    <td>abstract</td>
+                </tr>
+                <tr>
+                    <td>Machine text column name</td>
+                    <td>machine_abstract</td>
+                </tr>
+                <tr>
+                    <td>Validation results</td>
+                    <td>{'eval_loss': 0.07334379106760025, 'eval_accuracy': 0.9895833333333334, 'eval_precision': 0.9875518672199171, 'eval_recall': 0.9916666666666667, 'eval_f1': 0.9896049896049897, 'eval_sensitivity': 0.9916666666666667, 'eval_specificity': 0.9875, 'eval_runtime': 31.7774, 'eval_samples_per_second': 30.21, 'eval_steps_per_second': 3.776, 'epoch': 3.0}</td>
+                </tr>
+                <tr>
+                    <td>Test results</td>
+                    <td>{'test_loss': 0.07118270546197891, 'test_accuracy': 0.9891666666666666, 'test_precision': 0.989983305509182, 'test_recall': 0.9883333333333333, 'test_f1': 0.9891576313594662, 'test_sensitivity': 0.9883333333333333, 'test_specificity': 0.99, 'test_runtime': 39.0237, 'test_samples_per_second': 30.751, 'test_steps_per_second': 3.844}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for chatgpt_abstract_without</td>
+                    <td>{'test_loss': 0.03219052776694298, 'test_model_preparation_time': 0.0031, 'test_accuracy': 0.995, 'test_precision': 0.9900990099009901, 'test_recall': 1.0, 'test_f1': 0.9950248756218906, 'test_sensitivity': 1.0, 'test_specificity': 0.99, 'test_runtime': 41.3903, 'test_samples_per_second': 28.992, 'test_steps_per_second': 1.812}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for bloomz_abstract_without</td>
+                    <td>{'test_loss': 0.07118259370326996, 'test_model_preparation_time': 0.0032, 'test_accuracy': 0.9891666666666666, 'test_precision': 0.989983305509182, 'test_recall': 0.9883333333333333, 'test_f1': 0.9891576313594662, 'test_sensitivity': 0.9883333333333333, 'test_specificity': 0.99, 'test_runtime': 40.7662, 'test_samples_per_second': 29.436, 'test_steps_per_second': 1.84}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for llama3_abstract_without</td>
+                    <td>{'test_loss': 0.036025919020175934, 'test_model_preparation_time': 0.0031, 'test_accuracy': 0.995, 'test_precision': 0.9983221476510067, 'test_recall': 0.9916666666666667, 'test_f1': 0.9949832775919732, 'test_sensitivity': 0.9916666666666667, 'test_specificity': 0.9983333333333333, 'test_runtime': 40.7529, 'test_samples_per_second': 29.446, 'test_steps_per_second': 1.84}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for cohere_abstract_without</td>
+                    <td>{'test_loss': 0.21438173949718475, 'test_model_preparation_time': 0.0032, 'test_accuracy': 0.9616666666666667, 'test_precision': 0.9893992932862191, 'test_recall': 0.9333333333333333, 'test_f1': 0.9605488850771869, 'test_sensitivity': 0.9333333333333333, 'test_specificity': 0.99, 'test_runtime': 40.8741, 'test_samples_per_second': 29.358, 'test_steps_per_second': 1.835}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for davinci_abstract_without</td>
+                    <td>{'test_loss': 0.7270067930221558, 'test_model_preparation_time': 0.005, 'test_accuracy': 0.8833333333333333, 'test_precision': 0.9914529914529915, 'test_recall': 0.7733333333333333, 'test_f1': 0.8689138576779025, 'test_sensitivity': 0.7733333333333333, 'test_specificity': 0.9933333333333333, 'test_runtime': 40.483, 'test_samples_per_second': 29.642, 'test_steps_per_second': 1.853}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for flant5_abstract_without</td>
+                    <td>{'test_loss': 0.22264552116394043, 'test_model_preparation_time': 0.0033, 'test_accuracy': 0.9566666666666667, 'test_precision': 0.9892857142857143, 'test_recall': 0.9233333333333333, 'test_f1': 0.9551724137931035, 'test_sensitivity': 0.9233333333333333, 'test_specificity': 0.99, 'test_runtime': 39.9523, 'test_samples_per_second': 30.036, 'test_steps_per_second': 1.877}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for llama3_ml_without</td>
+                    <td>{'test_loss': 2.845134973526001, 'test_model_preparation_time': 0.0073, 'test_accuracy': 0.6325, 'test_precision': 0.5844845908607864, 'test_recall': 0.9166666666666666, 'test_f1': 0.7138221933809216, 'test_sensitivity': 0.9166666666666666, 'test_specificity': 0.34833333333333333, 'test_runtime': 40.4159, 'test_samples_per_second': 29.691, 'test_steps_per_second': 1.856}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for bloomz_wiki_without</td>
+                    <td>{'test_loss': 3.5041885375976562, 'test_model_preparation_time': 0.0033, 'test_accuracy': 0.545, 'test_precision': 0.5243682310469314, 'test_recall': 0.9683333333333334, 'test_f1': 0.680327868852459, 'test_sensitivity': 0.9683333333333334, 'test_specificity': 0.12166666666666667, 'test_runtime': 40.6103, 'test_samples_per_second': 29.549, 'test_steps_per_second': 1.847}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for chatgpt_wiki_without</td>
+                    <td>{'test_loss': 3.5930027961730957, 'test_model_preparation_time': 0.0032, 'test_accuracy': 0.5626043405676127, 'test_precision': 0.5334522747546833, 'test_recall': 0.998330550918197, 'test_f1': 0.6953488372093023, 'test_sensitivity': 0.998330550918197, 'test_specificity': 0.12687813021702837, 'test_runtime': 42.6076, 'test_samples_per_second': 28.117, 'test_steps_per_second': 1.76}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for cohere_wiki_without</td>
+                    <td>{'test_loss': 3.6260955333709717, 'test_model_preparation_time': 0.0033, 'test_accuracy': 0.5566239316239316, 'test_precision': 0.5301478953356087, 'test_recall': 0.9957264957264957, 'test_f1': 0.6919079435783222, 'test_sensitivity': 0.9957264957264957, 'test_specificity': 0.11752136752136752, 'test_runtime': 33.2632, 'test_samples_per_second': 28.139, 'test_steps_per_second': 1.774}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for davinci_wiki_without</td>
+                    <td>{'test_loss': 3.857605457305908, 'test_model_preparation_time': 0.0032, 'test_accuracy': 0.53, 'test_precision': 0.5161001788908766, 'test_recall': 0.9616666666666667, 'test_f1': 0.6717112922002328, 'test_sensitivity': 0.9616666666666667, 'test_specificity': 0.09833333333333333, 'test_runtime': 43.4723, 'test_samples_per_second': 27.604, 'test_steps_per_second': 1.725}</td>
+                </tr>
+            </table>
+            <h1>Plots/Confusion Matrix</h1>
+                <h2>Training_and_Validation_Loss.png</h2>
+                <img src="Training_and_Validation_Loss.png" alt="Training_and_Validation_Loss.png">
+                <h2>Training_Validationn_Accuracy.png</h2>
+                <img src="Training_Validationn_Accuracy.png" alt="Training_Validationn_Accuracy.png">
+                <h2>confusion_matrix_Test.png</h2>
+                <img src="confusion_matrix_Test.png" alt="confusion_matrix_Test.png">
+                <h2>confusion_matrix_chatgpt_abstract_without.png</h2>
+                <img src="confusion_matrix_chatgpt_abstract_without.png" alt="confusion_matrix_chatgpt_abstract_without.png">
+                <h2>confusion_matrix_bloomz_abstract_without.png</h2>
+                <img src="confusion_matrix_bloomz_abstract_without.png" alt="confusion_matrix_bloomz_abstract_without.png">
+                <h2>confusion_matrix_llama3_abstract_without.png</h2>
+                <img src="confusion_matrix_llama3_abstract_without.png" alt="confusion_matrix_llama3_abstract_without.png">
+                <h2>confusion_matrix_cohere_abstract_without.png</h2>
+                <img src="confusion_matrix_cohere_abstract_without.png" alt="confusion_matrix_cohere_abstract_without.png">
+                <h2>confusion_matrix_davinci_abstract_without.png</h2>
+                <img src="confusion_matrix_davinci_abstract_without.png" alt="confusion_matrix_davinci_abstract_without.png">
+                <h2>confusion_matrix_flant5_abstract_without.png</h2>
+                <img src="confusion_matrix_flant5_abstract_without.png" alt="confusion_matrix_flant5_abstract_without.png">
+                <h2>confusion_matrix_llama3_ml_without.png</h2>
+                <img src="confusion_matrix_llama3_ml_without.png" alt="confusion_matrix_llama3_ml_without.png">
+                <h2>confusion_matrix_bloomz_wiki_without.png</h2>
+                <img src="confusion_matrix_bloomz_wiki_without.png" alt="confusion_matrix_bloomz_wiki_without.png">
+                <h2>confusion_matrix_chatgpt_wiki_without.png</h2>
+                <img src="confusion_matrix_chatgpt_wiki_without.png" alt="confusion_matrix_chatgpt_wiki_without.png">
+                <h2>confusion_matrix_cohere_wiki_without.png</h2>
+                <img src="confusion_matrix_cohere_wiki_without.png" alt="confusion_matrix_cohere_wiki_without.png">
+                <h2>confusion_matrix_davinci_wiki_without.png</h2>
+                <img src="confusion_matrix_davinci_wiki_without.png" alt="confusion_matrix_davinci_wiki_without.png">
+        <h1>Original text Vs Perturbed Text</h1>
+            <h1>Attack Summary</h1>
+        </body>
+        </html>

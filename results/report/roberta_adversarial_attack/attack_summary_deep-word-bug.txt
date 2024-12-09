@@ -1,0 +1,9 @@
+Number of successful attacks: 7
+Number of failed attacks: 13
+Number of skipped attacks: 0
+Original accuracy: 100.0%
+Accuracy under attack: 65.0%
+Attack success rate: 35.0%
+Average perturbed word %: 4.19%
+Average num. words per input: 222.4
+Avg num queries: 446.1

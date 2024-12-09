@@ -1,0 +1,382 @@
+
+        <html>
+        <head>
+            <title>Report</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                h1 { color: #333; }
+                table { border-collapse: collapse; width: 100%; }
+                th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+                th { background-color: #f2f2f2; }
+                img { max-width: 100%; height: auto; margin: 10px 0; }
+            </style>
+        </head>
+        <body>
+            <h1>Report</h1>
+            <table>
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Model Type</td>
+                    <td>xgboost</td>
+                </tr>
+                <tr>
+                    <td>Task</td>
+                    <td>finetuneAndEval</td>
+                </tr>
+                <tr>
+                    <td>Training Data</td>
+                    <td>bloomz</td>
+                </tr>
+                <tr>
+                    <td>Data Type</td>
+                    <td>abstract</td>
+                </tr>
+                <tr>
+                    <td>New Line</td>
+                    <td>without</td>
+                </tr>
+                <tr>
+                    <td>Log Folder Name</td>
+                    <td>xgboost_finetuneeval_bloomz</td>
+                </tr>
+                <tr>
+                    <td>Title</td>
+                    <td>XGBoost Finetune and Evaluation - bloomz</td>
+                </tr>
+                <tr>
+                    <td>percentage</td>
+                    <td>None</td>
+                </tr>
+                <tr>
+                    <td>train</td>
+                    <td>True</td>
+                </tr>
+                <tr>
+                    <td>Train input path</td>
+                    <td>data/without_n_preprocessed/arxiv_bloomz_train.jsonl</td>
+                </tr>
+                <tr>
+                    <td>Test input path</td>
+                    <td>data/without_n_preprocessed/arxiv_bloomz_test.jsonl</td>
+                </tr>
+                <tr>
+                    <td>Validation input path</td>
+                    <td>data/without_n_preprocessed/arxiv_bloomz_val.jsonl</td>
+                </tr>
+                <tr>
+                    <td>Human text column name</td>
+                    <td>abstract</td>
+                </tr>
+                <tr>
+                    <td>Machine text column name</td>
+                    <td>machine_abstract</td>
+                </tr>
+                <tr>
+                    <td>log_path</td>
+                    <td>results/report/xgboost/xgboost_finetuneeval_bloomz/</td>
+                </tr>
+                <tr>
+                    <td>Training accuracy</td>
+                    <td>0.7675</td>
+                </tr>
+                <tr>
+                    <td>precision_score chatgpt_abstract_without</td>
+                    <td>0.2191780821917808</td>
+                </tr>
+                <tr>
+                    <td>F1 score chatgpt_abstract_without</td>
+                    <td>0.11721611721611722</td>
+                </tr>
+                <tr>
+                    <td>Accuracy Score chatgpt_abstract_without</td>
+                    <td>0.3975</td>
+                </tr>
+                <tr>
+                    <td>Recall Score chatgpt_abstract_without</td>
+                    <td>0.08</td>
+                </tr>
+                <tr>
+                    <td>precision_score chatgpt_abstract_paraphrased_without</td>
+                    <td>0.2191780821917808</td>
+                </tr>
+                <tr>
+                    <td>F1 score chatgpt_abstract_paraphrased_without</td>
+                    <td>0.11721611721611722</td>
+                </tr>
+                <tr>
+                    <td>Accuracy Score chatgpt_abstract_paraphrased_without</td>
+                    <td>0.3975</td>
+                </tr>
+                <tr>
+                    <td>Recall Score chatgpt_abstract_paraphrased_without</td>
+                    <td>0.08</td>
+                </tr>
+                <tr>
+                    <td>precision_score bloomz_abstract_without</td>
+                    <td>0.7609756097560976</td>
+                </tr>
+                <tr>
+                    <td>F1 score bloomz_abstract_without</td>
+                    <td>0.7703703703703704</td>
+                </tr>
+                <tr>
+                    <td>Accuracy Score bloomz_abstract_without</td>
+                    <td>0.7675</td>
+                </tr>
+                <tr>
+                    <td>Recall Score bloomz_abstract_without</td>
+                    <td>0.78</td>
+                </tr>
+                <tr>
+                    <td>precision_score bloomz_abstract_paraphrased_without</td>
+                    <td>0.7609756097560976</td>
+                </tr>
+                <tr>
+                    <td>F1 score bloomz_abstract_paraphrased_without</td>
+                    <td>0.7703703703703704</td>
+                </tr>
+                <tr>
+                    <td>Accuracy Score bloomz_abstract_paraphrased_without</td>
+                    <td>0.7675</td>
+                </tr>
+                <tr>
+                    <td>Recall Score bloomz_abstract_paraphrased_without</td>
+                    <td>0.78</td>
+                </tr>
+                <tr>
+                    <td>precision_score llama3_abstract_without</td>
+                    <td>0.023391812865497075</td>
+                </tr>
+                <tr>
+                    <td>F1 score llama3_abstract_without</td>
+                    <td>0.010376134889753566</td>
+                </tr>
+                <tr>
+                    <td>Accuracy Score llama3_abstract_without</td>
+                    <td>0.3641666666666667</td>
+                </tr>
+                <tr>
+                    <td>Recall Score llama3_abstract_without</td>
+                    <td>0.006666666666666667</td>
+                </tr>
+                <tr>
+                    <td>precision_score cohere_abstract_without</td>
+                    <td>0.36</td>
+                </tr>
+                <tr>
+                    <td>F1 score cohere_abstract_without</td>
+                    <td>0.22628571428571428</td>
+                </tr>
+                <tr>
+                    <td>Accuracy Score cohere_abstract_without</td>
+                    <td>0.43583333333333335</td>
+                </tr>
+                <tr>
+                    <td>Recall Score cohere_abstract_without</td>
+                    <td>0.165</td>
+                </tr>
+                <tr>
+                    <td>precision_score davinci_abstract_without</td>
+                    <td>0.536</td>
+                </tr>
+                <tr>
+                    <td>F1 score davinci_abstract_without</td>
+                    <td>0.4123076923076923</td>
+                </tr>
+                <tr>
+                    <td>Accuracy Score davinci_abstract_without</td>
+                    <td>0.5225</td>
+                </tr>
+                <tr>
+                    <td>Recall Score davinci_abstract_without</td>
+                    <td>0.335</td>
+                </tr>
+                <tr>
+                    <td>precision_score flant5_abstract_without</td>
+                    <td>0.32936507936507936</td>
+                </tr>
+                <tr>
+                    <td>F1 score flant5_abstract_without</td>
+                    <td>0.19483568075117372</td>
+                </tr>
+                <tr>
+                    <td>Accuracy Score flant5_abstract_without</td>
+                    <td>0.42833333333333334</td>
+                </tr>
+                <tr>
+                    <td>Recall Score flant5_abstract_without</td>
+                    <td>0.13833333333333334</td>
+                </tr>
+                <tr>
+                    <td>precision_score llama3_ml_without</td>
+                    <td>0.4149797570850202</td>
+                </tr>
+                <tr>
+                    <td>F1 score llama3_ml_without</td>
+                    <td>0.37477148080438755</td>
+                </tr>
+                <tr>
+                    <td>Accuracy Score llama3_ml_without</td>
+                    <td>0.43</td>
+                </tr>
+                <tr>
+                    <td>Recall Score llama3_ml_without</td>
+                    <td>0.3416666666666667</td>
+                </tr>
+                <tr>
+                    <td>precision_score bloomz_wiki_without</td>
+                    <td>0.5828144458281445</td>
+                </tr>
+                <tr>
+                    <td>F1 score bloomz_wiki_without</td>
+                    <td>0.6671418389166073</td>
+                </tr>
+                <tr>
+                    <td>Accuracy Score bloomz_wiki_without</td>
+                    <td>0.6108333333333333</td>
+                </tr>
+                <tr>
+                    <td>Recall Score bloomz_wiki_without</td>
+                    <td>0.78</td>
+                </tr>
+                <tr>
+                    <td>precision_score chatgpt_wiki_without</td>
+                    <td>0.35845213849287166</td>
+                </tr>
+                <tr>
+                    <td>F1 score chatgpt_wiki_without</td>
+                    <td>0.3229357798165138</td>
+                </tr>
+                <tr>
+                    <td>Accuracy Score chatgpt_wiki_without</td>
+                    <td>0.38397328881469117</td>
+                </tr>
+                <tr>
+                    <td>Recall Score chatgpt_wiki_without</td>
+                    <td>0.2938230383973289</td>
+                </tr>
+                <tr>
+                    <td>precision_score cohere_wiki_without</td>
+                    <td>0.44251626898047725</td>
+                </tr>
+                <tr>
+                    <td>F1 score cohere_wiki_without</td>
+                    <td>0.43918191603875134</td>
+                </tr>
+                <tr>
+                    <td>Accuracy Score cohere_wiki_without</td>
+                    <td>0.44337606837606836</td>
+                </tr>
+                <tr>
+                    <td>Recall Score cohere_wiki_without</td>
+                    <td>0.4358974358974359</td>
+                </tr>
+                <tr>
+                    <td>precision_score davinci_wiki_without</td>
+                    <td>0.44582593250444047</td>
+                </tr>
+                <tr>
+                    <td>F1 score davinci_wiki_without</td>
+                    <td>0.4316423043852107</td>
+                </tr>
+                <tr>
+                    <td>Accuracy Score davinci_wiki_without</td>
+                    <td>0.44916666666666666</td>
+                </tr>
+                <tr>
+                    <td>Recall Score davinci_wiki_without</td>
+                    <td>0.41833333333333333</td>
+                </tr>
+                <tr>
+                    <td>precision_score chatgptBloomz_abstract_without</td>
+                    <td>0.6206451612903225</td>
+                </tr>
+                <tr>
+                    <td>F1 score chatgptBloomz_abstract_without</td>
+                    <td>0.4870886075949367</td>
+                </tr>
+                <tr>
+                    <td>Accuracy Score chatgptBloomz_abstract_without</td>
+                    <td>0.5779166666666666</td>
+                </tr>
+                <tr>
+                    <td>Recall Score chatgptBloomz_abstract_without</td>
+                    <td>0.4008333333333333</td>
+                </tr>
+                <tr>
+                    <td>precision_score bloomzWiki_abstract_without</td>
+                    <td>0.6161548731642189</td>
+                </tr>
+                <tr>
+                    <td>F1 score bloomzWiki_abstract_without</td>
+                    <td>0.6842105263157895</td>
+                </tr>
+                <tr>
+                    <td>Accuracy Score bloomzWiki_abstract_without</td>
+                    <td>0.645</td>
+                </tr>
+                <tr>
+                    <td>Recall Score bloomzWiki_abstract_without</td>
+                    <td>0.7691666666666667</td>
+                </tr>
+                <tr>
+                    <td>precision_score bloomzWikiML_abstract_without</td>
+                    <td>0.5922381711855396</td>
+                </tr>
+                <tr>
+                    <td>F1 score bloomzWikiML_abstract_without</td>
+                    <td>0.6052703069817984</td>
+                </tr>
+                <tr>
+                    <td>Accuracy Score bloomzWikiML_abstract_without</td>
+                    <td>0.5963888888888889</td>
+                </tr>
+                <tr>
+                    <td>Recall Score bloomzWikiML_abstract_without</td>
+                    <td>0.6188888888888889</td>
+                </tr>
+            </table>
+            <h1>Plots/Confusion Matrix</h1>
+                <h2>importance.png</h2>
+                <img src="importance.png" alt="importance.png">
+                <h2>confusion_matrix_Test.png</h2>
+                <img src="confusion_matrix_Test.png" alt="confusion_matrix_Test.png">
+                <h2>confusion_matrix_chatgpt_abstract_without.png</h2>
+                <img src="confusion_matrix_chatgpt_abstract_without.png" alt="confusion_matrix_chatgpt_abstract_without.png">
+                <h2>confusion_matrix_chatgpt_abstract_paraphrased_without.png</h2>
+                <img src="confusion_matrix_chatgpt_abstract_paraphrased_without.png" alt="confusion_matrix_chatgpt_abstract_paraphrased_without.png">
+                <h2>confusion_matrix_bloomz_abstract_without.png</h2>
+                <img src="confusion_matrix_bloomz_abstract_without.png" alt="confusion_matrix_bloomz_abstract_without.png">
+                <h2>confusion_matrix_bloomz_abstract_paraphrased_without.png</h2>
+                <img src="confusion_matrix_bloomz_abstract_paraphrased_without.png" alt="confusion_matrix_bloomz_abstract_paraphrased_without.png">
+                <h2>confusion_matrix_llama3_abstract_without.png</h2>
+                <img src="confusion_matrix_llama3_abstract_without.png" alt="confusion_matrix_llama3_abstract_without.png">
+                <h2>confusion_matrix_cohere_abstract_without.png</h2>
+                <img src="confusion_matrix_cohere_abstract_without.png" alt="confusion_matrix_cohere_abstract_without.png">
+                <h2>confusion_matrix_davinci_abstract_without.png</h2>
+                <img src="confusion_matrix_davinci_abstract_without.png" alt="confusion_matrix_davinci_abstract_without.png">
+                <h2>confusion_matrix_flant5_abstract_without.png</h2>
+                <img src="confusion_matrix_flant5_abstract_without.png" alt="confusion_matrix_flant5_abstract_without.png">
+                <h2>confusion_matrix_llama3_ml_without.png</h2>
+                <img src="confusion_matrix_llama3_ml_without.png" alt="confusion_matrix_llama3_ml_without.png">
+                <h2>confusion_matrix_bloomz_wiki_without.png</h2>
+                <img src="confusion_matrix_bloomz_wiki_without.png" alt="confusion_matrix_bloomz_wiki_without.png">
+                <h2>confusion_matrix_chatgpt_wiki_without.png</h2>
+                <img src="confusion_matrix_chatgpt_wiki_without.png" alt="confusion_matrix_chatgpt_wiki_without.png">
+                <h2>confusion_matrix_cohere_wiki_without.png</h2>
+                <img src="confusion_matrix_cohere_wiki_without.png" alt="confusion_matrix_cohere_wiki_without.png">
+                <h2>confusion_matrix_davinci_wiki_without.png</h2>
+                <img src="confusion_matrix_davinci_wiki_without.png" alt="confusion_matrix_davinci_wiki_without.png">
+                <h2>confusion_matrix_chatgptBloomz_abstract_without.png</h2>
+                <img src="confusion_matrix_chatgptBloomz_abstract_without.png" alt="confusion_matrix_chatgptBloomz_abstract_without.png">
+                <h2>confusion_matrix_bloomzWiki_abstract_without.png</h2>
+                <img src="confusion_matrix_bloomzWiki_abstract_without.png" alt="confusion_matrix_bloomzWiki_abstract_without.png">
+                <h2>confusion_matrix_bloomzWikiML_abstract_without.png</h2>
+                <img src="confusion_matrix_bloomzWikiML_abstract_without.png" alt="confusion_matrix_bloomzWikiML_abstract_without.png">
+        <h1>Original text Vs Perturbed Text</h1>
+            <h1>Attack Summary</h1>
+        </body>
+        </html>

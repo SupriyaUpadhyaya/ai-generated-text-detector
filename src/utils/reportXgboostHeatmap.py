@@ -33,11 +33,12 @@ def create_heatmap(df, metric_name):
 # Split the dataframe into separate parts for each metric (assuming columns represent precision, recall, accuracy, f1)
 precision_data = data[['precision']]
 recall_data = data[['recall']]
-accuracy_data = data[['accuracy']]
+#accuracy_data = data[['accuracy']]
 f1_score_data = data[['f1']]
 
 # Create heatmaps for each metric
 create_heatmap(precision_data, "Precision")
 create_heatmap(recall_data, "Recall")
-create_heatmap(accuracy_data, "Accuracy")
+#create_heatmap(accuracy_data, "Accuracy")
 create_heatmap(f1_score_data, "F1 Score")
+

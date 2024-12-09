@@ -1,0 +1,122 @@
+
+        <html>
+        <head>
+            <title>Report</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                h1 { color: #333; }
+                table { border-collapse: collapse; width: 100%; }
+                th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+                th { background-color: #f2f2f2; }
+                img { max-width: 100%; height: auto; margin: 10px 0; }
+            </style>
+        </head>
+        <body>
+            <h1>Report</h1>
+            <table>
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Model Type</td>
+                    <td>bloomz</td>
+                </tr>
+                <tr>
+                    <td>Task</td>
+                    <td>evalPretrained</td>
+                </tr>
+                <tr>
+                    <td>Training Data</td>
+                    <td>chatgpt</td>
+                </tr>
+                <tr>
+                    <td>Data Type</td>
+                    <td>abstract</td>
+                </tr>
+                <tr>
+                    <td>Preprocessing</td>
+                    <td>False</td>
+                </tr>
+                <tr>
+                    <td>Log Folder Name</td>
+                    <td>bloomz_evalPretrained_withn</td>
+                </tr>
+                <tr>
+                    <td>Title</td>
+                    <td>Bloomz Pretrained Evaluation without preprocessing the generations \n</td>
+                </tr>
+                <tr>
+                    <td>percentage</td>
+                    <td>None</td>
+                </tr>
+                <tr>
+                    <td>log_path</td>
+                    <td>results/report/bloomz/bloomz_evalPretrained_withn//</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for chatgpt_abstract_with</td>
+                    <td>{'test_loss': 3.914415174222086e-06, 'test_model_preparation_time': 0.004, 'test_accuracy': 1.0, 'test_precision': 1.0, 'test_recall': 1.0, 'test_f1': 1.0, 'test_sensitivity': 1.0, 'test_specificity': 1.0, 'test_runtime': 65.0558, 'test_samples_per_second': 18.446, 'test_steps_per_second': 1.153}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for bloomz_abstract_with</td>
+                    <td>{'test_loss': 6.452707767486572, 'test_model_preparation_time': 0.0041, 'test_accuracy': 0.545, 'test_precision': 1.0, 'test_recall': 0.09, 'test_f1': 0.16513761467889906, 'test_sensitivity': 0.09, 'test_specificity': 1.0, 'test_runtime': 67.1268, 'test_samples_per_second': 17.877, 'test_steps_per_second': 1.117}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for cohere_abstract_with</td>
+                    <td>{'test_loss': 5.0586957931518555, 'test_model_preparation_time': 0.0039, 'test_accuracy': 0.6091666666666666, 'test_precision': 1.0, 'test_recall': 0.21833333333333332, 'test_f1': 0.35841313269493846, 'test_sensitivity': 0.21833333333333332, 'test_specificity': 1.0, 'test_runtime': 67.1531, 'test_samples_per_second': 17.87, 'test_steps_per_second': 1.117}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for davinci_abstract_with</td>
+                    <td>{'test_loss': 3.869859218597412, 'test_model_preparation_time': 0.0039, 'test_accuracy': 0.6425, 'test_precision': 1.0, 'test_recall': 0.285, 'test_f1': 0.44357976653696496, 'test_sensitivity': 0.285, 'test_specificity': 1.0, 'test_runtime': 66.191, 'test_samples_per_second': 18.129, 'test_steps_per_second': 1.133}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for flant5_abstract_with</td>
+                    <td>{'test_loss': 0.9439747929573059, 'test_model_preparation_time': 0.0039, 'test_accuracy': 0.8525, 'test_precision': 1.0, 'test_recall': 0.705, 'test_f1': 0.8269794721407624, 'test_sensitivity': 0.705, 'test_specificity': 1.0, 'test_runtime': 65.7159, 'test_samples_per_second': 18.26, 'test_steps_per_second': 1.141}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for llama3_ml_with</td>
+                    <td>{'test_loss': 0.1422644406557083, 'test_model_preparation_time': 0.0041, 'test_accuracy': 0.955, 'test_precision': 0.9875, 'test_recall': 0.9216666666666666, 'test_f1': 0.9534482758620689, 'test_sensitivity': 0.9216666666666666, 'test_specificity': 0.9883333333333333, 'test_runtime': 66.101, 'test_samples_per_second': 18.154, 'test_steps_per_second': 1.135}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for bloomz_wiki_with</td>
+                    <td>{'test_loss': 6.665037631988525, 'test_model_preparation_time': 0.0041, 'test_accuracy': 0.5008333333333334, 'test_precision': 0.5454545454545454, 'test_recall': 0.01, 'test_f1': 0.019639934533551555, 'test_sensitivity': 0.01, 'test_specificity': 0.9916666666666667, 'test_runtime': 64.7644, 'test_samples_per_second': 18.529, 'test_steps_per_second': 1.158}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for chatgpt_wiki_with</td>
+                    <td>{'test_loss': 2.7338593006134033, 'test_model_preparation_time': 0.0066, 'test_accuracy': 0.7220367278797997, 'test_precision': 0.9818840579710145, 'test_recall': 0.4524207011686144, 'test_f1': 0.6194285714285714, 'test_sensitivity': 0.4524207011686144, 'test_specificity': 0.991652754590985, 'test_runtime': 67.6941, 'test_samples_per_second': 17.697, 'test_steps_per_second': 1.108}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for cohere_wiki_with</td>
+                    <td>{'test_loss': 6.478630542755127, 'test_model_preparation_time': 0.0038, 'test_accuracy': 0.5480769230769231, 'test_precision': 0.9411764705882353, 'test_recall': 0.10256410256410256, 'test_f1': 0.18497109826589592, 'test_sensitivity': 0.10256410256410256, 'test_specificity': 0.9935897435897436, 'test_runtime': 52.911, 'test_samples_per_second': 17.69, 'test_steps_per_second': 1.115}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for davinci_wiki_with</td>
+                    <td>{'test_loss': 5.418295383453369, 'test_model_preparation_time': 0.004, 'test_accuracy': 0.5858333333333333, 'test_precision': 0.9904761904761905, 'test_recall': 0.17333333333333334, 'test_f1': 0.2950354609929078, 'test_sensitivity': 0.17333333333333334, 'test_specificity': 0.9983333333333333, 'test_runtime': 67.7426, 'test_samples_per_second': 17.714, 'test_steps_per_second': 1.107}</td>
+                </tr>
+            </table>
+            <h1>Plots/Confusion Matrix</h1>
+                <h2>Evaluation on chatgpt wiki generations</h2>
+                <img src="confusion_matrix_chatgpt_wiki_with.png" alt="confusion_matrix_chatgpt_wiki_with.png">
+                <h2>Evaluation on bloomz wiki generations</h2>
+                <img src="confusion_matrix_bloomz_wiki_with.png" alt="confusion_matrix_bloomz_wiki_with.png">
+                <h2>Evaluation on cohere wiki generations</h2>
+                <img src="confusion_matrix_cohere_wiki_with.png" alt="confusion_matrix_cohere_wiki_with.png">
+                <h2>Evaluation on llama3 wiki generations</h2>
+                <img src="confusion_matrix_llama3_ml_with.png" alt="confusion_matrix_llama3_ml_with.png">
+                <h2>Evaluation on flant5 abstract generations</h2>
+                <img src="confusion_matrix_flant5_abstract_with.png" alt="confusion_matrix_flant5_abstract_with.png">
+                <h2>Evaluation on bloomz abstract generations</h2>
+                <img src="confusion_matrix_bloomz_abstract_with.png" alt="confusion_matrix_bloomz_abstract_with.png">
+                <h2>Evaluation on davinci abstract generations</h2>
+                <img src="confusion_matrix_davinci_wiki_with.png" alt="confusion_matrix_davinci_wiki_with.png">
+                <h2>Evaluation on chatgpt abstract generations</h2>
+                <img src="confusion_matrix_chatgpt_abstract_with.png" alt="confusion_matrix_chatgpt_abstract_with.png">
+                <h2>Evaluation on cohere abstract generations</h2>
+                <img src="confusion_matrix_cohere_abstract_with.png" alt="confusion_matrix_cohere_abstract_with.png">
+                <h2>Evaluation on davinci abstract generations</h2>
+                <img src="confusion_matrix_davinci_abstract_with.png" alt="confusion_matrix_davinci_abstract_with.png">
+        <h1>Original text Vs Perturbed Text</h1>
+            <h1>Attack Summary</h1>
+        </body>
+        </html>

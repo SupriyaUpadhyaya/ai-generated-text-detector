@@ -1,0 +1,96 @@
+
+        <html>
+        <head>
+            <title>Report</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                h1 { color: #333; }
+                table { border-collapse: collapse; width: 100%; }
+                th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+                th { background-color: #f2f2f2; }
+                img { max-width: 100%; height: auto; margin: 10px 0; }
+            </style>
+        </head>
+        <body>
+            <h1>Report</h1>
+            <table>
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Model Type</td>
+                    <td>roberta</td>
+                </tr>
+                <tr>
+                    <td>Task</td>
+                    <td>finetuneAndEval</td>
+                </tr>
+                <tr>
+                    <td>Training Data</td>
+                    <td>chatgpt</td>
+                </tr>
+                <tr>
+                    <td>Data Type</td>
+                    <td>abstract</td>
+                </tr>
+                <tr>
+                    <td>New Line</td>
+                    <td>without</td>
+                </tr>
+                <tr>
+                    <td>Log Folder Name</td>
+                    <td>roberta_prompt_attack_new</td>
+                </tr>
+                <tr>
+                    <td>Title</td>
+                    <td>Roberta Prompt Attack New</td>
+                </tr>
+                <tr>
+                    <td>percentage</td>
+                    <td>None</td>
+                </tr>
+                <tr>
+                    <td>train</td>
+                    <td>False</td>
+                </tr>
+                <tr>
+                    <td>log_path</td>
+                    <td>results/report/roberta/roberta_prompt_attack_new//</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for gemini_abstract_without_grammar_mistakes_attack</td>
+                    <td>{'test_loss': 1.5043653547763824e-05, 'test_model_preparation_time': 0.006, 'test_accuracy': 1.0, 'test_precision': 1.0, 'test_recall': 1.0, 'test_f1': 1.0, 'test_sensitivity': 1.0, 'test_specificity': 1.0, 'test_runtime': 7.3216, 'test_samples_per_second': 27.316, 'test_steps_per_second': 1.776}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for gemini_abstract_without_idioms_attack</td>
+                    <td>{'test_loss': 1.3235062397143338e-05, 'test_model_preparation_time': 0.0034, 'test_accuracy': 1.0, 'test_precision': 1.0, 'test_recall': 1.0, 'test_f1': 1.0, 'test_sensitivity': 1.0, 'test_specificity': 1.0, 'test_runtime': 5.5298, 'test_samples_per_second': 36.167, 'test_steps_per_second': 2.351}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for gemini_abstract_without_sentence_restructure_attack</td>
+                    <td>{'test_loss': 1.3078900337859523e-05, 'test_model_preparation_time': 0.0051, 'test_accuracy': 1.0, 'test_precision': 1.0, 'test_recall': 1.0, 'test_f1': 1.0, 'test_sensitivity': 1.0, 'test_specificity': 1.0, 'test_runtime': 5.5983, 'test_samples_per_second': 35.725, 'test_steps_per_second': 2.322}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for gemini_abstract_without_informal_slang_attack</td>
+                    <td>{'test_loss': 0.38205939531326294, 'test_model_preparation_time': 0.0032, 'test_accuracy': 0.93, 'test_precision': 1.0, 'test_recall': 0.86, 'test_f1': 0.924731182795699, 'test_sensitivity': 0.86, 'test_specificity': 1.0, 'test_runtime': 5.5794, 'test_samples_per_second': 35.846, 'test_steps_per_second': 2.33}</td>
+                </tr>
+                <tr>
+                    <td>Evaluation for gemini_abstract_without_synonym_attack</td>
+                    <td>{'test_loss': 1.4105769878369756e-05, 'test_model_preparation_time': 0.0032, 'test_accuracy': 1.0, 'test_precision': 1.0, 'test_recall': 1.0, 'test_f1': 1.0, 'test_sensitivity': 1.0, 'test_specificity': 1.0, 'test_runtime': 5.6836, 'test_samples_per_second': 35.189, 'test_steps_per_second': 2.287}</td>
+                </tr>
+            </table>
+            <h1>Plots/Confusion Matrix</h1>
+                <h2>confusion_matrix_gemini_abstract_without_grammar_mistakes_attack.png</h2>
+                <img src="confusion_matrix_gemini_abstract_without_grammar_mistakes_attack.png" alt="confusion_matrix_gemini_abstract_without_grammar_mistakes_attack.png">
+                <h2>confusion_matrix_gemini_abstract_without_idioms_attack.png</h2>
+                <img src="confusion_matrix_gemini_abstract_without_idioms_attack.png" alt="confusion_matrix_gemini_abstract_without_idioms_attack.png">
+                <h2>confusion_matrix_gemini_abstract_without_sentence_restructure_attack.png</h2>
+                <img src="confusion_matrix_gemini_abstract_without_sentence_restructure_attack.png" alt="confusion_matrix_gemini_abstract_without_sentence_restructure_attack.png">
+                <h2>confusion_matrix_gemini_abstract_without_informal_slang_attack.png</h2>
+                <img src="confusion_matrix_gemini_abstract_without_informal_slang_attack.png" alt="confusion_matrix_gemini_abstract_without_informal_slang_attack.png">
+                <h2>confusion_matrix_gemini_abstract_without_synonym_attack.png</h2>
+                <img src="confusion_matrix_gemini_abstract_without_synonym_attack.png" alt="confusion_matrix_gemini_abstract_without_synonym_attack.png">
+        <h1>Original text Vs Perturbed Text</h1>
+            <h1>Attack Summary</h1>
+        </body>
+        </html>
