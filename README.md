@@ -5,6 +5,7 @@ While various AI generated detectors claim high accuracy across different genera
 
 ### Final project report is available at [report](results/final-report/Examining_the_Robustness_and_Resilience_of_AI_Generated_Text_Detectors.pdf)
 ### Final presentation slides is available at [presentation slides](results/slides/Project%20_%20Examining%20the%20Robustness%20and%20Resilience%20of%20AI-Generated%20Text%20Detectors.pdf)
+### Results of each experiment is available at [experiment-results] (results/result-report)
 
 ![](data/ai-detectors.jpg)
 
